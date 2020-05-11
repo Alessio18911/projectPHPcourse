@@ -1,39 +1,41 @@
-<?php 
+<?php
 
 $pageTitle = "Регистрация";
+$userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
+$userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
+var_dump(strlen($userPass));
 
 if (isset($_POST['register'])) {
-    if (!trim($_POST['email'])) {
-        $errors[] = ['title' => "Введите email", 'desc' => "<p>Email обязателен для регистрации на сайте</p>"];
-    } else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-        $errors[] = ['title' => "Введите корректный email"];
-    }
-    
-    if (!trim($_POST['password'])) {
-        $errors[] = ['title' => "Введите пароль"];
-    }    
+  if (!$userEmail) {
+    $errors[] = ['title' => "Введите email", 'desc' => "<p>Email обязателен для регистрации на сайте</p>"];
+  } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+    $errors[] = ['title' => "Введите корректный email"];
+  }
 
-    if (R::count('users', 'email = ?', array($_POST['email']))) {
-        $errors[] = [
-            'title' => "Данный email уже зарегистрирован",
-            'desc' => '<p>Используйте другой email или воспользуйтесь <a href="' .HOST. 'lost-password" ?>восстановлением пароля</a></p>'
-        ];
-    }
-    
-    if (empty($errors)) {
-        $user = R::dispense('users');
-        $user->email = $_POST['email'];
-        $user->role = 'user';
-        $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $result = R::store($user);
+  if (!$userPass || (strlen($userPass) < 4)) {
+    $errors[] = ['title' => "Введите пароль длиной не менее 4 символов!"];
+  }
 
-        if (is_int($result)) {
-            $success[] = ['title' => "Вы успешно зарегистрировались!"];
-        } else {
-            $errors[] = ['title' => "Что-то пошло не так, повторите регистрацию"];
-        }
-    }
+  if (R::count('users', 'email = ?', array($userEmail))) {
+    $errors[] = [
+      'title' => "Данный email уже зарегистрирован",
+      'desc' => '<p>Используйте другой email или воспользуйтесь <a href="' .HOST. 'lost-password" ?>восстановлением пароля</a></p>'
+    ];
+  }
 
+  if (empty($errors)) {
+    $user = R::dispense('users');
+    $user->email = $userEmail;
+    $user->role = 'user';
+    $user->password = password_hash($userPass, PASSWORD_DEFAULT);
+    $result = R::store($user);
+
+    if (is_int($result)) {
+      $success[] = ['title' => "Вы успешно зарегистрировались!"];
+    } else {
+      $errors[] = ['title' => "Что-то пошло не так, повторите регистрацию"];
+    }
+  }
 }
 
 ob_start();
