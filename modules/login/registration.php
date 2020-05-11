@@ -25,7 +25,13 @@ if (isset($_POST['register'])) {
         $user->email = $_POST['email'];
         $user->role = 'user';
         $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        R::store($user);
+        $result = R::store($user);
+
+        if (is_int($result)) {
+            $success[] = ['title' => "Вы успешно зарегистрировались!"];
+        } else {
+            $errors[] = ['title' => "Что-то пошло не так, повторите регистрацию"];
+        }
     }
 
 }

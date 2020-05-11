@@ -4,6 +4,7 @@
     </div>
 
     <?php include ROOT . "templates/components/errors.tpl" ?>
+    <?php include ROOT . "templates/components/success.tpl" ?>
 
     <div class="authorization-form__input">
         <input class="input" name="email" type="text" placeholder="Email" />
