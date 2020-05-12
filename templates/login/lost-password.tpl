@@ -1,6 +1,6 @@
-<form class="authorization-form" method="POST" action="<?php echo HOST?>login">
+<form class="authorization-form" method="POST" action="<?php echo HOST?>lost-password">
     <div class="authorization-form__heading">
-        <h2 class="heading">Вход на сайт </h2>
+        <h2 class="heading">Восстановить пароль</h2>
     </div>
 
     <?php include ROOT . "templates/components/errors.tpl" ?>
@@ -9,14 +9,11 @@
     <div class="authorization-form__input">
         <input class="input" type="text" name="email" placeholder="Email" />
     </div>
-    <div class="authorization-form__input">
-        <input class="input" type="password" name="password" placeholder="Пароль" />
-    </div>
     <div class="authorization-form__button">
-        <button class="primary-button" type="submit" name="login" value="login">Вход на сайт</button>
+        <button class="primary-button" type="submit" name="lost-password" value="lost-password">Восстановить пароль</button>
     </div>
     <div class="authorization-form__links">
-        <a href="<?php echo HOST ?>lost-password">Забыл пароль</a>
+        <a href="<?php echo HOST ?>login">Войти на сайт</a>
         <a href="<?php echo HOST; ?>registration">Регистрация</a>
     </div>
 </form>

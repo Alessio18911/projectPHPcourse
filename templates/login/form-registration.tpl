@@ -7,7 +7,7 @@
     <?php include ROOT . "templates/components/success.tpl" ?>
 
     <div class="authorization-form__input">
-        <input class="input" name="email" type="text" placeholder="Email" />
+        <input class="input" name="email" type="text" placeholder="Email"/>
     </div>
     <div class="authorization-form__input">
         <input class="input" name="password" type="password" placeholder="Пароль" />
@@ -16,6 +16,6 @@
         <button class="primary-button" type="submit" name="register" value="register">Зарегистрироваться</button>
     </div>
     <div class="authorization-form__links">
-        <a>Вход на сайт</a>
+        <a href="<?php echo HOST?>login">Вход на сайт</a>
     </div>
 </form>
