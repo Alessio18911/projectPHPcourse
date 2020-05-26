@@ -1,11 +1,12 @@
 <?php
 
 $pageTitle = "Восстановить пароль";
+$pageClass = "authorization-page";
+
 $userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
 
 if (isset($_POST['lost-password'])) {
   if (!$userEmail) {
-
     $errors[] = ['title' => "Введите email", 'desc' => "<p>Email обязателен для восстановления пароля</p>"];
   } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
     $errors[] = ['title' => "Введите корректный email"];
@@ -15,7 +16,6 @@ if (isset($_POST['lost-password'])) {
     $user = R::findOne('users', 'email = ?', [$userEmail]);
 
     if ($user) {
-
       function random_str($num = 30) {
         return substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, $num);
       }

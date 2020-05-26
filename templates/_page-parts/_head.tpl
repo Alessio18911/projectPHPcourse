@@ -11,4 +11,4 @@
 	<link rel="stylesheet" href="<?php echo HOST ?>static/css/custom.css" />
 </head>
 
-<body class="authorization-page">
+<body class="<?php echo isset($pageClass) ? $pageClass : '' ?>">

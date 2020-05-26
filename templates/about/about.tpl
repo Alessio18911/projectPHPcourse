@@ -1,2 +1,2 @@
-<h1><?=$page_name?></h1>
+<h1><?=$page_title?></h1>
 <p><?=$page_text?></p>

@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 $details = R::find('about', 1);
 $aboutName = $details[1]['name'];
 $aboutDescription = $details[1]['description'];
 
-$page_name = 'Главная страница';
+$pageTitle = 'Главная страница';
 $page_text = 'Текст главной страницы - Lorem ipsum...';
 
 

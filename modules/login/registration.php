@@ -1,6 +1,8 @@
 <?php
 
 $pageTitle = "Регистрация";
+$pageClass = "authorization-page";
+
 $userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
 $userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
 

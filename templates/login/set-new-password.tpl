@@ -6,12 +6,16 @@
     <?php include ROOT . "templates/components/errors.tpl" ?>
     <?php include ROOT . "templates/components/success.tpl" ?>
 
-    <div class="authorization-form__input">
+    <?php if (!isset($newPassReady)): ?>
+      <div class="authorization-form__input">
         <input class="input" type="password" name="password" placeholder="Новый пароль" />
-    </div>
-    <div class="authorization-form__button">
-        <button class="primary-button" type="submit" name="set-new-password" value="set-new-password">Установить пароль</button>
-    </div>
+      </div>
+      <input type="hidden" name="email" value="<?=$_GET['email']?>">
+      <input type="hidden" name="resetCode" value="<?=$_GET['code']?>">
+      <div class="authorization-form__button">
+          <button class="primary-button" type="submit" name="set-new-password" value="set-new-password">Установить пароль</button>
+      </div>
+    <?php endif; ?>
     <div class="authorization-form__links">
         <a href="<?php echo HOST ?>login">Войти на сайт</a>
         <a href="<?php echo HOST; ?>registration">Регистрация</a>

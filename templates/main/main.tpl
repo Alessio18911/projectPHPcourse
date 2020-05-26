@@ -1,4 +1,4 @@
-<h1><?=$page_name?></h1>
+<h1><?=$pageTitle?></h1>
 <p><?=$page_text?></p>
 
 <hr>
