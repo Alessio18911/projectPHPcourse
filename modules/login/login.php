@@ -22,7 +22,11 @@ if (isset($_POST['login'])) {
 
     if ($user) {
       if (password_verify($userPass, $user->password)) {
-        $success[] = ['title' => 'Пароль верен'];
+        $_SESSION['logged_user'] = $user;
+        $_SESSION['login'] = 1;
+        $_SESSION['role'] = $user->role;
+        header("Location: " .HOST. "profile");
+        exit();
       } else {
         $errors[] = ['title' => 'Неверный пароль'];
       }
@@ -33,9 +37,7 @@ if (isset($_POST['login'])) {
 }
 
 ob_start();
-
 include ROOT . "templates/login/form-login.tpl";
-
 $content = ob_get_contents();
 ob_end_clean();
 

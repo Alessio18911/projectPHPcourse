@@ -1,9 +1,23 @@
 <main class="page-profile">
-<?php if(!$user['id']): ?>
+<?php if(isset($userNotLoggedIn)): ?>
   <div class="section">
     <div class="container">
       <div class="section__title">
-        <h2 class="heading">Такого пользователя не существует</h2>
+        <h2 class="heading mb-15">Профиль пользователя</h2>
+        <p>Чтобы посмотреть свой профиль
+          <a href="<?=HOST?>login">войдите</a>
+          либо
+          <a href="<?=HOST?>registration">зарегистрируйтесь</a>
+        </p>
+      </div>
+    </div>
+  </div>
+<?php elseif(!$user['id']): ?>
+  <div class="section">
+    <div class="container">
+      <div class="section__title">
+        <h2 class="heading mb-15">Такого пользователя не существует</h2>
+        <p><a href="<?=HOST?>">Вернуться на главную</a></p>
       </div>
     </div>
   </div>
@@ -26,9 +40,12 @@
               </dl>
               <dl class="definition">
                 <dt class="definition__term">Страна, город</dt>
-                <dd class="definition__description"> <?=$user->country?>, <?=$user->city?></dd>
+                <dd class="definition__description"> <? echo $user->country ? $user->country . "," : ''?> <?=$user->city?></dd>
               </dl>
-            </div><a class="secondary-button" href="#">Редактировать</a>
+            </div>
+            <?php if(isset($_SESSION['isLoggedIn'])): ?>
+              <a class="secondary-button" href="<?=HOST?>profile-edit/<?=$btnLink?>">Редактировать</a>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -93,11 +110,4 @@
     </div>
   </div>
 <?php endif; ?>
-
-
-
-
-
-
-
 </main>

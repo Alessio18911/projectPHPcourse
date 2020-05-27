@@ -45,11 +45,11 @@ switch($uriModule) {
     break;
 
   case 'profile':
-    require ROOT . "modules/profile/index.php";
+    require ROOT . "modules/profile/profile.php";
     break;
 
   case 'profile-edit':
-    require ROOT . "modules/profile/edit.php";
+    require ROOT . "modules/profile/profile-edit.php";
     break;
 
   //::::::::::::::::::: OTHERS :::::::::::::::::

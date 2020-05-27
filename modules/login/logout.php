@@ -1,4 +1,7 @@
-<?php 
+<?php
+  $_SESSION = [];
+  session_destroy();
 
-    echo "<h1>logout.php</h1>";
+  setcookie(session_name(), '', time() - 60, "/");
+  header("Location: " .HOST);
 ?>
