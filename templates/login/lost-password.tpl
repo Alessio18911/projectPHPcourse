@@ -1,4 +1,4 @@
-<form class="authorization-form" method="POST" action="<?php echo HOST?>lost-password">
+<form class="authorization-form" method="POST" action="<?=HOST?>lost-password">
     <div class="authorization-form__heading">
         <h2 class="heading">Восстановить пароль</h2>
     </div>
@@ -13,7 +13,7 @@
         <button class="primary-button" type="submit" name="lost-password" value="lost-password">Восстановить пароль</button>
     </div>
     <div class="authorization-form__links">
-        <a href="<?php echo HOST ?>login">Войти на сайт</a>
-        <a href="<?php echo HOST; ?>registration">Регистрация</a>
+        <a href="<?=HOST?>login">Войти на сайт</a>
+        <a href="<?=HOST?>registration">Регистрация</a>
     </div>
 </form>

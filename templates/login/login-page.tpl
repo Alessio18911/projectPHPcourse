@@ -10,4 +10,4 @@
         <p>© Юрий Ключевский</p>
         <p>Создано в WebCademy.ru в 2020 году.</p>
     </div>
-</footer><!-- build:js1 js/jquery.js -->
+</footer>

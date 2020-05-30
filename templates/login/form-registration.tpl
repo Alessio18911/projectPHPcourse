@@ -1,4 +1,4 @@
-<form class="authorization-form" method="POST" action="<?php echo HOST;?>registration">
+<form class="authorization-form" method="POST" action="<?=HOST?>registration">
     <div class="authorization-form__heading">
         <h2 class="heading">Регистрация </h2>
     </div>
@@ -16,6 +16,6 @@
         <button class="primary-button" type="submit" name="register" value="register">Зарегистрироваться</button>
     </div>
     <div class="authorization-form__links">
-        <a href="<?php echo HOST?>login">Вход на сайт</a>
+        <a href="<?=HOST?>login">Вход на сайт</a>
     </div>
 </form>

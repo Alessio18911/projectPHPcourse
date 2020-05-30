@@ -32,11 +32,8 @@ if (isset($_POST['register'])) {
     $result = R::store($user);
 
     if (is_int($result)) {
-      // $success[] = ['title' => "Вы успешно зарегистрировались!"];
-
       $_SESSION['logged_user'] = $user;
       $_SESSION['login'] = 1;
-      $_SESSION['role'] = $user->role;
       header("Location: " .HOST. "profile-edit");
       exit();
     } else {

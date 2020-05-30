@@ -11,10 +11,10 @@ session_start();
 $uri = $_SERVER['REQUEST_URI'];
 $uri = trim($uri, '/');
 $uri = filter_var($uri, FILTER_SANITIZE_URL);
-$uri = explode("?", $uri);
+$uri = explode("/", $uri);
 
 $uriGet = isset($uri[1]) ? $uri[1] : null;
-$uriArray = explode("/", $uri[0]);
+$uriArray = explode("?", $uri[0]);
 $uriModule = $uriArray[0];
 
 switch($uriModule) {

@@ -1,4 +1,4 @@
-<form class="authorization-form" method="POST" action="<?php echo HOST?>set-new-password">
+<form class="authorization-form" method="POST" action="<?=HOST?>set-new-password">
     <div class="authorization-form__heading">
         <h2 class="heading">Установить новый пароль</h2>
     </div>
@@ -17,7 +17,7 @@
       </div>
     <?php endif; ?>
     <div class="authorization-form__links">
-        <a href="<?php echo HOST ?>login">Войти на сайт</a>
-        <a href="<?php echo HOST; ?>registration">Регистрация</a>
+        <a href="<?=HOST?>login">Войти на сайт</a>
+        <a href="<?=HOST?>registration">Регистрация</a>
     </div>
 </form>

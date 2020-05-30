@@ -2,18 +2,16 @@
 
 $pageTitle = 'Профиль пользователя';
 $btnLink = '';
+$isLogged = isset($_SESSION['login']) ? $_SESSION['login'] : false;
+$user = isset($uriGet) ? R::load('users', $uriGet) : NULL;
+$userId = $user ? $user->id : '';
 
-if(isset($uriArray[1])) {
-  $user = R::load('users', $uriArray[1]);
-} elseif(isset($_SESSION['login']) && $_SESSION['login'] === 1) {
-  $_SESSION['isLoggedIn'] = true;
-  $user = R::load('users', $_SESSION['logged_user']['id']);
-
-  if ($user->role === 'admin') {
-    $btnLink = $user->id;
+if ($isLogged) {
+  if ($uriGet) {
+    $user = R::load('users', $uriGet);
+  } else {
+    $user = R::load('users', $_SESSION['logged_user']['id']);
   }
-} else {
-  $userNotLoggedIn = true;
 }
 
 include ROOT . "templates/_page-parts/_head.tpl";
