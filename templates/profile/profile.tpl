@@ -22,9 +22,9 @@
                     <dd class="definition__description"> <? echo $user->country ? $user->country . "," : ''?> <?=$user->city?></dd>
                   </dl>
                 </div>
-
-                  <a class="secondary-button" href="<?=HOST?>profile-edit/<?=$btnLink?>">Редактировать</a>
-
+                  <?php if($isUser && $isLogged || $isAdmin): ?>
+                    <a class="secondary-button" href="<?=HOST?>profile-edit/<?=$btnLink?>">Редактировать</a>
+                  <?php endif ?>
               </div>
             </div>
           </div>
