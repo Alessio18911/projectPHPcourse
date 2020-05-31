@@ -1,15 +1,6 @@
 <main class="page-profile">
-  <?php if(gettype($userId) === "integer"): ?>
-    <div class="section">
-      <div class="container">
-        <div class="section__title">
-          <h2 class="heading mb-15">Такого пользователя не существует</h2>
-          <p><a href="<?=HOST?>">Вернуться на главную</a></p>
-        </div>
-      </div>
-    </div>
-  <?php else: ?>
-    <?php if($isLogged): ?>
+  <?php if($isLogged || $uriGet || $uriGet === '0'): ?>
+    <?php if($userId): ?>
       <div class="section">
         <div class="container">
           <div class="section__title">
@@ -99,6 +90,16 @@
       </div>
     <?php else: ?>
       <div class="section">
+        <div class="container">
+          <div class="section__title">
+            <h2 class="heading mb-15">Такого пользователя не существует</h2>
+            <p><a href="<?=HOST?>">Вернуться на главную</a></p>
+          </div>
+        </div>
+      </div>
+    <?php endif ?>
+  <?php else: ?>
+    <div class="section">
       <div class="container">
         <div class="section__title">
           <h2 class="heading mb-15">Профиль пользователя</h2>
@@ -110,6 +111,5 @@
         </div>
       </div>
     </div>
-  <? endif ?>
-<? endif ?>
+  <?php endif ?>
 </main>

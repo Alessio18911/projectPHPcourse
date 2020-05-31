@@ -13,7 +13,7 @@ $uri = trim($uri, '/');
 $uri = filter_var($uri, FILTER_SANITIZE_URL);
 $uri = explode("/", $uri);
 
-$uriGet = isset($uri[1]) ? $uri[1] : null;
+$uriGet = isset($uri[1]) ? $uri[1] : NULL;
 $uriArray = explode("?", $uri[0]);
 $uriModule = $uriArray[0];
 
