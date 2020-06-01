@@ -14,7 +14,7 @@ $user = R::load('users', $userParam);
 $userId = $user->id;
 
 $isUser = isset($userId) && isset($_SESSION['logged_user']) && $userId === $_SESSION['logged_user']['id'] ? true : false;
-$isAdmin = isset($_SESSION['logged_user']['role']) && $_SESSION['logged_user']['role'] === 'admin' ? true : false;
+$isAdmin = isset($_SESSION['logged_user']) && $_SESSION['logged_user']['role'] === 'admin' ? true : false;
 $btnLink = $isAdmin ? $userId : '';
 
 include ROOT . "templates/_page-parts/_head.tpl";

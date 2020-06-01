@@ -24,6 +24,6 @@
       <img src="<?=HOST?>static/img/admin-panel/edit-3.svg" alt="Редактировать эту страницу">
       <div class="span">Редактировать</div>
     </a>
-    <button class="admin-panel__block-button">Выход</button>
+    <button class="admin-panel__block-button" name="logout">Выход</button>
   </div>
 </div>
