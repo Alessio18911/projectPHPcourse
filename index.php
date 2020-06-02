@@ -3,9 +3,6 @@
 require_once('config.php');
 require_once('db.php');
 
-$errors = [];
-$success = [];
-
 session_start();
 
 $uri = $_SERVER['REQUEST_URI'];

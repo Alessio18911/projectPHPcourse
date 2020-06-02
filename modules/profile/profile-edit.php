@@ -3,24 +3,28 @@
 $pageTitle = 'Редактирование профиля';
 $isLogged = isset($_SESSION['login']) && $_SESSION['login'] === 1 ? true : false;
 
+$_SESSION['errors'] = [];
+$_SESSION['success'] = [];
+
 if ($isLogged) {
   $userId = $_SESSION['logged_user']['role'] === 'admin' ? $uriGet : $_SESSION['logged_user']['id'];
   $user = R::load('users', $userId);
 
   if (isset($_POST['update-profile'])) {
     if (trim($_POST['name']) === '') {
-      $errors[] = ['title' => 'Введите имя'];
+      array_push($_SESSION['errors'], "nameEmpty");
+
     }
 
     if (trim($_POST['surname']) === '') {
-      $errors[] = ['title' => 'Введите фамилию'];
+      array_push($_SESSION['errors'], "surnameEmpty");
     }
 
     if (trim($_POST['email']) === '') {
-      $errors[] = ['title' => 'Введите Email'];
+      array_push($_SESSION['errors'], "emailEmpty");
     }
 
-    if (empty($errors)) {
+    if (empty($_SESSION['errors'])) {
       $user->name = htmlentities($_POST['name']);
       $user->surname = htmlentities($_POST['surname']);
       $user->email = htmlentities($_POST['email']);

@@ -3,28 +3,28 @@
 $pageTitle = "Регистрация";
 $pageClass = "authorization-page";
 
+$_SESSION['errors'] = [];
+$_SESSION['success'] = [];
+
 $userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
 $userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 if (isset($_POST['register'])) {
   if (!$userEmail) {
-    $errors[] = ['title' => "Введите email", 'desc' => "<p>Email обязателен для регистрации на сайте</p>"];
+    array_push($_SESSION['errors'], "emailEmptyRegistration");
   } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-    $errors[] = ['title' => "Введите корректный email"];
+    array_push($_SESSION['errors'], "emailInvalid");
   }
 
   if (!$userPass || (strlen($userPass) < 4)) {
-    $errors[] = ['title' => "Введите пароль длиной не менее 4 символов!"];
+    array_push($_SESSION['errors'], "passShort");
   }
 
   if (R::count('users', 'email = ?', array($userEmail))) {
-    $errors[] = [
-      'title' => "Данный email уже зарегистрирован",
-      'desc' => '<p>Используйте другой email или воспользуйтесь <a href="' .HOST. 'lost-password" ?>восстановлением пароля</a></p>'
-    ];
+    array_push($_SESSION['errors'], "emailRegistered");
   }
 
-  if (empty($errors)) {
+  if (empty($_SESSION['errors'])) {
     $user = R::dispense('users');
     $user->email = $userEmail;
     $user->role = 'user';
@@ -37,7 +37,7 @@ if (isset($_POST['register'])) {
       header("Location: " .HOST. "profile-edit");
       exit();
     } else {
-      $errors[] = ['title' => "Что-то пошло не так, повторите регистрацию"];
+      array_push($_SESSION['errors'], "registrationFailed");
     }
   }
 }

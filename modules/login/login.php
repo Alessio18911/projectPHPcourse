@@ -2,22 +2,24 @@
 
 $pageTitle = "Вход на сайт";
 $pageClass = "authorization-page";
+$_SESSION['errors'] = [];
+$_SESSION['success'] = [];
 
 $userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
 $userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 if (isset($_POST['login'])) {
   if (!$userEmail) {
-    $errors[] = ['title' => "Введите email", 'desc' => "<p>Email обязателен для входа на сайт</p>"];
+    array_push($_SESSION['errors'], "emailEmptyLogin");
   } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-    $errors[] = ['title' => "Введите корректный email"];
+    array_push($_SESSION['errors'], "emailInvalid");
   }
 
   if (!$userPass) {
-    $errors[] = ['title' => "Введите пароль"];
+    array_push($_SESSION['errors'], "passEmpty");
   }
 
-  if (empty($errors)) {
+  if (empty($_SESSION['errors'])) {
     $user = R::findOne('users', 'email = ?', [$userEmail]);
 
     if ($user) {
@@ -27,10 +29,10 @@ if (isset($_POST['login'])) {
         header("Location: " .HOST. "profile");
         exit();
       } else {
-        $errors[] = ['title' => 'Неверный пароль'];
+        array_push($_SESSION['errors'], "passIncorrect");
       }
     } else {
-      $errors[] = ['title' => 'Неверный email'];
+      array_push($_SESSION['errors'], "emailIncorrect");
     }
   }
 }

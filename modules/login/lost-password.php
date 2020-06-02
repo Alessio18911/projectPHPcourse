@@ -3,16 +3,19 @@
 $pageTitle = "Восстановить пароль";
 $pageClass = "authorization-page";
 
+$_SESSION['errors'] = [];
+$_SESSION['success'] = [];
+
 $userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
 
 if (isset($_POST['lost-password'])) {
   if (!$userEmail) {
-    $errors[] = ['title' => "Введите email", 'desc' => "<p>Email обязателен для восстановления пароля</p>"];
+    array_push($_SESSION['errors'], "emailEmptyRestore");
   } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-    $errors[] = ['title' => "Введите корректный email"];
+    array_push($_SESSION['errors'], "emailInvalid");
   }
 
-  if (empty($errors)) {
+  if (empty($_SESSION['errors'])) {
     $user = R::findOne('users', 'email = ?', [$userEmail]);
 
     if ($user) {
@@ -36,12 +39,12 @@ if (isset($_POST['lost-password'])) {
       $resultEmail = mail($userEmail, 'Востановление доступа', $recovery_message, $headers);
 
       if ($resultEmail) {
-        $success[] = ['title' => 'Проверьте почту', 'desc' => '<p>Вам был отправлен email со ссылкой для сброса пароля</p>'];
+        array_push($_SESSION['success'], "emailSent");
       } else {
-        $errors[] = ['title' => 'Что-то пошло не так', 'desc' => '<p>Повторите процедуру сброса пароля ещё раз</p>'];
+        array_push($_SESSION['errors'], "setNewPasswordFailed");
       }
     } else {
-      $errors[] = ['title' => "Несуществующий email"];
+      array_push($_SESSION['errors'], "emailNotExist");
     }
   }
 }

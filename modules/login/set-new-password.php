@@ -3,6 +3,9 @@
 $pageTitle = "Установить новый пароль";
 $pageClass = "authorization-page";
 
+$_SESSION['errors'] = [];
+$_SESSION['success'] = [];
+
 if (!empty($_GET['email']) && !empty($_GET['code'])) {
   $user = R::findOne('users', 'email = ?', [$_GET['email']]);
 
@@ -18,11 +21,11 @@ if (!empty($_GET['email']) && !empty($_GET['code'])) {
       R::store($user);
       $user->recovery_code = '';
 
-      $success[] = ['title' => "Пароль успешно обновлён"];
+      array_push($_SESSION['success'], "newPasswordSet");
 
       $newPassReady = true;
     } else {
-      $errors[] = ['title' => "Секретный код неверен"];
+      array_push($_SESSION['errors'], "secretCodeIncorrect");
     }
   }
 } else {
