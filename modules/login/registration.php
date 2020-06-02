@@ -3,9 +3,6 @@
 $pageTitle = "Регистрация";
 $pageClass = "authorization-page";
 
-$_SESSION['errors'] = [];
-$_SESSION['success'] = [];
-
 $userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
 $userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
 

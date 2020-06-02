@@ -3,9 +3,6 @@
 $pageTitle = 'Редактирование профиля';
 $isLogged = isset($_SESSION['login']) && $_SESSION['login'] === 1 ? true : false;
 
-$_SESSION['errors'] = [];
-$_SESSION['success'] = [];
-
 if ($isLogged) {
   $userId = $_SESSION['logged_user']['role'] === 'admin' ? $uriGet : $_SESSION['logged_user']['id'];
   $user = R::load('users', $userId);

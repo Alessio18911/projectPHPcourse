@@ -3,9 +3,6 @@
 $pageTitle = "Восстановить пароль";
 $pageClass = "authorization-page";
 
-$_SESSION['errors'] = [];
-$_SESSION['success'] = [];
-
 $userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
 
 if (isset($_POST['lost-password'])) {

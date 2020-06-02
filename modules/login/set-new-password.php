@@ -3,9 +3,6 @@
 $pageTitle = "Установить новый пароль";
 $pageClass = "authorization-page";
 
-$_SESSION['errors'] = [];
-$_SESSION['success'] = [];
-
 if (!empty($_GET['email']) && !empty($_GET['code'])) {
   $user = R::findOne('users', 'email = ?', [$_GET['email']]);
 
