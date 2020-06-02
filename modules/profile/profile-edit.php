@@ -1,7 +1,7 @@
 <?php
 
 $pageTitle = 'Редактирование профиля';
-$isLogged = isset($_SESSION['login']) && $_SESSION['login'] === 1 ? $_SESSION['login'] : false;
+$isLogged = isset($_SESSION['login']) && $_SESSION['login'] === 1 ? true : false;
 
 if ($isLogged) {
   $userId = $_SESSION['logged_user']['role'] === 'admin' ? $uriGet : $_SESSION['logged_user']['id'];

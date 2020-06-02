@@ -1,3 +1,11 @@
+.admin-panel__block-list {
+  flex-grow: 1;
+}
+
+.admin-panel__block-button {
+  margin-left: auto;
+}
+
 .sticky-footer {
   position: fixed;
   bottom: 0;
