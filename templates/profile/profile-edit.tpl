@@ -1,5 +1,5 @@
 <main class="page-profile">
-  <?php if (!$user['id']): ?>
+  <?php if (!(int)$user->id): ?>
     <div class="section">
       <div class="container">
         <div class="section__title">
@@ -17,8 +17,7 @@
       </div>
       <div class="section__body">
         <div class="container">
-          <?php $urlParam = isset($uriArray[1]) ? $uriArray[1] : ''; ?>
-          <form action="<?=HOST?>profile-edit/<?=$urlParam?>" method="POST">
+          <form action="<?=HOST?>profile-edit/<?=$userId?>" method="POST">
             <div class="row justify-content-center">
               <div class="col-md-8">
               <?php include ROOT . "templates/components/errors.tpl" ?>

@@ -1,10 +1,13 @@
 <?php
 
-function updateUserAndGoToProfile($user) {
+$pageTitle = 'Редактирование профиля';
+$isLogged = isset($_SESSION['login']) && $_SESSION['login'] === 1 ? $_SESSION['login'] : false;
+
+if ($isLogged) {
+  $userId = $_SESSION['logged_user']['role'] === 'admin' ? $uriGet : $_SESSION['logged_user']['id'];
+  $user = R::load('users', $userId);
+
   if (isset($_POST['update-profile'])) {
-
-    global $errors;
-
     if (trim($_POST['name']) === '') {
       $errors[] = ['title' => 'Введите имя'];
     }
@@ -25,36 +28,15 @@ function updateUserAndGoToProfile($user) {
       $user->country = htmlentities($_POST['country']);
 
       R::store($user);
-      $_SESSION['logged_user']['id'] = $user;
+      $_SESSION['logged_user']['id'] = $user->id;
       header("Location: " .HOST. "profile");
       exit();
-    }
-  }
-}
-
-if (isset($_SESSION['login']) && $_SESSION['login'] === 1) {
-  if ($_SESSION['logged_user']['role'] === 'user') {
-    $user = R::load('users', $_SESSION['logged_user']['id']);
-
-    updateUserAndGoToProfile($user);
-
-  } elseif ($_SESSION['logged_user']['role'] === 'admin') {
-    if (isset($uriArray[1])) {
-      $user = R::load('users', (int)$uriArray[1]);
-
-      updateUserAndGoToProfile($user);
-    } else {
-      $user = R::load('users', $_SESSION['logged_user']['id']);
-
-      updateUserAndGoToProfile($user);
     }
   }
 } else {
   header("Location: " .HOST. "login");
   exit();
 }
-
-$pageTitle = 'Редактирование профиля';
 
 include ROOT . "templates/_page-parts/_head.tpl";
 include ROOT . "templates/_parts/_header.tpl";
