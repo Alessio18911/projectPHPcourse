@@ -10,7 +10,6 @@ if ($isLogged) {
   if (isset($_POST['update-profile'])) {
     if (trim($_POST['name']) === '') {
       array_push($_SESSION['errors'], "nameEmpty");
-
     }
 
     if (trim($_POST['surname']) === '') {
@@ -30,7 +29,7 @@ if ($isLogged) {
 
       R::store($user);
       $_SESSION['logged_user']['id'] = $user->id;
-      header("Location: " .HOST. "profile");
+      header("Location: " .HOST. "profile/" . $_SESSION['logged_user']['id']);
       exit();
     }
   }

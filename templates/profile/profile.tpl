@@ -7,26 +7,49 @@
             <h2 class="heading">Профиль пользователя </h2>
           </div>
           <div class="section__body">
-            <div class="row justify-content-center">
-              <div class="col-md-2">
-                <div class="avatar-big"><img src="<?=HOST?>static/img/section-about-me/img-01.jpg" alt="Аватарка" /></div>
-              </div>
-              <div class="col-md-4">
-                <div class="definition-list mb-20">
-                  <dl class="definition">
-                    <dt class="definition__term">имя и фамилия</dt>
-                    <dd class="definition__description"> <?=$user->name?> <?=$user->surname?></dd>
-                  </dl>
-                  <dl class="definition">
-                    <dt class="definition__term">Страна, город</dt>
-                    <dd class="definition__description"> <? echo $user->country ? $user->country . "," : ''?> <?=$user->city?></dd>
-                  </dl>
+            <?php if(!$userName): ?>
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <div class="enter-or-reg flex-column">
+                    <div class="enter-or-reg__text">
+                      😒 Пустой профиль
+                    </div>
+                    <?php include ROOT . "templates/_parts/_button-edit-profile.tpl" ?>
+                  </div>
                 </div>
-                  <?php if($isUser && $isLogged || $isAdmin): ?>
-                    <a class="secondary-button" href="<?=HOST?>profile-edit/<?=$btnLink?>">Редактировать</a>
-                  <?php endif ?>
               </div>
-            </div>
+            <?php else: ?>
+              <div class="row justify-content-center">
+                <div class="col-md-2">
+                  <div class="avatar-big"><img src="<?=HOST?>static/img/section-about-me/img-01.jpg" alt="Аватарка" /></div>
+                </div>
+                <div class="col-md-4">
+                  <div class="definition-list mb-20">
+                    <?php if($userName): ?>
+                      <dl class="definition">
+                        <dt class="definition__term">имя и фамилия</dt>
+                        <dd class="definition__description"> <?=$user->name?> <?=$user->surname?></dd>
+                      </dl>
+                    <?php endif ?>
+                    <?php if($userCountry || $userCity): ?>
+                      <dl class="definition">
+                        <dt class="definition__term">
+                          <?php if($userCountry): ?>Страна<?php endif ?>
+                          <?php if($userCountry && $userCity): ?>,<?php endif ?>
+                          <?php if($userCity): ?>город<?php endif ?>
+                        </dt>
+                        <dd class="definition__description">
+                          <?=$userCountry?>
+                          <?php if($userCountry && $userCity): ?>,<?php endif ?>
+                          <?=$userCity?>
+                        </dd>
+                      </dl>
+                    <?php endif ?>
+                  </div>
+                    <?php include ROOT . "templates/_parts/_button-edit-profile.tpl" ?>
+                </div>
+              </div>
+            <?php endif ?>
           </div>
         </div>
       </div>

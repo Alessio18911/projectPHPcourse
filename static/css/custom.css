@@ -6,6 +6,12 @@
   margin-left: auto;
 }
 
+.enter-or-reg {
+  height: auto;
+  min-height: 180px;
+  padding: 25px 15px;
+}
+
 .sticky-footer {
   position: fixed;
   bottom: 0;
