@@ -1,7 +1,11 @@
-<h1><?=$pageTitle?></h1>
-<p><?=$page_text?></p>
+<?php
 
-<hr>
+include ROOT . "templates/main/_about.tpl";
+echo "<div class='container'>";
+include ROOT . "templates/main/_status.tpl";
+include ROOT . "templates/main/_portfolio.tpl";
+include ROOT . "templates/main/_blog.tpl";
+echo "</div>";
 
-<h2><?=$aboutName?></h2>
-<h2><?=$aboutDescription?></h2>
+?>
+</div>

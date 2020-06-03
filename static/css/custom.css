@@ -6,6 +6,32 @@
   margin-left: auto;
 }
 
+.section-header {
+  background-color: #EAEFF2;
+}
+
+.authorization-page__header {
+  text-align: center;
+}
+
+.authorization-page__header a {
+  transition: opacity 0.15s ease;
+}
+
+.authorization-page__header a:hover {
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+.authorization-page__header-title,
+.authorization-page__header-subtitle {
+  opacity: inherit;
+}
+
+.main-page .section-header {
+  background-color: #ffffff;
+}
+
 .enter-or-reg {
   height: auto;
   min-height: 180px;
