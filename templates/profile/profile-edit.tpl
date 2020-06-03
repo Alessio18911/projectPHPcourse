@@ -17,7 +17,7 @@
       </div>
       <div class="section__body">
         <div class="container">
-          <form action="<?=HOST?>profile-edit/<?=$userId?>" method="POST">
+          <form action="<?=HOST?>profile-edit/<?=$userId?>" method="POST" enctype="multipart/form-data">
             <div class="row justify-content-center">
               <div class="col-md-8">
               <?php include ROOT . "templates/components/errors.tpl" ?>
@@ -56,18 +56,15 @@
             </div>
             <div class="row justify-content-center pt-40 pb-40">
               <div class="col-2">
-                <div class="avatar-big">
-                  <img src="<?=HOST?>static/img/section-about-me/img-01.jpg" alt="Аватарка" />
-                </div>
+                <?php include ROOT . "templates/_parts/_big-avatar.tpl"?>
               </div>
               <div class="col-6">
                 <div class="block-upload">
                   <div class="block-upload__description">
                     <div class="block-upload__title">Фотография</div>
-                    <p>Изображение jpg или png, рекомендуемая ширина 945px и больше, высота от 400px и более. Вес до 2Мб.</p>
+                    <p>Изображение jpg, jpeg, gif или png, рекомендуемые размеры от  160х160px и выше. Вес до 4Мб.</p>
                     <div class="block-upload__file-wrapper">
-                      <button class="file-button" type="file">Выбрать файл</button>
-                      <div class="block-upload__file-name">Файл не выбран</div>
+                      <input class="file-button" type="file" name="avatar">
                     </div>
                   </div>
                 </div>

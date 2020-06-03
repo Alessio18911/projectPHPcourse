@@ -13,6 +13,7 @@ if ($uriGet || $uriGet === '0') {
 $user = R::load('users', $userParam);
 $userId = $user->id;
 $userName = !empty($user->name) ? $user->name : false;
+$userAvatar = $user->avatar;
 $userCountry = !empty($user->country) ? $user->country : false;
 $userCity = !empty($user->city) ? $user->city : false;
 

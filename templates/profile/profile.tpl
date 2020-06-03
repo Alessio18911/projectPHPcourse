@@ -21,7 +21,7 @@
             <?php else: ?>
               <div class="row justify-content-center">
                 <div class="col-md-2">
-                  <div class="avatar-big"><img src="<?=HOST?>static/img/section-about-me/img-01.jpg" alt="Аватарка" /></div>
+                  <?php include ROOT . "templates/_parts/_big-avatar.tpl" ?>
                 </div>
                 <div class="col-md-4">
                   <div class="definition-list mb-20">
@@ -34,14 +34,10 @@
                     <?php if($userCountry || $userCity): ?>
                       <dl class="definition">
                         <dt class="definition__term">
-                          <?php if($userCountry): ?>Страна<?php endif ?>
-                          <?php if($userCountry && $userCity): ?>,<?php endif ?>
-                          <?php if($userCity): ?>город<?php endif ?>
+                          <?php if($userCountry): ?>Страна<?php endif ?><?php if($userCountry && $userCity): ?>, <?php endif ?><?php if($userCity): ?>город<?php endif ?>
                         </dt>
                         <dd class="definition__description">
-                          <?=$userCountry?>
-                          <?php if($userCountry && $userCity): ?>,<?php endif ?>
-                          <?=$userCity?>
+                          <?=$userCountry?><?php if($userCountry && $userCity): ?>, <?php endif ?><?=$userCity?>
                         </dd>
                       </dl>
                     <?php endif ?>
