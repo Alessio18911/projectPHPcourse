@@ -8,17 +8,17 @@ $userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 if (isset($_POST['register'])) {
   if (!$userEmail) {
-    array_push($_SESSION['errors'], "emailEmptyRegistration");
+    $_SESSION['errors'][] = "emailEmptyRegistration";
   } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-    array_push($_SESSION['errors'], "emailInvalid");
+    $_SESSION['errors'][] = "emailInvalid";
   }
 
   if (!$userPass || (strlen($userPass) < 4)) {
-    array_push($_SESSION['errors'], "passShort");
+    $_SESSION['errors'][] = "passShort";
   }
 
   if (R::count('users', 'email = ?', array($userEmail))) {
-    array_push($_SESSION['errors'], "emailRegistered");
+    $_SESSION['errors'][] = "emailRegistered";
   }
 
   if (empty($_SESSION['errors'])) {
@@ -34,7 +34,7 @@ if (isset($_POST['register'])) {
       header("Location: " .HOST. "profile-edit");
       exit();
     } else {
-      array_push($_SESSION['errors'], "registrationFailed");
+      $_SESSION['errors'][] = "registrationFailed";
     }
   }
 }

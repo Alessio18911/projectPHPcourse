@@ -18,11 +18,11 @@ if (!empty($_GET['email']) && !empty($_GET['code'])) {
       R::store($user);
       $user->recovery_code = '';
 
-      array_push($_SESSION['success'], "newPasswordSet");
+      $_SESSION['success'][] = "newPasswordSet";
 
       $newPassReady = true;
     } else {
-      array_push($_SESSION['errors'], "secretCodeIncorrect");
+      $_SESSION['errors'][] = "secretCodeIncorrect";
     }
   }
 } else {

@@ -7,9 +7,9 @@ $userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
 
 if (isset($_POST['lost-password'])) {
   if (!$userEmail) {
-    array_push($_SESSION['errors'], "emailEmptyRestore");
+    $_SESSION['errors'][] = "emailEmptyRestore";
   } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-    array_push($_SESSION['errors'], "emailInvalid");
+    $_SESSION['errors'][] = "emailInvalid";
   }
 
   if (empty($_SESSION['errors'])) {
@@ -36,12 +36,12 @@ if (isset($_POST['lost-password'])) {
       $resultEmail = mail($userEmail, 'Востановление доступа', $recovery_message, $headers);
 
       if ($resultEmail) {
-        array_push($_SESSION['success'], "emailSent");
+        $_SESSION['success'][] = "emailSent";
       } else {
-        array_push($_SESSION['errors'], "setNewPasswordFailed");
+        $_SESSION['errors'][] = "setNewPasswordFailed";
       }
     } else {
-      array_push($_SESSION['errors'], "emailNotExist");
+      $_SESSION['errors'][] = "emailNotExist";
     }
   }
 }

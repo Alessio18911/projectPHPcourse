@@ -8,13 +8,13 @@ $userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 if (isset($_POST['login'])) {
   if (!$userEmail) {
-    array_push($_SESSION['errors'], "emailEmptyLogin");
+    $_SESSION['errors'][] = "emailEmptyLogin";
   } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-    array_push($_SESSION['errors'], "emailInvalid");
+    $_SESSION['errors'][] = "emailInvalid";
   }
 
   if (!$userPass) {
-    array_push($_SESSION['errors'], "passEmpty");
+    $_SESSION['errors'][] = "passEmpty";
   }
 
   if (empty($_SESSION['errors'])) {
@@ -27,10 +27,10 @@ if (isset($_POST['login'])) {
         header("Location: " .HOST. "profile");
         exit();
       } else {
-        array_push($_SESSION['errors'], "passIncorrect");
+        $_SESSION['errors'][] = "passIncorrect";
       }
     } else {
-      array_push($_SESSION['errors'], "emailIncorrect");
+      $_SESSION['errors'][] = "emailIncorrect";
     }
   }
 }

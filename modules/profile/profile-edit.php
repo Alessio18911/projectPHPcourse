@@ -11,15 +11,15 @@ if ($isLogged) {
 
   if (isset($_POST['update-profile'])) {
     if (trim($_POST['name']) === '') {
-      array_push($_SESSION['errors'], "nameEmpty");
+      $_SESSION['errors'][] = "nameEmpty";
     }
 
     if (trim($_POST['surname']) === '') {
-      array_push($_SESSION['errors'], "surnameEmpty");
+      $_SESSION['errors'][] = "surnameEmpty";
     }
 
     if (trim($_POST['email']) === '') {
-      array_push($_SESSION['errors'], "emailEmpty");
+      $_SESSION['errors'][] = "emailEmpty";
     }
 
 
@@ -34,19 +34,19 @@ if ($isLogged) {
 
       list($width, $height) = getimagesize($fileTempLoc);
       if ($width < 160 || $height < 160) {
-        array_push($_SESSION['errors'], "smallPhoto");
+        $_SESSION['errors'][] = "smallPhoto";
       }
 
       if ($fileSize > 4194304) {
-        array_push($_SESSION['errors'], "heavyPhoto");
+        $_SESSION['errors'][] = "heavyPhoto";
       }
 
       if (!preg_match("/\.(gif|jpg|jpeg|png)$/i", $fileName)) {
-        array_push($_SESSION['errors'], "formatInvalid");
+        $_SESSION['errors'][] = "formatInvalid";
       }
 
       if ($fileError == 4) {
-        array_push($_SESSION['errors'], "uploadFotoFailed");
+        $_SESSION['errors'][] = "uploadFotoFailed";
       }
 
       $db_file_name = rand(100000000000, 999999999999) . "." . $fileExt;
@@ -55,7 +55,7 @@ if ($isLogged) {
       $moveResult = move_uploaded_file($fileTempLoc, $uploadFile);
 
       if (!$moveResult) {
-        $_SESSION['errors'] = "fileNotSaved";
+        $_SESSION['errors'][] = "fileNotSaved";
       }
     }
 
