@@ -10,52 +10,21 @@ if ($isLogged) {
   $userAvatar = !empty($user->avatar) ? $user->avatar : '';
 
   if (isset($_POST['update-profile'])) {
-    if (trim($_POST['name']) === '') {
-      $_SESSION['errors'][] = "nameEmpty";
-    }
-
-    if (trim($_POST['surname']) === '') {
-      $_SESSION['errors'][] = "surnameEmpty";
-    }
-
-    if (trim($_POST['email']) === '') {
-      $_SESSION['errors'][] = "emailEmpty";
-    }
-
+    validateEditForm($_POST['name'], $_POST['surname'], $_POST['email']);
 
     if (!$_FILES['avatar']['error']) {
-      $fileName = $_FILES['avatar']['name'];
-      $fileTempLoc = $_FILES['avatar']['tmp_name'];
-      $fileType = $_FILES['avatar']['type'];
-      $fileSize = $_FILES['avatar']['size'];
-      $fileError = $_FILES['avatar']['error'];
-      $kaboom = explode(".", $fileName);
-      $fileExt = end($kaboom);
+      $file = processUploadedFile($_FILES['avatar']);
+      $fileNames = getFileNames($avatarFolderLocation, $file['ext']);
 
-      list($width, $height) = getimagesize($fileTempLoc);
-      if ($width < 160 || $height < 160) {
-        $_SESSION['errors'][] = "smallPhoto";
-      }
-
-      if ($fileSize > 4194304) {
-        $_SESSION['errors'][] = "heavyPhoto";
-      }
-
-      if (!preg_match("/\.(gif|jpg|jpeg|png)$/i", $fileName)) {
-        $_SESSION['errors'][] = "formatInvalid";
-      }
-
-      if ($fileError == 4) {
-        $_SESSION['errors'][] = "uploadFotoFailed";
-      }
-
-      $db_file_name = rand(100000000000, 999999999999) . "." . $fileExt;
-      $uploadFile = $avatarFolderLocation . $db_file_name;
-
-      $moveResult = move_uploaded_file($fileTempLoc, $uploadFile);
+      $moveResult = move_uploaded_file($file['tempLoc'], $fileNames['uploadFile']);
 
       if (!$moveResult) {
-        $_SESSION['errors'][] = "fileNotSaved";
+        $_SESSION['errors']['file'][] = "notSaved";
+      }
+
+      if (empty($_SESSION['errors']['file'])) {
+        $user->avatar = $fileNames['dbFileName'];
+        $user->avatarSmall = '48-' . $fileNames['dbFileName'];
       }
     }
 
@@ -68,23 +37,11 @@ if ($isLogged) {
 
       $avatar = $user->avatar;
 
-      if (!empty($avatar) && !$_FILES['avatar']['error']) {
-        $pictureUrl = $avatarFolderLocation . $avatar;
+      if (!empty($avatar) && !empty($_FILES['avatar']['name'])) {
+        $db_file_name160 = $avatarFolderLocation . $avatar;
+        $db_file_name48 = $avatarFolderLocation . '48-' .$avatar;
 
-        if (file_exists($pictureUrl)) {
-          unlink($pictureUrl);
-        }
-
-        $pictureUrl48 = $avatarFolderLocation . '48-' .$avatar;
-
-        if (file_exists($pictureUrl48)) {
-          unlink($pictureUrl48);
-        }
-      }
-
-      if (!empty($db_file_name)) {
-        $user->avatar = $db_file_name;
-        $user->avatarSmall = '48-' . $db_file_name;
+        deleteFilesIfExist([$db_file_name160, $db_file_name48]);
       }
 
       R::store($user);
