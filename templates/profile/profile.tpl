@@ -5,6 +5,8 @@
         <div class="container">
           <div class="section__title">
             <h2 class="heading">Профиль пользователя </h2>
+            <?php include ROOT . "templates/components/errors.tpl" ?>
+            <?php include ROOT . "templates/components/success.tpl" ?>
           </div>
           <div class="section__body">
             <?php if(!$userName): ?>
