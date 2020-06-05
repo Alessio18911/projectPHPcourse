@@ -23,14 +23,13 @@ if ($isLogged) {
         $fileParams = processUploadedFile($_FILES['avatar']);
 
         if (!empty($fileParams)) {
-          $uploadFile = $avatarFolderLocation . $fileParams['dbFileName'];
+          if (!empty($userAvatar)) deleteFileIfExist($avatarFolderLocation, $userAvatar);
 
+          $uploadFile = $avatarFolderLocation . $fileParams['dbFileName'];
           if (!move_uploaded_file($fileParams['tempLoc'], $uploadFile)) $_SESSION['errors']['file'][] = "notSaved";
-          if (empty($_SESSION['errors']['file']['notSaved'])) {
-            if (!empty($userAvatar)) deleteFileIfExist($avatarFolderLocation, $userAvatar);
-            $user->avatar = $fileParams['dbFileName'];
-            $user->avatarSmall = '48-' . $fileParams['dbFileName'];
-          }
+
+          $user->avatar = $fileParams['dbFileName'];
+          $user->avatarSmall = '48-' . $fileParams['dbFileName'];
         }
       }
 
