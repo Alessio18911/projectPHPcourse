@@ -1,7 +1,7 @@
 <?php
 
 $pageTitle = 'Редактирование профиля';
-$isLogged = isset($_SESSION['login']) && $_SESSION['login'] === 1 ? true : false;
+$isLogged = !empty($_SESSION['login']) ? true : false;
 $avatarFolderLocation = ROOT . "usercontent/avatars/";
 
 if ($isLogged) {
@@ -24,27 +24,22 @@ if ($isLogged) {
 
         if (!empty($fileParams)) {
           $uploadFile = $avatarFolderLocation . $fileParams['dbFileName'];
-          $moveResult = move_uploaded_file($fileParams['tempLoc'], $uploadFile);
 
-          if (!$moveResult) {
-            $_SESSION['errors']['file'][] = "notSaved";
-          }
-
+          if (!move_uploaded_file($fileParams['tempLoc'], $uploadFile)) $_SESSION['errors']['file'][] = "notSaved";
           if (empty($_SESSION['errors']['file']['notSaved'])) {
-            if (!empty($userAvatar)) {
-              deleteFileIfExist($avatarFolderLocation, $userAvatar);
-            }
-
+            if (!empty($userAvatar)) deleteFileIfExist($avatarFolderLocation, $userAvatar);
             $user->avatar = $fileParams['dbFileName'];
             $user->avatarSmall = '48-' . $fileParams['dbFileName'];
           }
         }
       }
 
-      R::store($user);
-      $_SESSION['logged_user']['id'] = $user->id;
-      header("Location: " .HOST. "profile/" . $_SESSION['logged_user']['id']);
-      exit();
+      if (empty($_SESSION['errors']['file'])) {
+        R::store($user);
+        $_SESSION['logged_user']['id'] = $user->id;
+        header("Location: " .HOST. "profile/" . $_SESSION['logged_user']['id']);
+        exit();
+      }
     }
   }
 } else {

@@ -1,21 +1,11 @@
 <?php
 
 function validateEditForm($name, $surname, $email) {
-  $name = trim($name);
-  $surname = trim($surname);
-  $email = trim($email);
+  if(empty(trim($name))) $_SESSION['errors']['name'][] = "empty";
 
-  if(empty($name)) {
-    $_SESSION['errors']['name'][] = "empty";
-  }
+  if (empty(trim($surname))) $_SESSION['errors']['surname'][] = "empty";
 
-  if (empty($surname)) {
-    $_SESSION['errors']['surname'][] = "empty";
-  }
-
-  if (empty($email)) {
-    $_SESSION['errors']['email'][] = "empty";
-  }
+  if (empty(trim($email))) $_SESSION['errors']['email'][] = "empty";
 }
 
 function processUploadedFile($file) {
@@ -29,21 +19,13 @@ function processUploadedFile($file) {
   $fileParams = [];
 
   list($width, $height) = getimagesize($fileTempPath);
-  if ($width < 160 || $height < 160) {
-    $_SESSION['errors']['file'][] = "smallPhoto";
-  }
+  if ($width < 160 || $height < 160) $_SESSION['errors']['file'][] = "small";
 
-  if ($fileSize > 4194304) {
-    $_SESSION['errors']['file'][] = "heavy";
-  }
+  if ($fileSize > 4194304) $_SESSION['errors']['file'][] = "heavy";
 
-  if (!preg_match("/\.(gif|jpg|jpeg|png)$/i", $fileName)) {
-    $_SESSION['errors']['file'][] = "formatInvalid";
-  }
+  if (!preg_match("/\.(gif|jpg|jpeg|png)$/i", $fileName)) $_SESSION['errors']['file'][] = "formatInvalid";
 
-  if ($fileError == 4) {
-    $_SESSION['errors']['file'][] = "uploadFailed";
-  }
+  if ($fileError == 4) $_SESSION['errors']['file'][] = "uploadFailed";
 
   if(empty($_SESSION['errors']['file'])) {
     $dbFileName = rand(100000000000, 999999999999) . "." . $fileExt;

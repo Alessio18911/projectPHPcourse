@@ -1,7 +1,7 @@
 <?php
 
 $pageTitle = 'Профиль пользователя';
-$isLogged = isset($_SESSION['login']) && $_SESSION['login'] === 1 ? true : false;
+$isLogged = !empty($_SESSION['login']) ? true : false;
 $userParam = '';
 
 if ($uriGet || $uriGet === '0') {
