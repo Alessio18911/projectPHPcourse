@@ -23,7 +23,7 @@ if ($isLogged) {
         $fileParams = processUploadedFile($_FILES['avatar']);
 
         if (!empty($fileParams)) {
-          if (!empty($userAvatar)) deleteFileIfExist($avatarFolderLocation, $userAvatar);
+          if (!empty($userAvatar)) deleteFile($avatarFolderLocation, $userAvatar);
 
           $uploadFile160 = $avatarFolderLocation . $fileParams['dbFileName'];
           $uploadFile48 = $avatarFolderLocation . "48-" . $fileParams['dbFileName'];
@@ -36,6 +36,11 @@ if ($isLogged) {
           $user->avatar = $fileParams['dbFileName'];
           $user->avatarSmall = '48-' . $fileParams['dbFileName'];
         }
+      }
+
+      if (!empty($_POST['delete-avatar']) && !empty($userAvatar)) {
+        deleteFile($avatarFolderLocation, $userAvatar);
+        $user->avatar = $user->avatarSmall = NULL;
       }
 
       if (empty($_SESSION['errors']['file'])) {

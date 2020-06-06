@@ -36,7 +36,7 @@ function processUploadedFile($file) {
   return $fileParams;
 }
 
-function deleteFileIfExist($filePath, $fileName) {
+function deleteFile($filePath, $fileName) {
   $file160 = $filePath . $fileName;
   $file48 = $filePath . '48-' .$fileName;
   $files = array($file160, $file48);

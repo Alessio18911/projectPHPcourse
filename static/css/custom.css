@@ -44,3 +44,7 @@
   left: 0;
   width: 100%;
 }
+
+.block-upload .checkbox__btn:checked + .checkbox__label {
+  background: #A01717;
+}

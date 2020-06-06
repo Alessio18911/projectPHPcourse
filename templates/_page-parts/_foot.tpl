@@ -3,7 +3,8 @@
 	<!-- build:js2 js/vendor.js -->
 	<!-- endbuild -->
 	<!-- build:js3 js/main.js -->
-	<script src="<?=HOST?>static/js/main.js"></script>
+	<script src="<?=HOST?>static/js/profile-edit.js"></script>
+	<script src="<?=HOST?>static/js/footer.js"></script>
 	<!-- endbuild -->
 </body>
 

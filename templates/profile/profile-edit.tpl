@@ -68,10 +68,12 @@
                     </div>
                   </div>
                 </div>
-                <label class="checkbox__item mt-20">
-                  <input class="checkbox__btn" type="checkbox" name="delete-avatar">
-                  <span class="checkbox__label">Удалить фотографию</span>
-                </label>
+                <?php if (!empty($userAvatar)): ?>
+                  <div class="checkbox__item mt-20">
+                    <input class="checkbox__btn visually-hidden" type="checkbox" id="delete-avatar" name="delete-avatar">
+                    <label class="checkbox__label delete-button" for="delete-avatar">Удалить фотографию</label>
+                  </div>
+                <?php endif ?>
               </div>
             </div>
             <div class="row justify-content-center">
