@@ -68,7 +68,10 @@
                     </div>
                   </div>
                 </div>
-                <button class="delete-button mt-20" type="reset">Удалить</button>
+                <label class="checkbox__item mt-20">
+                  <input class="checkbox__btn" type="checkbox" name="delete-avatar">
+                  <span class="checkbox__label">Удалить фотографию</span>
+                </label>
               </div>
             </div>
             <div class="row justify-content-center">
