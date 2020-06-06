@@ -25,8 +25,13 @@ if ($isLogged) {
         if (!empty($fileParams)) {
           if (!empty($userAvatar)) deleteFileIfExist($avatarFolderLocation, $userAvatar);
 
-          $uploadFile = $avatarFolderLocation . $fileParams['dbFileName'];
-          if (!move_uploaded_file($fileParams['tempLoc'], $uploadFile)) $_SESSION['errors']['file'][] = "notSaved";
+          $uploadFile160 = $avatarFolderLocation . $fileParams['dbFileName'];
+          $uploadFile48 = $avatarFolderLocation . "48-" . $fileParams['dbFileName'];
+
+          $resultPhoto160 = resize_and_crop($fileParams['tempLoc'], $uploadFile160, 160, 160);
+          $resultPhoto48 = resize_and_crop($fileParams['tempLoc'], $uploadFile48, 48, 48);
+
+          if (!$resultPhoto160 || !$resultPhoto48) $_SESSION['errors']['file'][] = "notSaved";
 
           $user->avatar = $fileParams['dbFileName'];
           $user->avatarSmall = '48-' . $fileParams['dbFileName'];
