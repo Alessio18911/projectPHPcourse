@@ -6,18 +6,19 @@
     <?php include ROOT . "templates/components/errors.tpl" ?>
     <?php include ROOT . "templates/components/success.tpl" ?>
 
-    <?php if (!isset($newPassReady)): ?>
+    <?php if (isset($newPassword) && empty($_SESSION['errors'])): ?>
       <div class="authorization-form__input">
         <input class="input" type="password" name="password" placeholder="Новый пароль" />
       </div>
-      <input type="hidden" name="email" value="<?=$_GET['email']?>">
-      <input type="hidden" name="resetCode" value="<?=$_GET['code']?>">
       <div class="authorization-form__button">
-          <button class="primary-button" type="submit" name="set-new-password" value="set-new-password">Установить пароль</button>
+        <button class="primary-button" type="submit" name="set-new-password">Установить пароль</button>
       </div>
     <?php endif; ?>
     <div class="authorization-form__links">
-        <a href="<?=HOST?>login">Войти на сайт</a>
-        <a href="<?=HOST?>registration">Регистрация</a>
+      <?php if(!empty($_SESSION['errors'])): ?>
+        <a href="<?=HOST?>lost-password">Забыл пароль</a>
+      <?php endif ?>
+      <a href="<?=HOST?>login">Войти на сайт</a>
+      <a href="<?=HOST?>registration">Регистрация</a>
     </div>
 </form>

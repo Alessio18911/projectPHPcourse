@@ -8,8 +8,6 @@ $userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
 if (isset($_POST['lost-password'])) {
   if (!$userEmail) {
     $_SESSION['errors']['email'][] = "emptyWithExplanation";
-  } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
-    $_SESSION['errors']['email'][] = "invalid";
   }
 
   if (empty($_SESSION['errors'])) {
