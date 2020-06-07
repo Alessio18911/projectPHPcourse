@@ -6,7 +6,9 @@
     <?php include ROOT . "templates/components/errors.tpl" ?>
     <?php include ROOT . "templates/components/success.tpl" ?>
 
-    <?php if (isset($newPassword) && empty($_SESSION['errors'])): ?>
+
+    <?php if (!$newPassword && empty($_SESSION['errors'])
+              || isset($_SESSION['errors']['password'])): ?>
       <div class="authorization-form__input">
         <input class="input" type="password" name="password" placeholder="Новый пароль" />
       </div>
@@ -15,7 +17,7 @@
       </div>
     <?php endif; ?>
     <div class="authorization-form__links">
-      <?php if(!empty($_SESSION['errors'])): ?>
+      <?php if(!empty($_SESSION['errors']) && empty($_SESSION['errors']['password'])): ?>
         <a href="<?=HOST?>lost-password">Забыл пароль</a>
       <?php endif ?>
       <a href="<?=HOST?>login">Войти на сайт</a>
