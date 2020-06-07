@@ -2,8 +2,10 @@
 
 <header class="section-header">
   <div class="section-header__content">
-    <h2 class="section-header__content-title">Digital Nomad</h2>
-    <p class="section-header__content-subtitle">cайт IT специалиста</p>
+    <a href="http://projectphpcourse/">
+      <h2 class="section-header__content-title">Digital Nomad</h2>
+      <p class="section-header__content-subtitle">cайт IT специалиста</p>
+    </a>
     <nav class="nav">
       <ul class="nav__list">
         <li class="nav__list-item"><a class="nav__list-item-link" href="about.html">Обо мне</a></li>

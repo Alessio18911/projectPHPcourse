@@ -14,17 +14,21 @@
   text-align: center;
 }
 
-.authorization-page__header a {
+.authorization-page__header a,
+.section-header__content a {
   transition: opacity 0.15s ease;
 }
 
-.authorization-page__header a:hover {
+.authorization-page__header a:hover,
+.section-header__content a:hover {
   text-decoration: none;
   opacity: 0.5;
 }
 
 .authorization-page__header-title,
-.authorization-page__header-subtitle {
+.authorization-page__header-subtitle,
+.section-header__content-title,
+.section-header__content-subtitle {
   opacity: inherit;
 }
 
@@ -38,13 +42,17 @@
   padding: 25px 15px;
 }
 
+.block-upload .checkbox__btn:checked + .checkbox__label {
+  background: #A01717;
+}
+
+.main-page {
+  padding: 0;
+}
+
 .sticky-footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-}
-
-.block-upload .checkbox__btn:checked + .checkbox__label {
-  background: #A01717;
 }
