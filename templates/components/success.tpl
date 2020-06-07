@@ -1,11 +1,13 @@
 <?php if(!empty($_SESSION['success'])): ?>
-  <?php foreach($_SESSION['success'] as $item):
+  <?php foreach($_SESSION['success'] as $key => $item):
     foreach($item as $success): ?>
       <div class="notifications mb-20">
-        <div class="notifications__title notifications__title--success"><?=$successMsgs[$item]['success']['title']?></div>
-        <?php if(isset($successMsgs[$item]['success']['desc'])): ?>
+        <div class="notifications__title notifications__title--success">
+          <?=$successMsgs[$key][$success]['title']?>
+        </div>
+        <?php if(isset($successMsgs[$key]['success']['desc'])): ?>
           <div class="notifications__message">
-            <p><?=$successMsgs[$item]['success']['desc']?></p>
+            <p><?=$successMsgs[$key]['success']['desc']?></p>
           </div>
         <?php endif ?>
       </div>

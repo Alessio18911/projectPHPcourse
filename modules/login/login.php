@@ -8,7 +8,7 @@ $userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 if (isset($_POST['login'])) {
   if (!$userEmail) {
-    $_SESSION['errors']['email'][] = "emptyLogin";
+    $_SESSION['errors']['email'][] = "emptyWithExplanation";
   } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['errors']['email'][] = "invalid";
   }

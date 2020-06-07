@@ -8,13 +8,13 @@ $userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 if (isset($_POST['register'])) {
   if (!$userEmail) {
-    $_SESSION['errors']['email'][] = "emptyRegistration";
+    $_SESSION['errors']['email'][] = "emptyWithExplanation";
   } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['errors']['email'][] = "invalid";
   }
 
   if (!$userPass || (strlen($userPass) < 4)) {
-    $_SESSION['errors']['password'][] = "short";
+    $_SESSION['errors']['password'][] = "empty";
   }
 
   if (R::count('users', 'email = ?', array($userEmail))) {
