@@ -1,0 +1,4 @@
+Временно убрали из .htaccess:
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
