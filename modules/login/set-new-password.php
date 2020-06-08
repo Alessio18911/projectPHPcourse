@@ -8,9 +8,9 @@ if (!empty($_GET['email']) && !empty($_GET['code'])) {
   $user = R::findOne('users', 'email = ?', [$_GET['email']]);
 
   if($user) {
-    $_SESSION['code'] = $_GET['code'] === $user->recovery_code ? $_GET['code'] : '';
+    $_SESSION['secretCode'] = $_GET['code'] === $user->recovery_code ? $_GET['code'] : '';
 
-    if (empty($_SESSION['code'])) {
+    if (empty($_SESSION['secretCode'])) {
       $_SESSION['errors']['secretCode'][] = 'incorrect';
     } else {
       $_SESSION['user'] = $user;
@@ -30,6 +30,9 @@ if (!empty($_GET['email']) && !empty($_GET['code'])) {
     $user->recovery_code = NULL;
     R::store($user);
     $_SESSION['success']['newPassword'][] = "set";
+    unset($_SESSION['user']);
+    unset($_SESSION['userEmail']);
+    unset($_SESSION['secretCode']);
   }
 } else {
   header("Location: " .HOST. "lost-password");
