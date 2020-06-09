@@ -9,7 +9,7 @@ session_start();
 $_SESSION['errors'] = [];
 $_SESSION['success'] = [];
 
-$uri = getUrlParams($_SERVER['REQUEST_URI'], "/");
+$uri = getUrlParams($_SERVER['REQUEST_URI']);
 $uriModule = $uri[0];
 $uriGet = $uri[1];
 
