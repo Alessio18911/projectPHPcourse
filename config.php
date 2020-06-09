@@ -125,5 +125,27 @@ $successMsgs = [
       "title" => "Пароль успешно обновлён"
     ]
   ]
+];
+
+$adminErrorMsgs = [
+  "postTitle" => [
+    "empty" => [
+      "title" => "Заголовок поста должен быть заполнен"
+    ]
+  ],
+
+  "postContent" => [
+    "empty" => [
+      "title" => "Текст поста должен быть заполнен"
+    ]
+  ]
+];
+
+$adminSuccessMsgs = [
+  "newPost" => [
+    "success" => [
+      "title" => "Пост успешно добавлен"
+    ]
+  ]
 ]
 ?>

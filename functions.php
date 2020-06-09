@@ -48,7 +48,7 @@ function deleteFile($filePath, $fileName) {
   }
 }
 
-function getProcessedUrl($url, $delimiter = "?") {
+function getUrlParams($url, $delimiter = "?") {
   $url = explode($delimiter, trim($url, "/"));
 
   $uriGet = count($url) === 2 ? $url[1] : NULL;

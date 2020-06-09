@@ -9,7 +9,7 @@
 	<meta name="description" /><!-- build:css1 css/vendor.css -->
 	<link rel="stylesheet" href="./../libs/jquery-custom-scrollbar/jquery.custom-scrollbar.css" /><!-- endbuild -->
 	<!-- build:css2 css/styles.css -->
-	<link rel="stylesheet" href="./../css/main.css" /><!-- endbuild -->
+	<link rel="stylesheet" href="./../../static/css/main.css" /><!-- endbuild -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap&subset=cyrillic-ext" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Playfair+Display:400,700&display=swap&subset=cyrillic-ext" rel="stylesheet">
 </head>
@@ -130,7 +130,7 @@
 			</div>
 		</div>
 		<div class="ui-kit__component-code">
-			<pre>include ./../sections/control-panel.pug          
+			<pre>include ./../sections/control-panel.pug
 </pre>
 		</div>
 		<div class="ui-kit__element-title"> Название файла: sections/control-panel.pug </div>
@@ -143,7 +143,7 @@
         ul.control-panel__list
             +control-panel-link("Блог", "./../img/control-panel/book.svg").control-panel__list-link--active
             ul.control-panel__list
-                +control-panel-link("Добавить пост", "./../img/control-panel/corner.svg").control-panel__inner-link.control-panel__inner-link--active 
+                +control-panel-link("Добавить пост", "./../img/control-panel/corner.svg").control-panel__inner-link.control-panel__inner-link--active
                 +control-panel-link("Все записи", "./../img/control-panel/corner.svg").control-panel__inner-link
             +control-panel-link("Портфолио", "./../img/control-panel/portfolio.svg")
             +control-panel-link("Страницы", "./../img/control-panel/file.svg")
@@ -165,7 +165,7 @@
                 img(src= linkImg, alt="icon").control-panel__list-img
                 if number
                     .control-panel__list-img-badge #{number}
-                else                
+                else
             | #{linkText}</pre>
 		</div>
 	</div><!-- build:js1 js/jquery.js -->

@@ -9,11 +9,14 @@ session_start();
 $_SESSION['errors'] = [];
 $_SESSION['success'] = [];
 
-$uri = getProcessedUrl($_SERVER['REQUEST_URI']);
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+  header("Location: " .HOST. "login");
+  die();
+}
+
+$uri = getUrlParams($_SERVER['REQUEST_URI']);
 $uriModule = $uri[0];
 $uriGet = $uri[1];
-
-var_dump($uriModule);
 
 switch($uriModule) {
   case '':

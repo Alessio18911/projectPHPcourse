@@ -24,6 +24,7 @@ if (isset($_POST['login'])) {
       if (password_verify($userPass, $user->password)) {
         $_SESSION['logged_user'] = $user;
         $_SESSION['login'] = 1;
+        $_SESSION['role'] = $user->role;
         header("Location: " .HOST. "profile");
         exit();
       } else {

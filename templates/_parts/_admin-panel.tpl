@@ -2,7 +2,7 @@
   <?php if(isset($_SESSION['login']) && $_SESSION['login'] === 1): ?>
     <div class="admin-panel__block-list">
       <?php if($_SESSION['logged_user']['role'] === 'admin'): ?>
-        <a class="admin-panel__link" href="#">
+        <a class="admin-panel__link" href="<?=HOST?>admin">
           <img src="<?=HOST?>static/img/admin-panel/target.svg" alt="Перейти в админ панель">
           <div class="span">Панель управления</div>
         </a>
