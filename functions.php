@@ -53,7 +53,8 @@ function getUrlParams($url) {
   $explodedUri = filter_var(trim(explode("?", $url)[0], "/"), FILTER_SANITIZE_URL);
 
   $kaboom = explode("/", $explodedUri);
-  if (!(int)end($kaboom) && end($kaboom) != 0) {
+
+  if (!(int)end($kaboom) && end($kaboom) != '0') {
       $uriModule = end($kaboom);
   } else {
       $uriModule = $kaboom[0];

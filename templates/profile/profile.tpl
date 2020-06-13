@@ -1,5 +1,5 @@
 <main class="page-profile">
-  <?php if($isLogged || $uriGet || $uriGet === '0'): ?>
+  <?php if($isLogged || isset($uriGet)): ?>
     <?php if($userId): ?>
       <div class="section">
         <div class="container">
