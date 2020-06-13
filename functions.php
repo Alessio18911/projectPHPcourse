@@ -1,11 +1,11 @@
 <?php
 
 function validateEditForm($name, $surname, $email) {
-  if(empty(trim($name))) $_SESSION['errors']['name'][] = "empty";
+  if(empty($name)) $_SESSION['errors']['name'][] = "empty";
 
-  if (empty(trim($surname))) $_SESSION['errors']['surname'][] = "empty";
+  if (empty($surname)) $_SESSION['errors']['surname'][] = "empty";
 
-  if (empty(trim($email))) $_SESSION['errors']['email'][] = "empty";
+  if (empty($email)) $_SESSION['errors']['email'][] = "empty";
 }
 
 function processUploadedFile($file) {

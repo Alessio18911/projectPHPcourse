@@ -10,14 +10,19 @@ if ($isLogged) {
   $userAvatar = !empty($user->avatar) ? $user->avatar : '';
 
   if (isset($_POST['update-profile'])) {
-    validateEditForm($_POST['name'], $_POST['surname'], $_POST['email']);
+    $userName = trim($_POST['name']);
+    $userSurname = trim($_POST['surname']);
+    $userEmail = trim($_POST['email']);
+    $userCity = isset($_POST['city']) ? trim($_POST['city']) : NULL;
+    $userCountry = isset($_POST['country']) ? trim($_POST['country']) : NULL;
+    validateEditForm($userName, $userSurname, $userEmail);
 
     if (empty($_SESSION['errors'])) {
-      $user->name = htmlentities($_POST['name']);
-      $user->surname = htmlentities($_POST['surname']);
-      $user->email = htmlentities($_POST['email']);
-      $user->city = htmlentities($_POST['city']);
-      $user->country = htmlentities($_POST['country']);
+      $user->name = htmlentities($userName);
+      $user->surname = htmlentities($userSurname);
+      $user->email = htmlentities($userEmail);
+      $user->city = htmlentities($userCity);
+      $user->country = htmlentities($userCountry);
 
       if (!$_FILES['avatar']['error']) {
         $fileParams = processUploadedFile($_FILES['avatar']);
