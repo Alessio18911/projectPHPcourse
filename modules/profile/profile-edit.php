@@ -45,8 +45,7 @@ if ($isLogged) {
 
       if (empty($_SESSION['errors']['file'])) {
         R::store($user);
-        $_SESSION['logged_user']['id'] = $user->id;
-        header("Location: " .HOST. "profile/" . $_SESSION['logged_user']['id']);
+        header("Location: " .HOST. "profile/" . $userId);
         exit();
       }
     }
