@@ -63,5 +63,4 @@ function getUrlParams($url) {
 
   return [$uriModule, $uriGet];
 }
-
 ?>

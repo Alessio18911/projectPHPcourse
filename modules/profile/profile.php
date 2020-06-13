@@ -4,7 +4,7 @@ $pageTitle = 'Профиль пользователя';
 $isLogged = !empty($_SESSION['login']) ? true : false;
 $userParam = '';
 
-if ($uriGet || $uriGet === '0') {
+if (isset($uriGet)) {
   $userParam = $uriGet;
 } elseif ($isLogged) {
   $userParam = $_SESSION['logged_user']['id'];

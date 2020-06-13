@@ -7,7 +7,7 @@
           <div class="span">Панель управления</div>
         </a>
       <?php endif ?>
-      <a class="admin-panel__link" href="#">
+      <a class="admin-panel__link" href="<?=HOST?>profile">
         <img src="<?=HOST?>static/img/admin-panel/user.svg" alt=" Профиль">
         <div class="span">Профиль</div>
       </a>
