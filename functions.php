@@ -49,13 +49,16 @@ function deleteFile($filePath, $fileName) {
 }
 
 function getUrlParams($url) {
-  $delimiter = preg_match("/\?/", $url) ? "?" : "/";
-  $url = explode($delimiter, trim($url, "/"));
+  $uriGet = NULL;
+  $explodedUri = filter_var(trim(explode("?", $url)[0], "/"), FILTER_SANITIZE_URL);
 
-  $uriGet = count($url) === 2 ? $url[1] : NULL;
-
-  $uri = explode("/", filter_var($url[0], FILTER_SANITIZE_URL));
-  $uriModule = end($uri);
+  $kaboom = explode("/", $explodedUri);
+  if (!(int)end($kaboom) && end($kaboom) != 0) {
+      $uriModule = end($kaboom);
+  } else {
+      $uriModule = $kaboom[0];
+      $uriGet = end($kaboom);
+  }
 
   return [$uriModule, $uriGet];
 }
