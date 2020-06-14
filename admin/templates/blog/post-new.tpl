@@ -1,6 +1,6 @@
 <div class="admin-page__content">
   <div class="admin-page__content-form">
-    <form class="admin-form" method="POST" action="<?=HOST?>admin/post-new">
+    <form class="admin-form" method="POST" action="<?=HOST?>admin/post-new" enctype="multipart/form-data">
       <div class="admin-form__item">
         <h2 class="heading">Добавить пост </h2>
       </div>
@@ -28,21 +28,18 @@
         <div class="block-upload">
           <div class="block-upload__description">
             <div class="block-upload__title">Обложка поста:</div>
-            <p>Изображение jpg или png, рекомендуемая ширина 945px и больше, высота от 400px и более. Вес до 2Мб.</p>
+            <p>Изображение jpg, jpeg, gif или png, минимальный размер 600х300px. Вес до 12Мб.</p>
             <div class="block-upload__file-wrapper">
-              <button class="file-button" type="file">Выбрать файл</button>
-              <div class="block-upload__file-name">some-picture.jpg</div>
+              <input class="file-button" type="file" name="cover">
             </div>
           </div>
           <div class="block-upload__img"><img src="<?=HOST?>static/img/block-upload/block-upload.jpg" alt="Загрузка картинки" />
-            <div class="block-downloads__delete">
-              <button class="delete-button" type="reset">Удалить</button>
-            </div>
           </div>
         </div>
       </div>
       <div class="admin-form__item buttons">
-        <button class="primary-button" type="submit" name="post-submit">Опубликовать</button><a class="secondary-button" href="#">Отмена</a>
+        <button class="primary-button" type="submit" name="post-submit">Опубликовать</button>
+        <a class="secondary-button" href="<?=HOST?>admin/blog">Отмена</a>
       </div>
       <div class="admin-form__item"></div>
       <div class="admin-form__item"></div>

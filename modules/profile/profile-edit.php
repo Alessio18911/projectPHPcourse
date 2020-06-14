@@ -1,6 +1,11 @@
 <?php
 
 $pageTitle = 'Редактирование профиля';
+
+$minAvatarWidth = $minAvatarHeight = 160;
+$thumbAvatarWidth = $thumbAvatarHeight = 48;
+$maxAvatarWeight = 4194304;
+$avatarNamePrefix = "48-";
 $isLogged = !empty($_SESSION['login']) ? true : false;
 $avatarFolderLocation = ROOT . "usercontent/avatars/";
 
@@ -25,21 +30,21 @@ if ($isLogged) {
       $user->country = htmlentities($userCountry);
 
       if (!$_FILES['avatar']['error']) {
-        $fileParams = processUploadedFile($_FILES['avatar']);
+        $fileParams = processUploadedFile($_FILES['avatar'], $minAvatarWidth, $minAvatarHeight, $maxAvatarWeight);
 
         if (!empty($fileParams)) {
           if (!empty($userAvatar)) deleteFile($avatarFolderLocation, $userAvatar);
 
           $uploadFile160 = $avatarFolderLocation . $fileParams['dbFileName'];
-          $uploadFile48 = $avatarFolderLocation . "48-" . $fileParams['dbFileName'];
+          $uploadFile48 = $avatarFolderLocation . $avatarNamePrefix . $fileParams['dbFileName'];
 
-          $resultPhoto160 = resize_and_crop($fileParams['tempLoc'], $uploadFile160, 160, 160);
-          $resultPhoto48 = resize_and_crop($fileParams['tempLoc'], $uploadFile48, 48, 48);
+          $resultPhoto160 = resize_and_crop($fileParams['tempLoc'], $uploadFile160, $minAvatarWidth, $minAvatarHeight);
+          $resultPhoto48 = resize_and_crop($fileParams['tempLoc'], $uploadFile48, $thumbAvatarWidth, $thumbAvatarHeight);
 
           if (!$resultPhoto160 || !$resultPhoto48) $_SESSION['errors']['file'][] = "notSaved";
 
           $user->avatar = $fileParams['dbFileName'];
-          $user->avatarSmall = '48-' . $fileParams['dbFileName'];
+          $user->avatarSmall = $avatarNamePrefix . $fileParams['dbFileName'];
         }
       }
 

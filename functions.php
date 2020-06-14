@@ -8,7 +8,7 @@ function validateEditForm($name, $surname, $email) {
   if (empty($email)) $_SESSION['errors']['email'][] = "empty";
 }
 
-function processUploadedFile($file) {
+function processUploadedFile($file, $minWidth, $minHeight, $maxWeight) {
   $fileName = $file['name'];
   $fileTempPath = $file['tmp_name'];
   $fileType = $file['type'];
@@ -17,11 +17,14 @@ function processUploadedFile($file) {
   $kaboom = explode(".", $fileName);
   $fileExt = end($kaboom);
   $fileParams = [];
+  $minWidth = $minWidth;
+  $minHeight = $minHeight;
+  $maxWeight = $maxWeight;
 
   list($width, $height) = getimagesize($fileTempPath);
-  if ($width < 160 || $height < 160) $_SESSION['errors']['file'][] = "small";
+  if ($width < $minWidth || $height < $minHeight) $_SESSION['errors']['file'][] = "small";
 
-  if ($fileSize > 4194304) $_SESSION['errors']['file'][] = "heavy";
+  if ($fileSize > $maxWeight) $_SESSION['errors']['file'][] = "heavy";
 
   if (!preg_match("/\.(gif|jpg|jpeg|png)$/i", $fileName)) $_SESSION['errors']['file'][] = "formatInvalid";
 
