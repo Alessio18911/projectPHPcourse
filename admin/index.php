@@ -6,8 +6,6 @@ require_once ROOT . "functions.php";
 require_once ROOT . "libs/resize-and-crop.php";
 
 session_start();
-$_SESSION['errors'] = [];
-$_SESSION['success'] = [];
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
   header("Location: " .HOST. "login");
