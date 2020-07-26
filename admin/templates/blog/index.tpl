@@ -16,34 +16,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td><a href="#">Заметки путешественника</a></td>
-            <td>
-              <button class="icon-delete"></button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td><a href="#">Заметки программиста</a></td>
-            <td>
-              <button class="icon-delete"></button>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td><a href="#">Заметки спортсмена</a></td>
-            <td>
-              <button class="icon-delete"></button>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td><a href="#">Заметки фотографа</a></td>
-            <td>
-              <button class="icon-delete"></button>
-            </td>
-          </tr>
+          <?php foreach($posts as $post): ?>
+            <tr>
+            <td><?=$post['id']?></td>
+              <td><a href="<?=HOST. 'admin/post-edit?id=' . $post['id']?>"><?=$post['title']?></a></td>
+              <td>
+                <button class="icon-delete"></button>
+              </td>
+            </tr>
+          <?php endforeach ?>
         </tbody>
       </table>
       <div class="admin-form__item pt-40">
