@@ -5,6 +5,23 @@ $pageTitle = "Блог - все записи";
 if (isset($uriGet)) {
   $post = R::load('posts', $uriGet);
 
+  $translationTerms = [
+    'January' => 'Января',
+    'February' => 'Февраля',
+    'March' => 'Марта',
+    'April' => 'Апреля',
+    'May' => 'Мая',
+    'June' => 'Июня',
+    'July' => 'Июля',
+    'August' => 'Августа',
+    'September' => 'Сентября',
+    'October' => 'Октября',
+    'November' => 'Ноября',
+    'December' => 'Декабря'
+  ];
+
+  $postDate = strtr(date('j F Y, G:i', $post['timestamp']), $translationTerms);
+
   ob_start();
   include ROOT . "templates/blog/single-post.tpl";
   $content = ob_get_contents();

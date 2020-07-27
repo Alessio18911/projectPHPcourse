@@ -4,7 +4,7 @@
       <div class="section-posts__title">
         <h1 class="heading"><?=$post['title']?></h1>
       </div>
-      <div class="section-posts__info">16 Марта 2017</div>
+      <div class="section-posts__info"><?=$postDate?></div>
       <?php if (isset($post['cover'])): ?>
         <div class="section-posts__img">
           <img src="<?=HOST . 'usercontent/blog/' . $post['cover']?>" alt="<?=$post['title']?>" />

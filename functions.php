@@ -58,10 +58,10 @@ function getUrlParams($url) {
   $kaboom = explode("/", $explodedUri);
 
   if (!(int)end($kaboom) && end($kaboom) != '0') {
-      $uriModule = end($kaboom);
+    $uriModule = end($kaboom);
   } else {
-      $uriModule = $kaboom[0];
-      $uriGet = end($kaboom);
+    $uriModule = $kaboom[0];
+    $uriGet = end($kaboom);
   }
 
   return [$uriModule, $uriGet];

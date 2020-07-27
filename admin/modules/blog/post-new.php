@@ -19,6 +19,7 @@ if (isset($_POST['post-submit'])) {
     $post = R::dispense('posts');
     $post->title = $postTitle;
     $post->content = $postContent;
+    $post->timestamp = time();
 
     if (!$_FILES['cover']['error']) {
       $fileParams = processUploadedFile($_FILES['cover'], $minCoverWidth, $minCoverHeight, $maxCoverWeight);
