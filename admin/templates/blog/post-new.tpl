@@ -1,3 +1,4 @@
+<script src="<?=HOST . 'libs/ckeditor/ckeditor.js' ?>"></script>
 <div class="admin-page__content">
   <div class="admin-page__content-form">
     <form class="admin-form" method="POST" action="<?=HOST?>admin/post-new" enctype="multipart/form-data">
@@ -21,8 +22,8 @@
         </label>
       </div>
       <div class="admin-form__item">
-        <label class="textarea__label">Содержимое поста <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="content"><?=$postContent?></textarea>
-        </label>
+        <label class="textarea__label mb-10" for="editor">Содержимое поста</label>
+        <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="content" id="editor"><?=$postContent?></textarea>
       </div>
       <div class="admin-form__item">
         <div class="block-upload">
@@ -46,3 +47,4 @@
     </form>
   </div>
 </div>
+<script>CKEDITOR.replace( 'editor' );</script>
