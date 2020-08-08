@@ -8,7 +8,7 @@ function validateEditForm($name, $surname, $email) {
   if (empty($email)) $_SESSION['errors']['email'][] = "empty";
 }
 
-function processUploadedFile($file, $minWidth, $minHeight, $maxWeight) {
+function validateUploadedFile($file, $minWidth, $minHeight, $maxWeight) {
   $fileName = $file['name'];
   $fileTempPath = $file['tmp_name'];
   $fileType = $file['type'];
@@ -17,9 +17,6 @@ function processUploadedFile($file, $minWidth, $minHeight, $maxWeight) {
   $kaboom = explode(".", $fileName);
   $fileExt = end($kaboom);
   $fileParams = [];
-  $minWidth = $minWidth;
-  $minHeight = $minHeight;
-  $maxWeight = $maxWeight;
 
   list($width, $height) = getimagesize($fileTempPath);
   if ($width < $minWidth || $height < $minHeight) $_SESSION['errors']['file'][] = "small";
@@ -39,10 +36,20 @@ function processUploadedFile($file, $minWidth, $minHeight, $maxWeight) {
   return $fileParams;
 }
 
-function deleteFile($filePath, $fileName) {
-  $file160 = $filePath . $fileName;
-  $file48 = $filePath . '48-' .$fileName;
-  $files = array($file160, $file48);
+function processUploadedFile($folderLocation, $fileParams, $fileNamePrefix, $fileMinWidth, $fileMinHeight, $smallFileWidth, $smallFileHeight) {
+  $uploadFileBig = $folderLocation . $fileParams['dbFileName'];
+  $uploadFileSmall = $folderLocation . $fileNamePrefix . $fileParams['dbFileName'];
+
+  $resultPhotoBig = resize_and_crop($fileParams['tempLoc'], $uploadFileBig, $fileMinWidth, $fileMinHeight);
+  $resultPhotoSmall = resize_and_crop($fileParams['tempLoc'], $uploadFileSmall, $smallFileWidth, $smallFileHeight);
+
+  if (!$resultPhotoBig || !$resultPhotoSmall) $_SESSION['errors']['file'][] = "notSaved";
+}
+
+function deleteFile($filePath, $fileName, $fileNamePrefix) {
+  $fileBig = $filePath . $fileName;
+  $fileSmall = $filePath . $fileNamePrefix .$fileName;
+  $files = array($fileBig, $fileSmall);
 
   foreach($files as $file) {
     if (file_exists($file)) {

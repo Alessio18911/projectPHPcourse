@@ -30,18 +30,12 @@ if ($isLogged) {
       $user->country = htmlentities($userCountry);
 
       if (!$_FILES['avatar']['error']) {
-        $fileParams = processUploadedFile($_FILES['avatar'], $minAvatarWidth, $minAvatarHeight, $maxAvatarWeight);
+        $fileParams = validateUploadedFile($_FILES['avatar'], $minAvatarWidth, $minAvatarHeight, $maxAvatarWeight);
 
         if (!empty($fileParams)) {
-          if (!empty($userAvatar)) deleteFile($avatarFolderLocation, $userAvatar);
+          if (!empty($userAvatar)) deleteFile($avatarFolderLocation, $userAvatar, $avatarNamePrefix);
 
-          $uploadFile160 = $avatarFolderLocation . $fileParams['dbFileName'];
-          $uploadFile48 = $avatarFolderLocation . $avatarNamePrefix . $fileParams['dbFileName'];
-
-          $resultPhoto160 = resize_and_crop($fileParams['tempLoc'], $uploadFile160, $minAvatarWidth, $minAvatarHeight);
-          $resultPhoto48 = resize_and_crop($fileParams['tempLoc'], $uploadFile48, $thumbAvatarWidth, $thumbAvatarHeight);
-
-          if (!$resultPhoto160 || !$resultPhoto48) $_SESSION['errors']['file'][] = "notSaved";
+          processUploadedFile($avatarFolderLocation, $fileParams, $avatarNamePrefix, $minAvatarWidth, $minAvatarHeight, $thumbAvatarWidth, $thumbAvatarHeight);
 
           $user->avatar = $fileParams['dbFileName'];
           $user->avatarSmall = $avatarNamePrefix . $fileParams['dbFileName'];
@@ -49,7 +43,7 @@ if ($isLogged) {
       }
 
       if (!empty($_POST['delete-avatar']) && !empty($userAvatar)) {
-        deleteFile($avatarFolderLocation, $userAvatar);
+        deleteFile($avatarFolderLocation, $userAvatar, $avatarNamePrefix);
         $user->avatar = $user->avatarSmall = NULL;
       }
 

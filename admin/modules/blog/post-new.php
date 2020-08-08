@@ -22,16 +22,10 @@ if (isset($_POST['post-submit'])) {
     $post->timestamp = time();
 
     if (!$_FILES['cover']['error']) {
-      $fileParams = processUploadedFile($_FILES['cover'], $minCoverWidth, $minCoverHeight, $maxCoverWeight);
+      $fileParams = validateUploadedFile($_FILES['cover'], $minCoverWidth, $minCoverHeight, $maxCoverWeight);
 
       if (!empty($fileParams)) {
-        $uploadFile1110 = $coverFolderLocation . $fileParams['dbFileName'];
-        $uploadFile290 = $coverFolderLocation . $coverNamePrefix . $fileParams['dbFileName'];
-
-        $resultPhoto1110 = resize_and_crop($fileParams['tempLoc'], $uploadFile1110, $minCoverWidth, $minCoverHeight);
-        $resultPhoto290 = resize_and_crop($fileParams['tempLoc'], $uploadFile290, $smallCoverWidth, $smallCoverHeight);
-
-        if (!$resultPhoto1110 || !$resultPhoto290) $_SESSION['errors']['file'][] = "notSaved";
+        processUploadedFile($coverFolderLocation, $fileParams, $coverNamePrefix, $minCoverWidth, $minCoverHeight, $smallCoverWidth, $smallCoverHeight);
 
         $post->cover = $fileParams['dbFileName'];
         $post->coverSmall = $coverNamePrefix . $fileParams['dbFileName'];
