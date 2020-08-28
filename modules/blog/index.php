@@ -28,7 +28,13 @@ if (isset($uriGet)) {
   ob_end_clean();
 
 } else {
-  $posts =  R::find('posts', 'ORDER BY id DESC');
+  $posts_count = R::count('posts');
+  $posts_per_page = 6;
+  $pages_count = ceil($posts_count / $posts_per_page);
+  $page_number = !empty($_GET['page']) ? $_GET['page'] : 1;
+  $offset_coef = $page_number != 1 ? $_GET['page'] - 1 : 0;
+  $start_offset = $posts_per_page * $offset_coef;
+  $posts =  R::find('posts', "ORDER BY id DESC LIMIT $start_offset, $posts_per_page");
 
   ob_start();
   include ROOT . "templates/blog/all-posts.tpl";

@@ -1,12 +1,20 @@
 <div class="section-pagination">
-  <div class="section-pagination__item"><a class="pagination-button" href="#">назад</a>
+  <?php if($page_number != 1): ?>
+  <div class="section-pagination__item">
+    <a class="pagination-button" href="?page=<?=$page_number-1?>">назад</a>
   </div>
-  <div class="section-pagination__item"> <a class="pagination-button active" href="#">1</a>
+  <?php endif ?>
+  <?php for($page = 1; $page <= $pages_count; $page++): ?>
+    <div class="section-pagination__item">
+      <a class="pagination-button <?=$page_number == $page ? 'active' : '' ?>"
+          href="?page=<?=$page?>">
+        <?=$page?>
+      </a>
+    </div>
+  <?php endfor ?>
+  <?php if($page_number < $pages_count): ?>
+  <div class="section-pagination__item">
+    <a class="pagination-button" href="?page=<?=$page_number+1?>">вперед</a>
   </div>
-  <div class="section-pagination__item"><a class="pagination-button" href="#">2</a>
-  </div>
-  <div class="section-pagination__item"><a class="pagination-button" href="#">3</a>
-  </div>
-  <div class="section-pagination__item"><a class="pagination-button" href="#">вперед</a>
-  </div>
+  <?php endif ?>
 </div>
