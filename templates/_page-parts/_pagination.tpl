@@ -15,6 +15,14 @@
       </div>
     <?php endfor ?>
   <?php else: ?>
+    <?php if($page_number-3 > 1): ?>
+      <div class="section-pagination__item">
+        <a class="pagination-button" href="page=1">1</a>
+      </div>
+      <div class="section-pagination__item">
+        <a class="pagination-button" href="?page=<?=$page_number-3?>">...</a>
+      </div>
+    <?php endif ?>
     <?php if($page_number-2 > 0): ?>
       <div class="section-pagination__item">
         <a class="pagination-button" href="?page=<?=$page_number-2?>"><?=$page_number-2?></a>
@@ -38,11 +46,16 @@
         <a class="pagination-button" href="?page=<?=$page_number+2?>"><?=$page_number+2?></a>
       </div>
     <?php endif ?>
+    <?php if($page_number+3 <= $pages_count): ?>
+      <div class="section-pagination__item">
+        <a class="pagination-button" href="?page=<?=$page_number+3?>">...</a>
+      </div>
+    <?php endif ?>
   <?php endif ?>
 
   <?php if($page_number < $pages_count): ?>
-  <div class="section-pagination__item">
-    <a class="pagination-button" href="?page=<?=$page_number+1?>">вперед</a>
-  </div>
+    <div class="section-pagination__item">
+      <a class="pagination-button" href="?page=<?=$page_number+1?>">вперед</a>
+    </div>
   <?php endif ?>
 </div>

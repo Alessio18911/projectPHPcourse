@@ -29,7 +29,7 @@ if (isset($uriGet)) {
 
 } else {
   $posts_count = R::count('posts');
-  $posts_per_page = 2;
+  $posts_per_page = 1;
   $pages_count = ceil($posts_count / $posts_per_page);
   if (empty($_GET['page'])) {
     $page_number = 1;
