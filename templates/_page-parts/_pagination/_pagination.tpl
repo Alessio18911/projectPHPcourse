@@ -2,7 +2,7 @@
   <?php
     include ROOT . 'templates/_page-parts/_pagination/_pagination-btn-prev.tpl';
 
-    if($pagination['pages_count'] < 6) {
+    if($pages_count < 6) {
       include ROOT . 'templates/_page-parts/_pagination/_pagination-simple.tpl';
     } else {
       include ROOT . 'templates/_page-parts/_pagination/_pagination_with_ellipsis.tpl';
