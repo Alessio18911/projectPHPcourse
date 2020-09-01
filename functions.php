@@ -73,4 +73,26 @@ function getUrlParams($url) {
 
   return [$uriModule, $uriGet];
 }
+
+function paginate($table_name, $items_per_page) {
+  $item_count = R::count($table_name);
+
+  $pages_count = ceil($item_count / $items_per_page);
+  if (empty($_GET['page'])) {
+    $page_number = 1;
+  } else if($_GET['page'] <= $pages_count) {
+    $page_number = $_GET['page'];
+  } else {
+    $page_number = $pages_count;
+  }
+
+  $offset_coef = $page_number != 1 ? $page_number - 1 : 0;
+  $start_offset = $items_per_page * $offset_coef;
+
+  return [
+    'start_offset' => $start_offset,
+    'pages_count' => $pages_count,
+    'page_number' => $page_number
+  ];
+}
 ?>
