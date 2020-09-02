@@ -1,6 +1,6 @@
 <main class="page-profile">
-  <?php if($isLogged || isset($uriGet)): ?>
-    <?php if($userId): ?>
+  <?php if($is_logged || isset($uri_get)): ?>
+    <?php if($user_id): ?>
       <div class="section">
         <div class="container">
           <div class="section__title">
@@ -9,7 +9,7 @@
             <?php include ROOT . "templates/components/success.tpl" ?>
           </div>
           <div class="section__body">
-            <?php if(!$userName): ?>
+            <?php if(!$user_name): ?>
               <div class="row justify-content-center">
                 <div class="col-md-8">
                   <div class="enter-or-reg flex-column">
@@ -27,19 +27,19 @@
                 </div>
                 <div class="col-md-4">
                   <div class="definition-list mb-20">
-                    <?php if($userName): ?>
+                    <?php if($user_name): ?>
                       <dl class="definition">
                         <dt class="definition__term">имя и фамилия</dt>
                         <dd class="definition__description"> <?=$user->name?> <?=$user->surname?></dd>
                       </dl>
                     <?php endif ?>
-                    <?php if($userCountry || $userCity): ?>
+                    <?php if($user_country || $user_city): ?>
                       <dl class="definition">
                         <dt class="definition__term">
-                          <?php if($userCountry): ?>Страна<?php endif ?><?php if($userCountry && $userCity): ?>, <?php endif ?><?php if($userCity): ?>город<?php endif ?>
+                          <?php if($user_country): ?>Страна<?php endif ?><?php if($user_country && $user_city): ?>, <?php endif ?><?php if($user_city): ?>город<?php endif ?>
                         </dt>
                         <dd class="definition__description">
-                          <?=$userCountry?><?php if($userCountry && $userCity): ?>, <?php endif ?><?=$userCity?>
+                          <?=$user_country?><?php if($user_country && $user_city): ?>, <?php endif ?><?=$user_city?>
                         </dd>
                       </dl>
                     <?php endif ?>

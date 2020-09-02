@@ -7,7 +7,7 @@
     <?php include ROOT . "templates/components/success.tpl" ?>
 
     <div class="authorization-form__input">
-        <input class="input" name="email" type="text" placeholder="Email" value="<?=$userEmail?>"/>
+        <input class="input" name="email" type="text" placeholder="Email" value="<?=$user_email?>"/>
     </div>
     <div class="authorization-form__input">
         <input class="input" name="password" type="password" placeholder="Пароль" />

@@ -30,7 +30,7 @@ $errorMsgs = [
       "title" => 'Введите email'
     ],
 
-    "emptyWithExplanation" => [
+    "empty_with_explanation" => [
       "title" => "Введите email",
       "desc" => "Email обязателен для регистрации, входа на сайт или восстановления пароля"
     ],
@@ -43,7 +43,7 @@ $errorMsgs = [
       "title" => "Неверный email"
     ],
 
-    "notExist" => [
+    "not_exist" => [
       "title" => "Несуществующий email"
     ],
 
@@ -70,14 +70,14 @@ $errorMsgs = [
     ],
   ],
 
-  "settingNewPassword" => [
+  "setting_new_password" => [
     "failed" => [
       "title" => "Что-то пошло не так",
       "desc" => "Повторите процедуру сброса пароля ещё раз"
     ]
   ],
 
-  "secretCode" => [
+  "secret_code" => [
     "incorrect" => [
       "title" => "Секретный код неверен",
       "desc" => "Перейдите ещё раз по ссылке из полученного email или повторите процедуру восстановления пароля ещё раз"
@@ -95,24 +95,24 @@ $errorMsgs = [
       "desc" => "Максимальный объём файла изображения 4 Мб"
     ],
 
-    "formatInvalid" => [
+    "format_invalid" => [
       "title" => "Неверный формат файла",
       "desc" => "Допускается загрузка только .jpg, jpeg, .gif, .png"
     ],
 
-    "uploadFailed" => [
+    "upload_failed" => [
       "title" => "Что-то пошло не так...",
       "desc" => "Загрузите фото ещё раз"
     ],
 
-    "notSaved" => [
+    "not_saved" => [
       "title" => "Ошибка сохранения файла",
       "desc" => "Повторите загрузку фото"
     ]
   ]
 ];
 
-$successMsgs = [
+$success_msgs = [
   "email" => [
     "sent" => [
       "title" => "Проверьте почту",
@@ -120,21 +120,21 @@ $successMsgs = [
     ]
   ],
 
-  "newPassword" => [
+  "new_password" => [
     "set" => [
       "title" => "Пароль успешно обновлён"
     ]
   ]
 ];
 
-$adminErrorMsgs = [
-  "postTitle" => [
+$admin_error_msgs = [
+  "post_title" => [
     "empty" => [
       "title" => "Заголовок поста должен быть заполнен"
     ]
   ],
 
-  "postContent" => [
+  "post_content" => [
     "empty" => [
       "title" => "Текст поста должен быть заполнен"
     ]
@@ -151,25 +151,25 @@ $adminErrorMsgs = [
       "desc" => "Максимальный объём файла изображения 12 Мб"
     ],
 
-    "formatInvalid" => [
+    "format_invalid" => [
       "title" => "Неверный формат файла",
       "desc" => "Допускается загрузка только .jpg, jpeg, .gif, .png"
     ],
 
-    "uploadFailed" => [
+    "upload_failed" => [
       "title" => "Что-то пошло не так...",
       "desc" => "Загрузите фото ещё раз"
     ],
 
-    "notSaved" => [
+    "not_saved" => [
       "title" => "Ошибка сохранения файла",
       "desc" => "Повторите загрузку фото"
     ]
   ]
 ];
 
-$adminSuccessMsgs = [
-  "newPost" => [
+$admin_success_msgs = [
+  "new_post" => [
     "success" => [
       "title" => "Пост успешно добавлен"
     ]

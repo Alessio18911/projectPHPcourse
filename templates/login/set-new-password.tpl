@@ -7,7 +7,7 @@
     <?php include ROOT . "templates/components/success.tpl" ?>
 
 
-    <?php if (!$newPassword && empty($_SESSION['errors'])
+    <?php if (!$new_password && empty($_SESSION['errors'])
               || isset($_SESSION['errors']['password'])): ?>
       <div class="authorization-form__input">
         <input class="input" type="password" name="password" placeholder="Новый пароль" />

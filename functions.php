@@ -1,6 +1,6 @@
 <?php
 
-function validateEditForm($name, $surname, $email) {
+function validate_edit_form($name, $surname, $email) {
   if(empty($name)) $_SESSION['errors']['name'][] = "empty";
 
   if (empty($surname)) $_SESSION['errors']['surname'][] = "empty";
@@ -8,48 +8,48 @@ function validateEditForm($name, $surname, $email) {
   if (empty($email)) $_SESSION['errors']['email'][] = "empty";
 }
 
-function validateUploadedFile($file, $minWidth, $minHeight, $maxWeight) {
-  $fileName = $file['name'];
-  $fileTempPath = $file['tmp_name'];
-  $fileType = $file['type'];
-  $fileSize = $file['size'];
-  $fileError = $file['error'];
-  $kaboom = explode(".", $fileName);
-  $fileExt = end($kaboom);
-  $fileParams = [];
+function validate_uploaded_file($file, $min_width, $min_height, $max_weight) {
+  $file_name = $file['name'];
+  $file_temp_path = $file['tmp_name'];
+  $file_type = $file['type'];
+  $file_size = $file['size'];
+  $file_error = $file['error'];
+  $kaboom = explode(".", $file_name);
+  $file_ext = end($kaboom);
+  $file_params = [];
 
-  list($width, $height) = getimagesize($fileTempPath);
-  if ($width < $minWidth || $height < $minHeight) $_SESSION['errors']['file'][] = "small";
+  list($width, $height) = getimagesize($file_temp_path);
+  if ($width < $min_width || $height < $min_height) $_SESSION['errors']['file'][] = "small";
 
-  if ($fileSize > $maxWeight) $_SESSION['errors']['file'][] = "heavy";
+  if ($file_size > $max_weight) $_SESSION['errors']['file'][] = "heavy";
 
-  if (!preg_match("/\.(gif|jpg|jpeg|png)$/i", $fileName)) $_SESSION['errors']['file'][] = "formatInvalid";
+  if (!preg_match("/\.(gif|jpg|jpeg|png)$/i", $file_name)) $_SESSION['errors']['file'][] = "format_invalid";
 
-  if ($fileError == 4) $_SESSION['errors']['file'][] = "uploadFailed";
+  if ($file_error == 4) $_SESSION['errors']['file'][] = "upload_failed";
 
   if(empty($_SESSION['errors']['file'])) {
-    $dbFileName = rand(100000000000, 999999999999) . "." . $fileExt;
-    $fileParams['dbFileName'] = $dbFileName;
-    $fileParams['tempLoc'] = $fileTempPath;
+    $db_file_name = rand(100000000000, 999999999999) . "." . $file_ext;
+    $file_params['db_file_name'] = $db_file_name;
+    $file_params['temp_loc'] = $file_temp_path;
   }
 
-  return $fileParams;
+  return $file_params;
 }
 
-function processUploadedFile($folderLocation, $fileParams, $fileNamePrefix, $fileMinWidth, $fileMinHeight, $smallFileWidth, $smallFileHeight) {
-  $uploadFileBig = $folderLocation . $fileParams['dbFileName'];
-  $uploadFileSmall = $folderLocation . $fileNamePrefix . $fileParams['dbFileName'];
+function process_uploaded_file($folder_location, $file_params, $file_name_prefix, $file_min_width, $file_min_height, $small_file_width, $small_file_height) {
+  $upload_file_big = $folder_location . $file_params['db_file_name'];
+  $upload_file_small = $folder_location . $file_name_prefix . $file_params['db_file_name'];
 
-  $resultPhotoBig = resize_and_crop($fileParams['tempLoc'], $uploadFileBig, $fileMinWidth, $fileMinHeight);
-  $resultPhotoSmall = resize_and_crop($fileParams['tempLoc'], $uploadFileSmall, $smallFileWidth, $smallFileHeight);
+  $result_photo_big = resize_and_crop($file_params['temp_loc'], $upload_file_big, $file_min_width, $file_min_height);
+  $result_photo_small = resize_and_crop($file_params['temp_loc'], $upload_file_small, $small_file_width, $small_file_height);
 
-  if (!$resultPhotoBig || !$resultPhotoSmall) $_SESSION['errors']['file'][] = "notSaved";
+  if (!$result_photo_big || !$result_photo_small) $_SESSION['errors']['file'][] = "not_saved";
 }
 
-function deleteFile($filePath, $fileName, $fileNamePrefix) {
-  $fileBig = $filePath . $fileName;
-  $fileSmall = $filePath . $fileNamePrefix .$fileName;
-  $files = array($fileBig, $fileSmall);
+function delete_file($file_path, $file_name, $file_name_prefix) {
+  $file_big = $file_path . $file_name;
+  $file_small = $file_path . $file_name_prefix .$file_name;
+  $files = array($file_big, $file_small);
 
   foreach($files as $file) {
     if (file_exists($file)) {
@@ -58,20 +58,20 @@ function deleteFile($filePath, $fileName, $fileNamePrefix) {
   }
 }
 
-function getUrlParams($url) {
-  $uriGet = NULL;
-  $explodedUri = filter_var(trim(explode("?", $url)[0], "/"), FILTER_SANITIZE_URL);
+function get_url_params($url) {
+  $uri_get = NULL;
+  $exploded_uri = filter_var(trim(explode("?", $url)[0], "/"), FILTER_SANITIZE_URL);
 
-  $kaboom = explode("/", $explodedUri);
+  $kaboom = explode("/", $exploded_uri);
 
   if (!(int)end($kaboom) && end($kaboom) != '0') {
-    $uriModule = end($kaboom);
+    $uri_module = end($kaboom);
   } else {
-    $uriModule = $kaboom[0];
-    $uriGet = end($kaboom);
+    $uri_module = $kaboom[0];
+    $uri_get = end($kaboom);
   }
 
-  return [$uriModule, $uriGet];
+  return [$uri_module, $uri_get];
 }
 
 function paginate($table_name, $items_per_page) {

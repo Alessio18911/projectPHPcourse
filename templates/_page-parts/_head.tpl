@@ -4,11 +4,11 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<title><?=$pageTitle?></title>
+	<title><?=$page_title?></title>
 	<meta name="keywords" />
 	<meta name="description" />
-	<link rel="stylesheet" href="<?php echo HOST ?>static/css/main.css" />
-	<link rel="stylesheet" href="<?php echo HOST ?>static/css/custom.css" />
+	<link rel="stylesheet" href="<?=HOST ?>static/css/main.css" />
+	<link rel="stylesheet" href="<?=HOST ?>static/css/custom.css" />
 </head>
 
-<body class="<?php echo isset($pageClass) ? $pageClass : '' ?>">
+<body class="<?=isset($page_class) ? $page_class : '' ?>">

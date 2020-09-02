@@ -17,7 +17,7 @@
       </div>
       <div class="section__body">
         <div class="container">
-          <form action="<?=HOST?>profile-edit/<?=$userId?>" method="POST" enctype="multipart/form-data">
+          <form action="<?=HOST?>profile-edit/<?=$user_id?>" method="POST" enctype="multipart/form-data">
             <div class="row justify-content-center">
               <div class="col-md-8">
               <?php include ROOT . "templates/components/errors.tpl" ?>
@@ -28,7 +28,7 @@
                       type="text"
                       placeholder="Имя"
                       name="name"
-                      value="<?php echo isset($_POST['name']) ? $_POST['name'] : $user->name; ?>"
+                      value="<?=isset($_POST['name']) ? $_POST['name'] : $user->name; ?>"
                     />
                   </label>
                 </div>
@@ -38,7 +38,7 @@
                       type="text"
                       placeholder="Фамилия"
                       name="surname"
-                      value="<?php echo isset($_POST['surname']) ? $_POST['surname'] : $user->surname; ?>"
+                      value="<?=isset($_POST['surname']) ? $_POST['surname'] : $user->surname; ?>"
                     />
                   </label>
                 </div>
@@ -48,7 +48,7 @@
                       type="text"
                       placeholder="Email"
                       name="email"
-                      value="<?php echo isset($_POST['email']) ? $_POST['email'] : $user->email; ?>"
+                      value="<?=isset($_POST['email']) ? $_POST['email'] : $user->email; ?>"
                     />
                   </label>
                 </div>
@@ -68,7 +68,7 @@
                     </div>
                   </div>
                 </div>
-                <?php if (!empty($userAvatar)): ?>
+                <?php if (!empty($user_avatar)): ?>
                   <div class="checkbox__item mt-20">
                     <input class="checkbox__btn visually-hidden" type="checkbox" id="delete-avatar" name="delete-avatar">
                     <label class="checkbox__label delete-button" for="delete-avatar">Удалить фотографию</label>
@@ -84,7 +84,7 @@
                       type="text"
                       placeholder="Страна"
                       name="country"
-                      value="<?php echo isset($_POST['country']) ? $_POST['country'] : $user->country; ?>"
+                      value="<?=isset($_POST['country']) ? $_POST['country'] : $user->country; ?>"
                     />
                   </label>
                 </div>
@@ -94,7 +94,7 @@
                       type="text"
                       placeholder="Город"
                       name="city"
-                      value="<?php echo isset($_POST['city']) ? $_POST['city'] : $user->city; ?>"
+                      value="<?=isset($_POST['city']) ? $_POST['city'] : $user->city; ?>"
                     />
                   </label>
                 </div>
