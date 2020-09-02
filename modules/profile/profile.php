@@ -1,26 +1,26 @@
 <?php
 
-$pageTitle = 'Профиль пользователя';
-$isLogged = !empty($_SESSION['login']) ? true : false;
-$userParam = '';
+$page_title = 'Профиль пользователя';
+$is_logged = !empty($_SESSION['login']) ? true : false;
+$user_param = '';
 
-if (isset($uriGet)) {
-  $userParam = $uriGet;
-} elseif ($isLogged) {
-  $userParam = $_SESSION['logged_user']['id'];
+if (isset($uri_get)) {
+  $user_param = $uri_get;
+} elseif ($is_logged) {
+  $user_param = $_SESSION['logged_user']['id'];
 }
 
-$user = R::load('users', $userParam);
-$userId = $user->id;
-$userName = !empty($user->name) ? $user->name : false;
-$userAvatar = $user->avatar;
-$userCountry = !empty($user->country) ? $user->country : false;
-$userCity = !empty($user->city) ? $user->city : false;
+$user = R::load('users', $user_param);
+$user_id = $user->id;
+$user_name = !empty($user->name) ? $user->name : false;
+$user_avatar = $user->avatar;
+$user_country = !empty($user->country) ? $user->country : false;
+$user_city = !empty($user->city) ? $user->city : false;
 
-$isUser = isset($userId) && isset($_SESSION['logged_user']) && $userId === $_SESSION['logged_user']['id'] ? true : false;
-$isAdmin = isset($_SESSION['logged_user']) && $_SESSION['logged_user']['role'] === 'admin' ? true : false;
+$is_user = isset($user_id) && isset($_SESSION['logged_user']) && $user_id === $_SESSION['logged_user']['id'] ? true : false;
+$is_admin = isset($_SESSION['logged_user']) && $_SESSION['logged_user']['role'] === 'admin' ? true : false;
 
-$btnLink = $isAdmin ? $userId : '';
+$btnLink = $is_admin ? $user_id : '';
 
 include ROOT . "templates/_page-parts/_head.tpl";
 include ROOT . "templates/_parts/_header.tpl";

@@ -1,27 +1,27 @@
 <?php
 
-$pageTitle = "Вход на сайт";
-$pageClass = "authorization-page";
+$page_title = "Вход на сайт";
+$page_class = "authorization-page";
 
-$userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
-$userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
+$user_email = isset($_POST['email']) ? trim($_POST['email']) : '';
+$user_pass = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 if (isset($_POST['login'])) {
-  if (!$userEmail) {
-    $_SESSION['errors']['email'][] = "emptyWithExplanation";
-  } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+  if (!$user_email) {
+    $_SESSION['errors']['email'][] = "empty_with_explanation";
+  } else if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['errors']['email'][] = "invalid";
   }
 
-  if (!$userPass) {
+  if (!$user_pass) {
     $_SESSION['errors']['password'][] = "empty";
   }
 
   if (empty($_SESSION['errors'])) {
-    $user = R::findOne('users', 'email = ?', [$userEmail]);
+    $user = R::findOne('users', 'email = ?', [$user_email]);
 
     if ($user) {
-      if (password_verify($userPass, $user->password)) {
+      if (password_verify($user_pass, $user->password)) {
         $_SESSION['logged_user'] = $user;
         $_SESSION['login'] = 1;
         $_SESSION['role'] = $user->role;

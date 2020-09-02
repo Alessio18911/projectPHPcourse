@@ -1,55 +1,55 @@
 <?php
 
-$pageTitle = 'Редактирование профиля';
+$page_title = 'Редактирование профиля';
 
-$minAvatarWidth = $minAvatarHeight = 160;
-$thumbAvatarWidth = $thumbAvatarHeight = 48;
-$maxAvatarWeight = 4194304;
-$avatarNamePrefix = "48-";
-$isLogged = !empty($_SESSION['login']) ? true : false;
-$avatarFolderLocation = ROOT . "usercontent/avatars/";
+$min_avatar_width = $min_avatar_height = 160;
+$thumb_avatar_width = $thumb_avatar_height = 48;
+$max_avatar_weight = 4194304;
+$avatar_name_prefix = "48-";
+$is_logged = !empty($_SESSION['login']) ? true : false;
+$avatar_folder_location = ROOT . "usercontent/avatars/";
 
-if ($isLogged) {
-  $userId = $_SESSION['logged_user']['role'] === 'admin' ? $uriGet : $_SESSION['logged_user']['id'];
-  $user = R::load('users', $userId);
-  $userAvatar = !empty($user->avatar) ? $user->avatar : '';
+if ($is_logged) {
+  $user_id = $_SESSION['logged_user']['role'] === 'admin' ? $uri_get : $_SESSION['logged_user']['id'];
+  $user = R::load('users', $user_id);
+  $user_avatar = !empty($user->avatar) ? $user->avatar : '';
 
   if (isset($_POST['update-profile'])) {
-    $userName = trim($_POST['name']);
-    $userSurname = trim($_POST['surname']);
-    $userEmail = trim($_POST['email']);
-    $userCity = isset($_POST['city']) ? trim($_POST['city']) : NULL;
-    $userCountry = isset($_POST['country']) ? trim($_POST['country']) : NULL;
-    validateEditForm($userName, $userSurname, $userEmail);
+    $user_name = trim($_POST['name']);
+    $user_surname = trim($_POST['surname']);
+    $user_email = trim($_POST['email']);
+    $user_city = isset($_POST['city']) ? trim($_POST['city']) : NULL;
+    $user_country = isset($_POST['country']) ? trim($_POST['country']) : NULL;
+    validate_edit_form($user_name, $user_surname, $user_email);
 
     if (empty($_SESSION['errors'])) {
-      $user->name = htmlentities($userName);
-      $user->surname = htmlentities($userSurname);
-      $user->email = htmlentities($userEmail);
-      $user->city = htmlentities($userCity);
-      $user->country = htmlentities($userCountry);
+      $user->name = htmlentities($user_name);
+      $user->surname = htmlentities($user_surname);
+      $user->email = htmlentities($user_email);
+      $user->city = htmlentities($user_city);
+      $user->country = htmlentities($user_country);
 
       if (!$_FILES['avatar']['error']) {
-        $fileParams = validateUploadedFile($_FILES['avatar'], $minAvatarWidth, $minAvatarHeight, $maxAvatarWeight);
+        $file_params = validate_uploaded_file($_FILES['avatar'], $min_avatar_width, $min_avatar_height, $max_avatar_weight);
 
-        if (!empty($fileParams)) {
-          if (!empty($userAvatar)) deleteFile($avatarFolderLocation, $userAvatar, $avatarNamePrefix);
+        if (!empty($file_params)) {
+          if (!empty($user_avatar)) deleteFile($avatar_folder_location, $user_avatar, $avatar_name_prefix);
 
-          processUploadedFile($avatarFolderLocation, $fileParams, $avatarNamePrefix, $minAvatarWidth, $minAvatarHeight, $thumbAvatarWidth, $thumbAvatarHeight);
+          processUploadedFile($avatar_folder_location, $file_params, $avatar_name_prefix, $min_avatar_width, $min_avatar_height, $thumb_avatar_width, $thumb_avatar_height);
 
-          $user->avatar = $fileParams['dbFileName'];
-          $user->avatarSmall = $avatarNamePrefix . $fileParams['dbFileName'];
+          $user->avatar = $file_params['db_file_name'];
+          $user->avatar_small = $avatar_name_prefix . $file_params['db_file_name'];
         }
       }
 
-      if (!empty($_POST['delete-avatar']) && !empty($userAvatar)) {
-        deleteFile($avatarFolderLocation, $userAvatar, $avatarNamePrefix);
-        $user->avatar = $user->avatarSmall = NULL;
+      if (!empty($_POST['delete-avatar']) && !empty($user_avatar)) {
+        delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
+        $user->avatar = $user->avatar_small = NULL;
       }
 
       if (empty($_SESSION['errors']['file'])) {
         R::store($user);
-        header("Location: " .HOST. "profile/" . $userId);
+        header("Location: " .HOST. "profile/" . $user_id);
         exit();
       }
     }

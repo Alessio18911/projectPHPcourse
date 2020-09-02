@@ -1,7 +1,7 @@
 <?php
 
-$pageTitle = 'Главная страница';
-$pageClass = 'main-page';
+$page_title = 'Главная страница';
+$page_class = 'main-page';
 
 ob_start();
 include ROOT . "templates/main/main.tpl";

@@ -3,11 +3,11 @@
     foreach($item as $success): ?>
       <div class="notifications mb-20">
         <div class="notifications__title notifications__title--success">
-          <?=$adminSuccessMsgs[$key][$success]['title']?>
+          <?=$admin_success_msgs[$key][$success]['title']?>
         </div>
-        <?php if(isset($adminSuccessMsgs[$key]['success']['desc'])): ?>
+        <?php if(isset($admin_success_msgs[$key]['success']['desc'])): ?>
           <div class="notifications__message">
-            <p><?=$adminSuccessMsgs[$key]['success']['desc']?></p>
+            <p><?=$admin_success_msgs[$key]['success']['desc']?></p>
           </div>
         <?php endif ?>
       </div>

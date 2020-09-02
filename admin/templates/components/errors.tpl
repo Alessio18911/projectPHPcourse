@@ -3,12 +3,12 @@
     foreach($item as $error): ?>
       <div class="notifications mb-20">
         <div class="notifications__title notifications__title--error">
-          <?=$adminErrorMsgs[$key][$error]['title']?>
+          <?=$admin_error_msgs[$key][$error]['title']?>
         </div>
-        <?php if(isset($adminErrorMsgs[$key][$error]['desc'])): ?>
+        <?php if(isset($admin_error_msgs[$key][$error]['desc'])): ?>
           <div class="notifications__message">
             <p>
-              <?=$adminErrorMsgs[$key][$error]['desc']?>
+              <?=$admin_error_msgs[$key][$error]['desc']?>
             </p>
           </div>
         <?php endif ?>

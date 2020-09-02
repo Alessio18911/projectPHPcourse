@@ -1,38 +1,38 @@
 <?php
 
-$pageTitle = "Установить новый пароль";
-$pageClass = "authorization-page";
-$newPassword = '';
+$page_title = "Установить новый пароль";
+$page_class = "authorization-page";
+$new_password = '';
 
 if (!empty($_GET['email']) && !empty($_GET['code'])) {
   $user = R::findOne('users', 'email = ?', [$_GET['email']]);
 
   if($user) {
-    $_SESSION['secretCode'] = $_GET['code'] === $user->recovery_code ? $_GET['code'] : '';
+    $_SESSION['secret_code'] = $_GET['code'] === $user->recovery_code ? $_GET['code'] : '';
 
-    if (empty($_SESSION['secretCode'])) {
-      $_SESSION['errors']['secretCode'][] = 'incorrect';
+    if (empty($_SESSION['secret_code'])) {
+      $_SESSION['errors']['secret_code'][] = 'incorrect';
     } else {
       $_SESSION['user'] = $user;
-      $_SESSION['userEmail'] = $user->email;
+      $_SESSION['user_email'] = $user->email;
     }
   } else {
-    $_SESSION['errors']['email'][] = 'notExist';
+    $_SESSION['errors']['email'][] = 'not_exist';
   }
 } elseif (isset($_POST['set-new-password'])) {
-  $newPassword = !empty($_POST['password']) && strlen($_POST['password']) >= 4 ? trim($_POST['password']) : '';
+  $new_password = !empty($_POST['password']) && strlen($_POST['password']) >= 4 ? trim($_POST['password']) : '';
 
-  if (!$newPassword) {
+  if (!$new_password) {
     $_SESSION['errors']['password'][] = "empty";
   } else {
     $user = $_SESSION['user'];
-    $user->password = password_hash(htmlentities($newPassword), PASSWORD_DEFAULT);
+    $user->password = password_hash(htmlentities($new_password), PASSWORD_DEFAULT);
     $user->recovery_code = NULL;
     R::store($user);
-    $_SESSION['success']['newPassword'][] = "set";
+    $_SESSION['success']['new_password'][] = "set";
     unset($_SESSION['user']);
-    unset($_SESSION['userEmail']);
-    unset($_SESSION['secretCode']);
+    unset($_SESSION['user_email']);
+    unset($_SESSION['secret_code']);
   }
 } else {
   header("Location: " .HOST. "lost-password");

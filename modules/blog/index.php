@@ -1,11 +1,11 @@
 <?php
 
-$pageTitle = "Блог - все записи";
+$page_title = "Блог - все записи";
 
-if (isset($uriGet)) {
-  $post = R::load('posts', $uriGet);
+if (isset($uri_get)) {
+  $post = R::load('posts', $uri_get);
 
-  $translationTerms = [
+  $translation_terms = [
     'January' => 'Января',
     'February' => 'Февраля',
     'March' => 'Марта',
@@ -20,7 +20,7 @@ if (isset($uriGet)) {
     'December' => 'Декабря'
   ];
 
-  $postDate = strtr(date('j F Y, G:i', $post['timestamp']), $translationTerms);
+  $post_date = strtr(date('j F Y, G:i', $post['timestamp']), $translation_terms);
 
   ob_start();
   include ROOT . "templates/blog/single-post.tpl";

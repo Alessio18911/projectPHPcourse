@@ -12,11 +12,11 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
   die();
 }
 
-$uri = getUrlParams($_SERVER['REQUEST_URI']);
-$uriModule = $uri[0];
-$uriGet = $uri[1];
+$uri = get_url_params($_SERVER['REQUEST_URI']);
+$uri_module = $uri[0];
+$uri_get = $uri[1];
 
-switch($uriModule) {
+switch($uri_module) {
   case '':
     require ROOT . "admin/modules/admin/index.php";
     break;

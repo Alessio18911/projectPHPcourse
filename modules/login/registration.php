@@ -1,31 +1,31 @@
 <?php
 
-$pageTitle = "Регистрация";
-$pageClass = "authorization-page";
+$page_title = "Регистрация";
+$page_class = "authorization-page";
 
-$userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
-$userPass = isset($_POST['password']) ? trim($_POST['password']) : '';
+$user_email = isset($_POST['email']) ? trim($_POST['email']) : '';
+$user_pass = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 if (isset($_POST['register'])) {
-  if (!$userEmail) {
-    $_SESSION['errors']['email'][] = "emptyWithExplanation";
-  } else if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+  if (!$user_email) {
+    $_SESSION['errors']['email'][] = "empty_with_explanation";
+  } else if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['errors']['email'][] = "invalid";
   }
 
-  if (!$userPass || (strlen($userPass) < 4)) {
+  if (!$user_pass || (strlen($user_pass) < 4)) {
     $_SESSION['errors']['password'][] = "empty";
   }
 
-  if (R::count('users', 'email = ?', array($userEmail))) {
+  if (R::count('users', 'email = ?', array($user_email))) {
     $_SESSION['errors']['email'][] = "registered";
   }
 
   if (empty($_SESSION['errors'])) {
     $user = R::dispense('users');
-    $user->email = $userEmail;
+    $user->email = $user_email;
     $user->role = 'user';
-    $user->password = password_hash($userPass, PASSWORD_DEFAULT);
+    $user->password = password_hash($user_pass, PASSWORD_DEFAULT);
     $result = R::store($user);
 
     if (is_int($result)) {

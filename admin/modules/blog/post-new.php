@@ -1,40 +1,40 @@
 <?php
 
-$minCoverWidth = 600;
-$minCoverHeight = 300;
-$smallCoverWidth = 290;
-$smallCoverHeight = 230;
-$maxCoverWeight = 12582912;
-$coverNamePrefix = "290-";
-$coverFolderLocation = ROOT . "usercontent/blog/";
+$min_cover_width = 600;
+$min_cover_height = 300;
+$small_cover_width = 290;
+$small_cover_height = 230;
+$max_cover_weight = 12582912;
+$cover_name_prefix = "290-";
+$cover_folder_location = ROOT . "usercontent/blog/";
 
-$postTitle = isset($_POST['title']) ? trim($_POST['title']) : '';
-$postContent = isset($_POST['content']) ? trim($_POST['content']) : '';
+$post_title = isset($_POST['title']) ? trim($_POST['title']) : '';
+$post_content = isset($_POST['content']) ? trim($_POST['content']) : '';
 
 if (isset($_POST['post-submit'])) {
-  if (!$postTitle) $_SESSION['errors']['postTitle'][] = "empty";
-  if (!$postContent) $_SESSION['errors']['postContent'][] = "empty";
+  if (!$post_title) $_SESSION['errors']['post_title'][] = "empty";
+  if (!$post_content) $_SESSION['errors']['post_content'][] = "empty";
 
   if (empty($_SESSION['errors'])) {
     $post = R::dispense('posts');
-    $post->title = $postTitle;
-    $post->content = $postContent;
+    $post->title = $post_title;
+    $post->content = $post_content;
     $post->timestamp = time();
 
     if (!$_FILES['cover']['error']) {
-      $fileParams = validateUploadedFile($_FILES['cover'], $minCoverWidth, $minCoverHeight, $maxCoverWeight);
+      $file_params = validateUploadedFile($_FILES['cover'], $min_cover_width, $min_cover_height, $max_cover_weight);
 
-      if (!empty($fileParams)) {
-        processUploadedFile($coverFolderLocation, $fileParams, $coverNamePrefix, $minCoverWidth, $minCoverHeight, $smallCoverWidth, $smallCoverHeight);
+      if (!empty($file_params)) {
+        process_uploaded_file($cover_folder_location, $file_params, $cover_name_prefix, $min_cover_width, $min_cover_height, $small_cover_width, $small_cover_height);
 
-        $post->cover = $fileParams['dbFileName'];
-        $post->coverSmall = $coverNamePrefix . $fileParams['dbFileName'];
+        $post->cover = $file_params['db_file_name'];
+        $post->cover_small = $cover_name_prefix . $file_params['db_file_name'];
       }
     }
 
     if (empty($_SESSION['errors']['file'])) {
       R::store($post);
-      $_SESSION['success']['newPost'][] = "success";
+      $_SESSION['success']['new_post'][] = "success";
       header("Location: " .HOST. "admin/blog");
       exit();
     }

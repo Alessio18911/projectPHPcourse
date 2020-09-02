@@ -1,17 +1,17 @@
 <?php
 
-$pageTitle = "Восстановить пароль";
-$pageClass = "authorization-page";
+$page_title = "Восстановить пароль";
+$page_class = "authorization-page";
 
-$userEmail = isset($_POST['email']) ? trim($_POST['email']) : '';
+$user_email = isset($_POST['email']) ? trim($_POST['email']) : '';
 
 if (isset($_POST['lost-password'])) {
-  if (!$userEmail) {
-    $_SESSION['errors']['email'][] = "emptyWithExplanation";
+  if (!$user_email) {
+    $_SESSION['errors']['email'][] = "empty_with_explanation";
   }
 
   if (empty($_SESSION['errors'])) {
-    $user = R::findOne('users', 'email = ?', [$userEmail]);
+    $user = R::findOne('users', 'email = ?', [$user_email]);
 
     if ($user) {
       function random_str($num = 30) {
@@ -23,7 +23,7 @@ if (isset($_POST['lost-password'])) {
 
       $recovery_message = "<p>Код сброса пароля: <b>$recovery_code</b></p>";
       $recovery_message .= "<p>для сброса пароля перейдите по ссылке ниже и установите новый пароль: </p>";
-      $recovery_link = HOST . "set-new-password?email={$userEmail}&code={$recovery_code}";
+      $recovery_link = HOST . "set-new-password?email={$user_email}&code={$recovery_code}";
       $recovery_message .= '<p><a href="' . $recovery_link . '">Установить новый пароль</a></p>';
 
       $headers = "MIME-Version: 1.0" . PHP_EOL
@@ -31,15 +31,15 @@ if (isset($_POST['lost-password'])) {
         . "From: " . "=?utf-8?B?" . base64_encode(SITE_NAME) . "?=" . "<" . SITE_EMAIL . ">" . PHP_EOL
         . "Reply-To: " . SITE_EMAIL . PHP_EOL;
 
-      $resultEmail = mail($userEmail, 'Востановление доступа', $recovery_message, $headers);
+      $result_email = mail($user_email, 'Востановление доступа', $recovery_message, $headers);
 
-      if ($resultEmail) {
+      if ($result_email) {
         $_SESSION['success']['email'][] = "sent";
       } else {
-        $_SESSION['errors']['settingNewPassword'][] = "failed";
+        $_SESSION['errors']['setting_new_password'][] = "failed";
       }
     } else {
-      $_SESSION['errors']['email'][] = "notExist";
+      $_SESSION['errors']['email'][] = "not_exist";
     }
   }
 }
