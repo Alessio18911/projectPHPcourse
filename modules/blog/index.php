@@ -28,7 +28,7 @@ if (isset($uri_get)) {
   ob_end_clean();
 
 } else {
-  $posts_per_page = 1;
+  $posts_per_page = 3;
 
   $pagination = paginate('posts', $posts_per_page);
   $start_offset = $pagination['start_offset'];

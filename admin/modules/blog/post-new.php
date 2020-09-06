@@ -22,7 +22,7 @@ if (isset($_POST['post-submit'])) {
     $post->timestamp = time();
 
     if (!$_FILES['cover']['error']) {
-      $file_params = validateUploadedFile($_FILES['cover'], $min_cover_width, $min_cover_height, $max_cover_weight);
+      $file_params = validate_uploaded_file($_FILES['cover'], $min_cover_width, $min_cover_height, $max_cover_weight);
 
       if (!empty($file_params)) {
         process_uploaded_file($cover_folder_location, $file_params, $cover_name_prefix, $min_cover_width, $min_cover_height, $small_cover_width, $small_cover_height);
