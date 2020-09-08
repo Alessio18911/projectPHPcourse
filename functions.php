@@ -37,19 +37,19 @@ function validate_uploaded_file($file, $min_width, $min_height, $max_weight) {
 }
 
 function process_uploaded_file($folder_location, $file_params, $file_name_prefix, $file_min_width, $file_min_height, $small_file_width, $small_file_height) {
-  $upload_file_big = $folder_location . $file_params['db_file_name'];
-  $upload_file_small = $folder_location . $file_name_prefix . $file_params['db_file_name'];
+  $upload_full_size = $folder_location . $file_params['db_file_name'];
+  $upload_preview = $folder_location . $file_name_prefix . $file_params['db_file_name'];
 
-  $result_photo_big = resize_and_crop($file_params['temp_loc'], $upload_file_big, $file_min_width, $file_min_height);
-  $result_photo_small = resize_and_crop($file_params['temp_loc'], $upload_file_small, $small_file_width, $small_file_height);
+  $result = resize_and_crop($file_params['temp_loc'], $upload_full_size, $file_min_width, $file_min_height);
+  $result_thumb = resize_and_crop($file_params['temp_loc'], $upload_preview, $small_file_width, $small_file_height);
 
-  if (!$result_photo_big || !$result_photo_small) $_SESSION['errors']['file'][] = "not_saved";
+  if (!$result || !$result_thumb) $_SESSION['errors']['file'][] = "not_saved";
 }
 
 function delete_file($file_path, $file_name, $file_name_prefix) {
-  $file_big = $file_path . $file_name;
-  $file_small = $file_path . $file_name_prefix .$file_name;
-  $files = array($file_big, $file_small);
+  $full_size = $file_path . $file_name;
+  $preview = $file_path . $file_name_prefix . $file_name;
+  $files = array($full_size, $preview);
 
   foreach($files as $file) {
     if (file_exists($file)) {
