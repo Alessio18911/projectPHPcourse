@@ -4,8 +4,7 @@ require "./../../config.php";
 require "./../resize-and-crop.php";
 
 // Required: anonymous function reference number as explained above.
-$funcNum = $_GET['CKEditorFuncNum'] ;
-$folder_location = ROOT . "usercontent/editor-uploads/";
+$funcNum = $_GET['CKEditorFuncNum'];
 
 // Check the $_FILES array and save the file. Assign the correct path to a variable ($url).
 
@@ -39,10 +38,15 @@ if (!$_FILES['upload']['error']) {
     if (!$result) {
       $message = $admin_error_msgs['file']['not_saved']['title'] . $admin_error_msgs['file']['not_saved']['desc'];
     } else {
-      $url = $folder_location . $db_file_name;
-      $is_file_uploaded = move_uploaded_file($file_temp_path, $url);
-      $message = $is_file_uploaded ? "Файл успешно загружен" : "Что-то пошло не так, попробуйте ещё раз";
-      echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($funcNum, '$url', '$message');</script>";
+      $upload_destination = ROOT . "usercontent/editor-uploads/" . $db_file_name;
+
+      if (move_uploaded_file($file_temp_path, $upload_destination)) {
+        $url = HOST . "usercontent/editor-uploads/" . $db_file_name;
+        $message = "Файл успешно загружен";
+        echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($funcNum, '$url', '$message');</script>";
+      } else {
+        $message = "Что-то пошло не так, попробуйте ещё раз";
+      }
     }
   }
 }

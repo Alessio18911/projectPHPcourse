@@ -15,7 +15,6 @@
           <h4 class="card-post__title">
             <a href="<?=HOST . 'blog/' . $post['id']?>"><?=$post['title']?></a>
           </h4>
-          <p><?=$post['content']?></p>
         </div>
       <?php endforeach ?>
     </div>
