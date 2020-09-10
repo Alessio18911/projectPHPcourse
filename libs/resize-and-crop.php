@@ -77,21 +77,57 @@ function resize_and_crop($source_image_path, $thumbnail_image_path, $result_widt
       $result_height
   );
 
-    /*
- * Render the image
- * Alternatively, you can save the image in file-system or database
- */
-
-    // header('Content-type: image/jpeg');
-    // imagejpeg($desired_gdim);
-
-    /*
- * Add clean-up code here
- */
-
-
   imagejpeg($desired_gdim, $thumbnail_image_path, 90);
   imagedestroy($source_gdim);
   imagedestroy($desired_gdim);
   return true;
 }
+
+function resize($source_image_path, $max_side_length) {
+  if (!file_exists($source_image_path)) return false;
+  if (!getimagesize($source_image_path)) return false;
+
+  $source_path = $source_image_path;
+
+  list($source_width, $source_height, $source_type) = getimagesize($source_path);
+
+  switch ($source_type) {
+    case IMAGETYPE_GIF:
+      $source_gdim = imagecreatefromgif($source_path);
+      break;
+    case IMAGETYPE_JPEG:
+      $source_gdim = imagecreatefromjpeg($source_path);
+      break;
+    case IMAGETYPE_PNG:
+      $source_gdim = imagecreatefrompng($source_path);
+      break;
+  }
+
+  if ($source_width > $max_side_length) {
+    $temp_width = $max_side_length;
+    $temp_height = $max_side_length / $source_width * $source_height;
+  } else if($source_height > $max_side_length) {
+    $temp_height = $max_side_length;
+    $temp_width = $max_side_length / $source_height * $source_width;
+  }
+
+  $temp_gdim = imagecreatetruecolor($temp_width, $temp_height);
+  imagecopyresampled(
+    $temp_gdim,
+    $source_gdim,
+    0,
+    0,
+    0,
+    0,
+    $temp_width,
+    $temp_height,
+    $source_width,
+    $source_height
+  );
+
+  imagejpeg($temp_gdim, $source_path, 90);
+  imagedestroy($source_gdim);
+  imagedestroy($temp_gdim);
+  return true;
+}
+

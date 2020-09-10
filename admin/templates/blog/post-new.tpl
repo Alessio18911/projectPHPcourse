@@ -49,5 +49,5 @@
 </div>
 <script>CKEDITOR.replace('editor', {
   filebrowserUploadMethod: 'form',
-  filebrowserUploadUrl: '<?=HOST?>libs/ck-upload/upload.php'
+  filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'
 });</script>
