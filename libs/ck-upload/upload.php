@@ -14,27 +14,12 @@ if (!$_FILES['upload']['error']) {
   $image_min_height = 10;
   $image_max_weight = 6291456;
 
-  $file_name = $_FILES['upload']['name'];
-  $file_temp_path = $_FILES['upload']['tmp_name'];
-  $file_type = $_FILES['upload']['type'];
-  $file_size = $_FILES['upload']['size'];
-  $file_error = $_FILES['upload']['error'];
-  $kaboom = explode(".", $file_name);
-  $file_ext = end($kaboom);
-
-  list($width, $height) = getimagesize($file_temp_path);
-  if ($width < $image_min_width || $height < $image_min_height) $message = $admin_error_msgs["file"]["small"]["title"] . $admin_error_msgs["file"]["small"]["desc"];
-
-  if ($file_size > $image_max_weight) $message = $admin_error_msgs["file"]["heavy"]["desc"];
-
-  if (!preg_match("/\.(gif|jpg|jpeg|png)$/i", $file_name)) $message = $admin_error_msgs["file"]["format_invalid"]["title"] . $admin_error_msgs["file"]["format_invalid"]["desc"];
-
-  if ($file_error == 4) $message = $admin_error_msgs["file"]["upload_failed"]["title"] . $admin_error_msgs["file"]["upload_failed"]["desc"];
+  $image_params = validate_uploaded_file($_FILES['upload'], $image_min_width, $image_min_height, $image_max_weight);
 
   if(!isset($message)) {
     $db_file_name = rand(100000000000, 999999999999) . "." . $file_ext;
-    $image_params = [$file_temp_path, $image_width];
-    $result = resize_and_crop(...$image_params);
+    $image_params_to_resize = [$file_temp_path, $image_width];
+    $result = resize_and_crop(...$image_params_to_resize);
 
     if (!$result) {
       $message = $admin_error_msgs['file']['not_saved']['title'] . $admin_error_msgs['file']['not_saved']['desc'];
@@ -51,3 +36,5 @@ if (!$_FILES['upload']['error']) {
     }
   }
 }
+
+// Закончил рефакторинг функцией validate_uploaded_file в functions.php
