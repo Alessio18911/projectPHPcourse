@@ -40,8 +40,10 @@ function process_uploaded_file($folder_location, $file_params, $file_name_prefix
   $upload_full_size = $folder_location . $file_params['db_file_name'];
   $upload_preview = $folder_location . $file_name_prefix . $file_params['db_file_name'];
 
-  $result = resize_and_crop($file_params['temp_loc'], $upload_full_size, $file_min_width, $file_min_height);
-  $result_thumb = resize_and_crop($file_params['temp_loc'], $upload_preview, $small_file_width, $small_file_height);
+  $file_full_size_params = [$file_params['temp_loc'], $upload_full_size, $file_min_width, $file_min_height];
+  $file_thumb_params = [$file_params['temp_loc'], $upload_preview, $small_file_width, $small_file_height];
+  $result = resize_and_crop(...$file_full_size_params);
+  $result_thumb = resize_and_crop(...$file_thumb_params);
 
   if (!$result || !$result_thumb) $_SESSION['errors']['file'][] = "not_saved";
 }

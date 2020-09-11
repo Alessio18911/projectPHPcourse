@@ -33,7 +33,8 @@ if (!$_FILES['upload']['error']) {
 
   if(!isset($message)) {
     $db_file_name = rand(100000000000, 999999999999) . "." . $file_ext;
-    $result = resize($file_temp_path, $image_width);
+    $image_params = [$file_temp_path, $image_width];
+    $result = resize_and_crop(...$image_params);
 
     if (!$result) {
       $message = $admin_error_msgs['file']['not_saved']['title'] . $admin_error_msgs['file']['not_saved']['desc'];
