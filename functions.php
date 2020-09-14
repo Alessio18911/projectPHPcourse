@@ -8,7 +8,7 @@ function validate_edit_form($name, $surname, $email) {
   if (empty($email)) $_SESSION['errors']['email'][] = "empty";
 }
 
-function validate_uploaded_file($file, $min_width, $min_height, $max_weight, $ck_editor = NULL) {
+function validate_uploaded_file($file, $min_width, $min_height, $max_weight, $ck_editor_msgs = NULL) {
   $file_name = $file['name'];
   $file_temp_path = $file['tmp_name'];
   $file_type = $file['type'];
@@ -20,27 +20,27 @@ function validate_uploaded_file($file, $min_width, $min_height, $max_weight, $ck
 
   list($width, $height) = getimagesize($file_temp_path);
   if ($width < $min_width || $height < $min_height) {
-    isset($ck_editor) ? $message = $ck_editor_msgs["small"] : $_SESSION['errors']['file'][] = "small";
+    isset($ck_editor_msgs) ? $message = $ck_editor_msgs["small"] : $_SESSION['errors']['file'][] = "small";
   }
 
   if ($file_size > $max_weight) {
-    isset($ck_editor) ? $message = $ck_editor_msgs["heavy"] : $_SESSION['errors']['file'][] = "heavy";
+    isset($ck_editor_msgs) ? $message = $ck_editor_msgs["heavy"] : $_SESSION['errors']['file'][] = "heavy";
   }
 
   if (!preg_match("/\.(gif|jpg|jpeg|png)$/i", $file_name)) {
-    isset($ck_editor) ? $message = $ck_editor_msgs["format_invalid"] : $_SESSION['errors']['file'][] = "format_invalid";
+    isset($ck_editor_msgs) ? $message = $ck_editor_msgs["format_invalid"] : $_SESSION['errors']['file'][] = "format_invalid";
   }
 
   if ($file_error == 4) {
-    isset($ck_editor) ? $message = $ck_editor_msgs["upload_failed"] : $_SESSION['errors']['file'][] = "upload_failed";
+    isset($ck_editor_msgs) ? $message = $ck_editor_msgs["upload_failed"] : $_SESSION['errors']['file'][] = "upload_failed";
   }
 
-  if(!isset($message) || empty($_SESSION['errors']['file']))  {
+  if (isset($message)) {
+    $file_params['ck_editor_message'] = $message;
+  } else if(empty($_SESSION['errors']['file'])) {
     $db_file_name = rand(100000000000, 999999999999) . "." . $file_ext;
     $file_params['db_file_name'] = $db_file_name;
     $file_params['temp_loc'] = $file_temp_path;
-  } else if (isset($ck_editor)) {
-    $file_params['ck_editor_message'] = $message;
   }
 
   return $file_params;

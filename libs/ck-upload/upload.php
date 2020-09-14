@@ -1,7 +1,8 @@
 <?php
 
-require "./../../config.php";
-require "./../resize-and-crop.php";
+require_once("./../../config.php");
+require_once("./../../functions.php");
+require_once("./../resize-and-crop.php");
 
 // Required: anonymous function reference number as explained above.
 $funcNum = $_GET['CKEditorFuncNum'];
@@ -14,10 +15,11 @@ if (!$_FILES['upload']['error']) {
   $image_min_height = 10;
   $image_max_weight = 6291456;
 
-  $image_params = validate_uploaded_file($_FILES['upload'], $image_min_width, $image_min_height, $image_max_weight);
+  $image_params = validate_uploaded_file($_FILES['upload'], $image_min_width, $image_min_height, $image_max_weight, $ck_editor_msgs);
 
-  if(!isset($message)) {
-    $db_file_name = rand(100000000000, 999999999999) . "." . $file_ext;
+  if(!isset($image_params['ck_editor_message'])) {
+    $db_file_name = $image_params['db_file_name'];
+    $file_temp_path = $image_params['temp_loc'];
     $image_params_to_resize = [$file_temp_path, $image_width];
     $result = resize_and_crop(...$image_params_to_resize);
 
@@ -34,7 +36,9 @@ if (!$_FILES['upload']['error']) {
         $message = "Что-то пошло не так, попробуйте ещё раз";
       }
     }
+  } else {
+    $message = $image_params['ck_editor_message'];
+    $url = '';
+    echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($funcNum, '$url', '$message');</script>";
   }
 }
-
-// Закончил рефакторинг функцией validate_uploaded_file в functions.php
