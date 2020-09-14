@@ -36,14 +36,13 @@ function validate_uploaded_file($file, $min_width, $min_height, $max_weight, $ck
   }
 
   if (isset($message)) {
-    $file_params['ck_editor_message'] = $message;
+    return $message;
   } else if(empty($_SESSION['errors']['file'])) {
-    $db_file_name = rand(100000000000, 999999999999) . "." . $file_ext;
-    $file_params['db_file_name'] = $db_file_name;
-    $file_params['temp_loc'] = $file_temp_path;
+    return [
+      "db_file_name" => rand(100000000000, 999999999999) . "." . $file_ext,
+      "temp_loc" => $file_temp_path
+    ];
   }
-
-  return $file_params;
 }
 
 function process_uploaded_file($folder_location, $file_params, $file_name_prefix, $file_min_width, $file_min_height, $small_file_width, $small_file_height) {
