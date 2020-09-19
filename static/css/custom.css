@@ -68,3 +68,7 @@
   height: 230px;
   object-fit: cover;
 }
+
+.icon-delete {
+  display: block;
+}

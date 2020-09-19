@@ -18,10 +18,8 @@
         <?php foreach($posts as $post): ?>
           <tr>
           <td><?=$post['id']?></td>
-            <td><a href="<?=HOST. 'admin/post-edit?id=' . $post['id']?>"><?=$post['title']?></a></td>
-            <td>
-              <button class="icon-delete"></button>
-            </td>
+            <td><a href="<?=HOST?>admin/post-edit?id=<?=$post['id']?>"><?=$post['title']?></a></td>
+            <td><a class="icon-delete" href="<?=HOST?>admin/post-delete?id=<?=$post['id']?>"></a></td>
           </tr>
         <?php endforeach ?>
       </tbody>

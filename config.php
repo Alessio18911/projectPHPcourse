@@ -173,6 +173,18 @@ $admin_success_msgs = [
     "success" => [
       "title" => "Пост успешно добавлен"
     ]
+  ],
+
+  "post-updated" => [
+    "success" => [
+      "title" => "Пост успешно обновлён"
+    ]
+  ],
+
+  "post-deleted" => [
+    "success" => [
+      "title" => "Удаление поста завершено"
+    ]
   ]
 ];
 
