@@ -1,8 +1,8 @@
 <script src="<?=HOST . 'libs/ckeditor/ckeditor.js' ?>"></script>
 <div class="admin-page__content-form">
-  <form class="admin-form" method="POST" action="<?=HOST?>admin/post-new" enctype="multipart/form-data">
+  <form class="admin-form" method="POST" action="<?=HOST?>admin/post-edit?id=<?=$_GET['id']?>" enctype="multipart/form-data">
     <div class="admin-form__item">
-      <h2 class="heading">Добавить пост </h2>
+      <h2 class="heading">Редактировать пост</h2>
     </div>
 
     <?php include ROOT . "admin/templates/components/errors.tpl" ?>
@@ -33,12 +33,12 @@
             <input class="file-button" type="file" name="cover">
           </div>
         </div>
-        <div class="block-upload__img"><img src="<?=HOST?>static/img/block-upload/block-upload.jpg" alt="Загрузка картинки" />
+        <div class="block-upload__img"><img src="<?=HOST?>usercontent/blog/<?= isset($post_to_edit_cover_small) ? $post_to_edit_cover_small : 'blog-no-photo.png' ?>" alt="Загрузка картинки" />
         </div>
       </div>
     </div>
     <div class="admin-form__item buttons">
-      <button class="primary-button" type="submit" name="post-submit">Опубликовать</button>
+      <button class="primary-button" type="submit" name="post-edit">Сохранить изменения</button>
       <a class="secondary-button" href="<?=HOST?>admin/blog">Отмена</a>
     </div>
     <div class="admin-form__item"></div>

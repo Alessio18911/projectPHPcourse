@@ -1,4 +1,3 @@
-<script src="<?=HOST . 'libs/ckeditor/ckeditor.js' ?>"></script>
 <div class="admin-page__content-form">
   <form class="admin-form" method="POST" action="<?=HOST?>admin/post-new" enctype="multipart/form-data">
     <div class="admin-form__item">
@@ -44,9 +43,4 @@
     <div class="admin-form__item"></div>
     <div class="admin-form__item"></div>
   </form>
-  </div>
-
-<script>CKEDITOR.replace('editor', {
-  filebrowserUploadMethod: 'form',
-  filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'
-});</script>
+</div>
