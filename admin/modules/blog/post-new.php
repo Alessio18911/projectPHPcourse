@@ -1,13 +1,5 @@
 <?php
 
-$min_cover_width = 600;
-$min_cover_height = 300;
-$small_cover_width = 290;
-$small_cover_height = 230;
-$max_cover_weight = 12582912;
-$cover_name_prefix = "290-";
-$cover_folder_location = ROOT . "usercontent/blog/";
-
 $post_title = isset($_POST['title']) ? trim($_POST['title']) : '';
 $post_content = isset($_POST['content']) ? trim($_POST['content']) : '';
 
@@ -22,13 +14,24 @@ if (isset($_POST['post-submit'])) {
     $post->timestamp = time();
 
     if (!$_FILES['cover']['error']) {
-      $file_params = validate_uploaded_file($_FILES['cover'], $min_cover_width, $min_cover_height, $max_cover_weight);
+      $file_params = validate_uploaded_file(
+        $_FILES['cover'],
+        $cover_params["min_width"],
+        $cover_params["min_height"],
+        $cover_params["max_weight"]);
 
       if (!empty($file_params)) {
-        process_uploaded_file($cover_folder_location, $file_params, $cover_name_prefix, $min_cover_width, $min_cover_height, $small_cover_width, $small_cover_height);
+        process_uploaded_file(
+          $cover_params["folder_location"],
+          $file_params,
+          $cover_params["name_prefix"],
+          $cover_params["min_width"],
+          $cover_params["min_height"],
+          $cover_params["thumb_width"],
+          $cover_params["thumb_height"]);
 
         $post->cover = $file_params['db_file_name'];
-        $post->cover_small = $cover_name_prefix . $file_params['db_file_name'];
+        $post->cover_small = $cover_params["name_prefix"] . $file_params['db_file_name'];
       }
     }
 
@@ -42,12 +45,9 @@ if (isset($_POST['post-submit'])) {
 }
 
 ob_start();
-
 include ROOT . "admin/templates/blog/post-new.tpl";
-
 $content = ob_get_contents();
 ob_end_clean();
-
 include ROOT . "admin/templates/template.tpl";
 
 ?>

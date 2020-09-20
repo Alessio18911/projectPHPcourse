@@ -33,7 +33,7 @@
             <input class="file-button" type="file" name="cover">
           </div>
         </div>
-        <div class="block-upload__img"><img src="<?=HOST?>usercontent/blog/<?= isset($post_to_edit_cover_small) ? $post_to_edit_cover_small : 'blog-no-photo.png' ?>" alt="Загрузка картинки" />
+        <div class="block-upload__img"><img src="<?=HOST?>usercontent/blog/<?=isset($post_to_edit_cover_thumb) ? $post_to_edit_cover_thumb : 'blog-no-photo.png' ?>" alt="Изображение обложки" />
         </div>
       </div>
     </div>
