@@ -33,7 +33,14 @@
             <input class="file-button" type="file" name="cover">
           </div>
         </div>
-        <div class="block-upload__img"><img src="<?=HOST?>usercontent/blog/<?=isset($post_to_edit_cover_thumb) ? $post_to_edit_cover_thumb : 'blog-no-photo.png' ?>" alt="Изображение обложки" />
+        <div class="block-upload__img">
+          <img src="<?=HOST?>usercontent/blog/<?=isset($post_to_edit_cover_thumb) ? $post_to_edit_cover_thumb : 'blog-no-photo.png' ?>" alt="Изображение обложки" />
+          <?php if (isset($post_to_edit_cover_thumb)): ?>
+            <div class="checkbox__item">
+              <input class="checkbox__btn visually-hidden" type="checkbox" id="delete-cover" name="delete-cover">
+              <label class="checkbox__label delete-button" for="delete-cover">Удалить фотографию</label>
+            </div>
+          <?php endif ?>
         </div>
       </div>
     </div>
@@ -50,3 +57,4 @@
   filebrowserUploadMethod: 'form',
   filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'
 });</script>
+<script src="<?=HOST?>static/js/post-edit.js"></script>

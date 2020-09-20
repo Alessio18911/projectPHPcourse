@@ -37,6 +37,11 @@ if (isset($_POST['post-edit'])) {
       }
     }
 
+    if (!empty($_POST['delete-cover']) && isset($post_to_edit_cover_thumb)) {
+      delete_file($cover_params["folder_location"], $post_to_edit->cover, $cover_params["name_prefix"]);
+      $post_to_edit->cover = $post_to_edit->cover_small = NULL;
+    }
+
     if (empty($_SESSION['errors']['file'])) {
       R::store($post_to_edit);
       $_SESSION['success']['post-updated'][] = "success";

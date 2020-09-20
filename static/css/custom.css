@@ -72,3 +72,19 @@
 .icon-delete {
   display: block;
 }
+
+.block-upload__img {
+  position: relative;
+}
+
+.block-upload__img .checkbox__item {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+}
+
+.block-upload__img .delete-button {
+  max-width: 185px;
+  text-align: center;
+  line-height: 1.2;
+}
