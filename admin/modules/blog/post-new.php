@@ -13,7 +13,7 @@ if (isset($_POST['post-submit'])) {
     $post->title = $post_title;
     $post->content = $post_content;
     $post->timestamp = time();
-    $post->category_id = R::findOne('categories', 'name LIKE ?', [$_POST['post-category']])['id'];
+    $post->category_id = $_POST['post-category'];
 
     if (!$_FILES['cover']['error']) {
       $file_params = validate_uploaded_file(
