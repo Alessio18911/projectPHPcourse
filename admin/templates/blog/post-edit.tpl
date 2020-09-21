@@ -13,12 +13,7 @@
       </label>
     </div>
     <div class="admin-form__item">
-      <label class="select-label">Выберите категорию <select class="select">
-          <option value="notes1">Заметки путешественника</option>
-          <option value="notes2">Заметки программиста</option>
-          <option value="notes3">Заметки спортсмена</option>
-        </select>
-      </label>
+      <?php include ROOT . "templates/_parts/_category-select.tpl" ?>
     </div>
     <div class="admin-form__item">
       <label class="textarea__label mb-10" for="editor">Содержимое поста</label>

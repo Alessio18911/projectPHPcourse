@@ -2,6 +2,8 @@
 
 $post_to_edit = R::load('posts', $_GET['id']);
 $post_to_edit_cover_thumb = $post_to_edit->cover_small;
+$categories = R::find('categories');
+$post_category = R::load('categories', $post_to_edit->category_id)['name'];
 
 if (isset($_POST['post-edit'])) {
   $post_title = isset($_POST['title']) ? $_POST['title'] : '';
@@ -14,6 +16,7 @@ if (isset($_POST['post-edit'])) {
     $post_to_edit->title = $post_title;
     $post_to_edit->content = $post_content;
     $post_to_edit->timestamp = time();
+    $post_to_edit->category_id = R::findOne('categories', 'name LIKE ?', [$_POST['post-category']])['id'];
 
     if (!$_FILES['cover']['error']) {
       $file_params = validate_uploaded_file(

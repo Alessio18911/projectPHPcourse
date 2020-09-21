@@ -2,6 +2,7 @@
 
 $post_title = isset($_POST['title']) ? trim($_POST['title']) : '';
 $post_content = isset($_POST['content']) ? trim($_POST['content']) : '';
+$categories = R::find('categories');
 
 if (isset($_POST['post-submit'])) {
   if (!$post_title) $_SESSION['errors']['post_title'][] = "empty";
@@ -12,6 +13,7 @@ if (isset($_POST['post-submit'])) {
     $post->title = $post_title;
     $post->content = $post_content;
     $post->timestamp = time();
+    $post->category_id = R::findOne('categories', 'name LIKE ?', [$_POST['post-category']])['id'];
 
     if (!$_FILES['cover']['error']) {
       $file_params = validate_uploaded_file(
