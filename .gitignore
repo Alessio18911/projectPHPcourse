@@ -1,4 +1,3 @@
-# _php-project-template v.1.1 ready/
-notes.txt
+rm -rfnotes.txt
 *.sql
 *.zip
