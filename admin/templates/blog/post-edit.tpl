@@ -13,7 +13,7 @@
       </label>
     </div>
     <div class="admin-form__item">
-      <?php include ROOT . "templates/_parts/_category-select.tpl" ?>
+      <?php include ROOT . "admin/templates/_parts/_category-select.tpl" ?>
     </div>
     <div class="admin-form__item">
       <label class="textarea__label mb-10" for="editor">Содержимое поста</label>
