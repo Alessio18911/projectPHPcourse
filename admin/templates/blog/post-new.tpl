@@ -28,7 +28,6 @@
             <input class="file-button" type="file" name="cover">
           </div>
         </div>
-        <div class="block-upload__img"><img src="<?=HOST?>static/img/block-upload/block-upload.jpg" alt="Загрузка картинки" />
         </div>
       </div>
     </div>

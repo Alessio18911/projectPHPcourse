@@ -29,8 +29,8 @@
           </div>
         </div>
         <div class="block-upload__img">
-          <img src="<?=HOST?>usercontent/blog/<?=isset($post_to_edit_cover_thumb) ? $post_to_edit_cover_thumb : 'blog-no-photo.png' ?>" alt="Изображение обложки" />
           <?php if (isset($post_to_edit_cover_thumb)): ?>
+            <img src="<?=HOST?>usercontent/blog/<?=$post_to_edit_cover_thumb?>" alt="Изображение обложки" />
             <div class="checkbox__item">
               <input class="checkbox__btn visually-hidden" type="checkbox" id="delete-cover" name="delete-cover">
               <label class="checkbox__label delete-button" for="delete-cover">Удалить фотографию</label>

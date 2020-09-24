@@ -4,7 +4,7 @@
       <h2 class="heading mb-20">Удалить пост</h2>
     </div>
 
-    <p class="mb-30">Вы действительно хотите удалить пост <span style="font-size: 21px"><b><i>"<?=$post_title?>"</i></b></span>  ? </p>
+    <p class="mb-30">Вы действительно хотите удалить пост <span style="font-size: 21px"><b><i>"<?=$post_to_delete_title?>"</i></b></span>  ? </p>
 
     <div class="admin-form__item buttons">
       <button class="primary-button" type="submit" name="post-delete">Да, удалить</button>
