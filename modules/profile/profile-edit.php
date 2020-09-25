@@ -30,12 +30,25 @@ if ($is_logged) {
       $user->country = htmlentities($user_country);
 
       if (!$_FILES['avatar']['error']) {
-        $file_params = validate_uploaded_file($_FILES['avatar'], $min_avatar_width, $min_avatar_height, $max_avatar_weight);
+        $file_params = validate_uploaded_file(
+          $_FILES['avatar'],
+          $min_avatar_width,
+          $min_avatar_height,
+          $max_avatar_weight
+        );
 
         if (!empty($file_params)) {
-          if (!empty($user_avatar)) deleteFile($avatar_folder_location, $user_avatar, $avatar_name_prefix);
+          if (!empty($user_avatar)) delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
 
-          processUploadedFile($avatar_folder_location, $file_params, $avatar_name_prefix, $min_avatar_width, $min_avatar_height, $thumb_avatar_width, $thumb_avatar_height);
+          process_uploaded_file(
+            $avatar_folder_location,
+            $file_params,
+            $avatar_name_prefix,
+            $min_avatar_width,
+            $min_avatar_height,
+            $thumb_avatar_width,
+            $thumb_avatar_height
+          );
 
           $user->avatar = $file_params['db_file_name'];
           $user->avatar_small = $avatar_name_prefix . $file_params['db_file_name'];

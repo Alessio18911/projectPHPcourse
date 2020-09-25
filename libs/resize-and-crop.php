@@ -77,9 +77,7 @@ function resize_and_crop(...$args) {
       $result_width,
       $result_height
     );
-  }
 
-  if ($args_number > 2) {
     imagejpeg($desired_gdim, $thumbnail_image_path, 90);
     imagedestroy($desired_gdim);
   } else {

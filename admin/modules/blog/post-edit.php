@@ -35,8 +35,12 @@ if (isset($_POST['post-edit'])) {
           $cover_params["thumb_width"],
           $cover_params["thumb_height"]);
 
-        $post_to_edit->cover = $file_params['db_file_name'];
-        $post_to_edit->cover_small = $cover_params["name_prefix"] . $file_params['db_file_name'];
+          if (isset($post_to_edit_cover_thumb)) {
+            delete_file($cover_params["folder_location"], $post_to_edit->cover, $cover_params["name_prefix"]);
+          }
+
+          $post_to_edit->cover = $file_params['db_file_name'];
+          $post_to_edit->cover_small = $cover_params["name_prefix"] . $file_params['db_file_name'];
       }
     }
 
