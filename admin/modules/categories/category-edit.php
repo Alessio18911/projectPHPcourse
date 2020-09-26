@@ -1,5 +1,7 @@
 <?php
 
+$category_name = '';
+
 ob_start();
 include ROOT . "admin/templates/categories/category-edit.tpl";
 $content = ob_get_contents();
