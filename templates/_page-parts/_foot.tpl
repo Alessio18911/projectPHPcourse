@@ -3,7 +3,7 @@
 	<!-- build:js2 js/vendor.js -->
 	<!-- endbuild -->
 	<!-- build:js3 js/main.js -->
-	<script src="<?=HOST?>static/js/profile-edit.js"></script>
+	<script src="<?=HOST?>static/js/delete-btn.js"></script>
 	<script src="<?=HOST?>static/js/footer.js"></script>
 	<!-- endbuild -->
 </body>

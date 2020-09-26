@@ -52,4 +52,4 @@
   filebrowserUploadMethod: 'form',
   filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'
 });</script>
-<script src="<?=HOST?>static/js/post-edit.js"></script>
+<script src="<?=HOST?>static/js/delete-btn.js"></script>
