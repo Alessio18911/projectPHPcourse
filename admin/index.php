@@ -21,6 +21,24 @@ switch($uri_module) {
     require ROOT . "admin/modules/admin/index.php";
     break;
 
+  //::::::::::::::::::: CATEGORIES :::::::::::::::::
+
+  case 'categories':
+    require ROOT . "admin/modules/categories/index.php";
+    break;
+
+  case 'category-new':
+    require ROOT . "admin/modules/categories/category-new.php";
+    break;
+
+  case 'category-edit':
+    require ROOT . "admin/modules/categories/category-edit.php";
+    break;
+
+  case 'category-delete':
+    require ROOT . "admin/modules/categories/category-delete.php";
+    break;
+
   //::::::::::::::::::: BLOG :::::::::::::::::
 
   case 'blog':
