@@ -3,7 +3,7 @@ const onDeleteBtnChange = function onDeleteBtnChange(evt) {
   deleteLabel.textContent = !evt.target.checked ? "Удалить фотографию" : "Отменить удаление фотографии";
 }
 
-const addHandler = function(button) {
+const changeLabelText = function(button) {
   if (button) {
     button.addEventListener('change', onDeleteBtnChange);
   }
@@ -12,5 +12,5 @@ const addHandler = function(button) {
 const coverDeleteBtn = document.querySelector('#delete-cover');
 const avatarDeleteBtn = document.querySelector('#delete-avatar');
 
-addHandler(coverDeleteBtn);
-addHandler(avatarDeleteBtn);
+changeLabelText(coverDeleteBtn);
+changeLabelText(avatarDeleteBtn);

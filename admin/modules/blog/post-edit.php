@@ -51,7 +51,7 @@ if (isset($_POST['post-edit'])) {
 
     if (empty($_SESSION['errors']['file'])) {
       R::store($post_to_edit);
-      $_SESSION['success']['post-updated'][] = "success";
+      $_SESSION['success']['post_updated'][] = "success";
       header("Location: " .HOST. "admin/blog");
       exit();
     }

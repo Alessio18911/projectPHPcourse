@@ -140,6 +140,12 @@ $admin_error_msgs = [
     ]
   ],
 
+  "category_name" => [
+    "empty" => [
+      "title" => "Название категории должно быть заполнено"
+    ]
+  ],
+
   "file" => [
     "small" => [
       "title" => "Загрузите другую фотографию",
@@ -175,15 +181,33 @@ $admin_success_msgs = [
     ]
   ],
 
-  "post-updated" => [
+  "post_updated" => [
     "success" => [
       "title" => "Пост успешно обновлён"
     ]
   ],
 
-  "post-deleted" => [
+  "post_deleted" => [
     "success" => [
       "title" => "Удаление поста завершено"
+    ]
+  ],
+
+  "category_new" => [
+    "success" => [
+      "title" => "Категория успешно добавлена"
+    ]
+  ],
+
+  "category_updated" => [
+    "success" => [
+      "title" => "Категория успешно обновлёна"
+    ]
+  ],
+
+  "category_deleted" => [
+    "success" => [
+      "title" => "Удаление категории завершено"
     ]
   ]
 ];

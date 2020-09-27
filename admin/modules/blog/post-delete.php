@@ -15,7 +15,7 @@ if (isset($_POST['post-delete'])) {
   }
   R::trash($post_to_delete);
 
-  $_SESSION['success']['post-deleted'][] = "success";
+  $_SESSION['success']['post_deleted'][] = "success";
   header("Location: " .HOST. "admin/blog");
   exit();
 }
