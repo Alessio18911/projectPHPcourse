@@ -1,22 +1,16 @@
-class BtnDelete {
-  constructor(button) {
-    this.button = button;
-  }
+const onDeleteBtnChange = function onDeleteBtnChange(evt) {
+  const deleteLabel = evt.target.nextElementSibling;
+  deleteLabel.textContent = !evt.target.checked ? "Удалить фотографию" : "Отменить удаление фотографии";
+}
 
-  onDeleteBtnChange(evt) {
-    const deleteLabel = evt.target.nextElementSibling;
-    deleteLabel.textContent = !evt.target.checked ? "Удалить фотографию" : "Отменить удаление фотографии";
+const addHandler = function(button) {
+  if (button) {
+    button.addEventListener('change', onDeleteBtnChange);
   }
 }
 
 const coverDeleteBtn = document.querySelector('#delete-cover');
-if (coverDeleteBtn) {
-  const coverDeleteButton = new BtnDelete(coverDeleteBtn);
-  coverDeleteButton.button.addEventListener('change', coverDeleteButton.onDeleteBtnChange);
-}
-
 const avatarDeleteBtn = document.querySelector('#delete-avatar');
-if (avatarDeleteBtn) {
-  const avatarDeleteButton = new BtnDelete(avatarDeleteBtn);
-  avatarDeleteButton.button.addEventListener('change', avatarDeleteButton.onDeleteBtnChange);
-}
+
+addHandler(coverDeleteBtn);
+addHandler(avatarDeleteBtn);
