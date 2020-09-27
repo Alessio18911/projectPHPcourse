@@ -4,7 +4,7 @@
     <?php include ROOT . "admin/templates/components/success.tpl" ?>
 
     <div class="admin-form__item d-flex justify-content-between mb-20">
-      <h2 class="heading">Категории</h2><a class="secondary-button" href="<?=HOST?>admin/category-new">Добавить категорию</a>
+      <h2 class="heading">Категории</h2><a class="secondary-button" href="<?=HOST?>admin/category-new">Создать новую категорию</a>
     </div>
     <table class="table">
       <thead>
@@ -18,7 +18,7 @@
         <?php foreach($categories as $category): ?>
           <tr>
           <td><?=$category['id']?></td>
-            <td><a href="<?=HOST?>admin/category-edit?id=<?=$category['id']?>"><?=$category['name']?></a></td>
+            <td><a href="<?=HOST?>admin/category-edit?id=<?=$category['id']?>"><?=$category['category_name']?></a></td>
             <td><a class="icon-delete" href="<?=HOST?>admin/category-delete?id=<?=$category['id']?>"></a></td>
           </tr>
         <?php endforeach ?>

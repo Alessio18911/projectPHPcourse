@@ -1,6 +1,6 @@
 <?php
 
-$categories =  R::find('categories', 'ORDER BY id ASC');
+$categories =  R::find('categories');
 
 ob_start();
 include ROOT . "admin/templates/categories/index.tpl";

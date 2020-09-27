@@ -1,7 +1,7 @@
 <?php
 
 $category_to_edit = R::findOne('categories', 'id=?', [$_GET['id']]);
-$category_to_edit_name = $category_to_edit->name;
+$category_to_edit_name = $category_to_edit->category_name;
 
 if (isset($_POST['edit_category'])) {
   $category_to_edit_name = trim($_POST['category_to_edit_name']);
@@ -9,7 +9,7 @@ if (isset($_POST['edit_category'])) {
   if (!$category_to_edit_name) {
     $_SESSION['errors']['category_name'][] = "empty";
   } else {
-    $category_to_edit->name = $category_to_edit_name;
+    $category_to_edit->category_name = $category_to_edit_name;
     R::store($category_to_edit);
 
     $_SESSION['success']['category_updated'][] = "success";

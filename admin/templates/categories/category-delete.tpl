@@ -7,7 +7,7 @@
     <p class="mb-30">Вы действительно хотите удалить категорию <span style="font-size: 21px"><b><i>"<?=$category_to_delete_name?>"</i></b></span>  ? </p>
 
     <div class="admin-form__item buttons">
-      <button class="primary-button" type="submit" name="delete-category">Да, удалить</button>
+      <button class="primary-button primary-button--red" type="submit" name="delete-category">Да, удалить</button>
       <a class="secondary-button" href="<?=HOST?>admin/categories">Отмена</a>
     </div>
     <div class="admin-form__item"></div>

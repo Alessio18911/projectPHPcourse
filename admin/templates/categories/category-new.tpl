@@ -1,7 +1,7 @@
 <div class="admin-page__content-form">
   <form class="admin-form" method="POST" action="<?=HOST?>admin/category-new">
     <div class="admin-form__item">
-      <h2 class="heading">Добавить категорию</h2>
+      <h2 class="heading">Создать новую категорию</h2>
     </div>
 
     <?php include ROOT . "admin/templates/components/errors.tpl" ?>

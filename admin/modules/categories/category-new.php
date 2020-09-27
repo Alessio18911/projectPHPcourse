@@ -9,7 +9,7 @@ if (isset($_POST['create_category'])) {
     $_SESSION['errors']['category_name'][] = "empty";
   } else {
     $category = R::dispense('categories');
-    $category->name = $category_name;
+    $category->category_name = $category_name;
     R::store($category);
 
     $_SESSION['success']['category_new'][] = "success";

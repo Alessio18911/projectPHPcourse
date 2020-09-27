@@ -3,7 +3,10 @@
 $page_title = "Блог - все записи";
 
 if (isset($uri_get)) {
-  $post = R::load('posts', $uri_get);
+  $query = "SELECT posts.title, posts.content, posts.timestamp, posts.cover, categories.category_name
+    FROM posts INNER JOIN categories ON posts.category_id = categories.id
+    WHERE posts.id = $uri_get";
+  $post = R::getRow($query);
 
   $translation_terms = [
     'January' => 'Января',

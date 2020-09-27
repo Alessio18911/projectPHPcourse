@@ -4,7 +4,10 @@
       <div class="section-posts__title">
         <h1 class="heading"><?=$post['title']?></h1>
       </div>
-      <div class="section-posts__info"><?=$post_date?></div>
+      <div class="section-posts__info">
+        <span><?=$post_date?></span>
+        <div class="badge"><?=$post['category_name']?></div>
+      </div>
       <?php if (isset($post['cover'])): ?>
         <div class="section-posts__img">
           <img src="<?=HOST . 'usercontent/blog/' . $post['cover']?>" alt="<?=$post['title']?>" />

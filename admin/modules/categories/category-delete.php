@@ -2,7 +2,7 @@
 
 $category_id = $_GET['id'];
 $category_to_delete = R::findOne('categories', 'id=?', [$category_id]);
-$category_to_delete_name = $category_to_delete->name;
+$category_to_delete_name = $category_to_delete->category_name;
 
 if (isset($_POST['delete-category'])) {
   R::trash($category_to_delete);

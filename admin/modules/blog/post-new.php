@@ -2,7 +2,7 @@
 
 $post_title = isset($_POST['title']) ? trim($_POST['title']) : '';
 $post_content = isset($_POST['content']) ? trim($_POST['content']) : '';
-$categories = R::find('categories');
+$categories = R::find('categories', 'ORDER BY category_name');
 
 if (isset($_POST['post-submit'])) {
   if (!$post_title) $_SESSION['errors']['post_title'][] = "empty";

@@ -88,3 +88,17 @@
   text-align: center;
   line-height: 1.2;
 }
+
+.section-posts__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-posts__info > * + * {
+  margin-left: 15px;
+}
+
+.primary-button--red {
+  background-color: red;
+}
