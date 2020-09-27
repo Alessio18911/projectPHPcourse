@@ -8,12 +8,12 @@
     <?php include ROOT . "admin/templates/components/success.tpl" ?>
 
     <div class="admin-form__item">
-      <label class="input__label">Введите название категории <input class="input input--width-label" type="text" name="title" placeholder="Заголовок категории" value="<?=$category_name?>"/>
+      <label class="input__label">Введите название категории <input class="input input--width-label" type="text" name="category_to_edit_name" placeholder="Заголовок категории" value="<?=$category_to_edit_name?>"/>
       </label>
     </div>
 
     <div class="admin-form__item buttons">
-      <button class="primary-button" type="submit" name="category-edit">Сохранить изменения</button>
+      <button class="primary-button" type="submit" name="edit_category">Сохранить изменения</button>
       <a class="secondary-button" href="<?=HOST?>admin/categories">Отмена</a>
     </div>
     <div class="admin-form__item"></div>
