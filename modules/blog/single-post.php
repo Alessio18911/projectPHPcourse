@@ -5,7 +5,7 @@ if (!isset($uri_get)) {
   exit();
 }
 
-$query = "SELECT posts.title, posts.content, posts.timestamp, posts.cover, categories.category_name
+$query = "SELECT posts.title, posts.content, posts.timestamp, posts.cover, categories.id AS cat_id, categories.category_name
   FROM posts INNER JOIN categories ON posts.category_id = categories.id
   WHERE posts.id = $uri_get";
 $post = R::getRow($query);

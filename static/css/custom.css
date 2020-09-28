@@ -102,3 +102,7 @@
 .primary-button--red {
   background-color: red;
 }
+
+a.badge {
+  color: #fff;
+}

@@ -6,7 +6,7 @@
       </div>
       <div class="section-posts__info">
         <span><?=$post_date?></span>
-        <div class="badge"><?=$post['category_name']?></div>
+        <a class="badge" href="<?=HOST?>blog/category/<?=$post['cat_id']?>"><?=$post['category_name']?></a>
       </div>
       <?php if (isset($post['cover'])): ?>
         <div class="section-posts__img">
