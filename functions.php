@@ -99,10 +99,8 @@ function get_url_params($url) {
   return $uri_params;
 }
 
-function paginate($table_name, $items_per_page) {
-  $item_count = R::count($table_name);
-
-  $pages_count = ceil($item_count / $items_per_page);
+function paginate($posts_amount, $items_per_page) {
+  $pages_count = ceil($posts_amount / $items_per_page);
   if (empty($_GET['page'])) {
     $page_number = 1;
   } else if($_GET['page'] <= $pages_count) {
@@ -119,5 +117,10 @@ function paginate($table_name, $items_per_page) {
     'pages_count' => $pages_count,
     'page_number' => $page_number
   ];
+}
+
+function is_in_array($table_name, $column, $value_to_check) {
+  $array = array_column(R::getAll("SELECT $column FROM $table_name"), $column);
+  return in_array($value_to_check, $array);
 }
 ?>
