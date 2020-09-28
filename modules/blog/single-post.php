@@ -1,5 +1,10 @@
 <?php
 
+if (!isset($uri_get)) {
+  header("Location: " .HOST. 'blog');
+  exit();
+}
+
 $query = "SELECT posts.title, posts.content, posts.timestamp, posts.cover, categories.category_name
   FROM posts INNER JOIN categories ON posts.category_id = categories.id
   WHERE posts.id = $uri_get";
