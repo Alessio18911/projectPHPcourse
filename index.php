@@ -59,6 +59,10 @@ switch($uri_module) {
     require ROOT . "modules/blog/index.php";
     break;
 
+  case 'single-post':
+    require ROOT . "modules/blog/single-post.php";
+    break;
+
   case 'contacts':
     require ROOT . "modules/contacts/index.php";
     break;

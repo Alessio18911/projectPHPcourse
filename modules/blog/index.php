@@ -2,54 +2,18 @@
 
 $page_title = "Блог - все записи";
 
-if (isset($uri_get)) {
-  $query = "SELECT posts.title, posts.content, posts.timestamp, posts.cover, categories.category_name
-    FROM posts INNER JOIN categories ON posts.category_id = categories.id
-    WHERE posts.id = $uri_get";
-  $post = R::getRow($query);
+$posts_per_page = 3;
 
-  $translation_terms = [
-    'January' => 'Января',
-    'February' => 'Февраля',
-    'March' => 'Марта',
-    'April' => 'Апреля',
-    'May' => 'Мая',
-    'June' => 'Июня',
-    'July' => 'Июля',
-    'August' => 'Августа',
-    'September' => 'Сентября',
-    'October' => 'Октября',
-    'November' => 'Ноября',
-    'December' => 'Декабря'
-  ];
+$pagination = paginate('posts', $posts_per_page);
+$start_offset = $pagination['start_offset'];
+$pages_count = $pagination['pages_count'];
+$page_number = $pagination['page_number'];
 
-  $post_date = strtr(date('j F Y, G:i', $post['timestamp']), $translation_terms);
+$posts =  R::find('posts', "ORDER BY id DESC LIMIT $start_offset, $posts_per_page");
 
-  ob_start();
-  include ROOT . "templates/blog/single-post.tpl";
-  $content = ob_get_contents();
-  ob_end_clean();
-
-} else {
-  $posts_per_page = 3;
-
-  $pagination = paginate('posts', $posts_per_page);
-  $start_offset = $pagination['start_offset'];
-  $pages_count = $pagination['pages_count'];
-  $page_number = $pagination['page_number'];
-
-  $posts =  R::find('posts', "ORDER BY id DESC LIMIT $start_offset, $posts_per_page");
-
-  ob_start();
-  include ROOT . "templates/blog/all-posts.tpl";
-  $content = ob_get_contents();
-  ob_end_clean();
-}
-
-include ROOT . "templates/_page-parts/_head.tpl";
-include ROOT . "templates/_parts/_header.tpl";
+ob_start();
 include ROOT . "templates/blog/index.tpl";
-include ROOT . "templates/_parts/_footer.tpl";
-include ROOT . "templates/_page-parts/_foot.tpl";
+$content = ob_get_contents();
+ob_end_clean();
 
-?>
+include ROOT . "templates/template.tpl";
