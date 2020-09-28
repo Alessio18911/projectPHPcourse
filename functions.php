@@ -82,19 +82,21 @@ function delete_file($file_path, $file_name, $file_name_prefix) {
 }
 
 function get_url_params($url) {
-  $uri_get = NULL;
   $exploded_uri = filter_var(trim(explode("?", $url)[0], "/"), FILTER_SANITIZE_URL);
-
   $kaboom = explode("/", $exploded_uri);
 
   if (!(int)end($kaboom) && end($kaboom) != '0') {
     $uri_module = end($kaboom);
+    $uri_params = [end($kaboom), NULL];
   } else {
-    $uri_module = $kaboom[0];
-    $uri_get = end($kaboom);
+    $uri_params = [$kaboom[0], end($kaboom)];
+
+    if (count($kaboom) > 2) {
+      $uri_params[] = $kaboom[1];
+    }
   }
 
-  return [$uri_module, $uri_get];
+  return $uri_params;
 }
 
 function paginate($table_name, $items_per_page) {

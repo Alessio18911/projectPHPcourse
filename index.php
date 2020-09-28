@@ -12,6 +12,7 @@ $_SESSION['success'] = [];
 $uri = get_url_params($_SERVER['REQUEST_URI']);
 $uri_module = $uri[0];
 $uri_get = $uri[1];
+$uri_get_cat = isset($uri[2]) ? $uri[2] : NULL;
 
 switch($uri_module) {
   case '':
