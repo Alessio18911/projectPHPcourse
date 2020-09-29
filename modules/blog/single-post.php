@@ -1,5 +1,7 @@
 <?php
 
+$page_title = "Блог";
+
 if (isset($uri_get)) {
   $is_post_exists = is_in_array('posts', 'id', $uri_get);
 
