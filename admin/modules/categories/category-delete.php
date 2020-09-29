@@ -5,9 +5,15 @@ $category_to_delete = R::findOne('categories', 'id=?', [$category_id]);
 $category_to_delete_name = $category_to_delete->category_name;
 
 if (isset($_POST['delete-category'])) {
-  R::trash($category_to_delete);
+  $posts_by_category = R::findAll('posts', 'category_id=?', [$category_id]);
 
-  $_SESSION['success']['category_deleted'][] = "success";
+  if (empty($posts_by_category)) {
+    R::trash($category_to_delete);
+    $_SESSION['success']['category_deleted'][] = "success";
+  } else {
+    $_SESSION['errors']['posts_by_category'][] = "exist";
+  }
+
   header("Location: " .HOST. "admin/categories");
   exit();
 }
