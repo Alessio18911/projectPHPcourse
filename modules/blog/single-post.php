@@ -1,9 +1,7 @@
 <?php
 
 if (isset($uri_get)) {
-  $table_name = 'posts';
-  $column = 'id';
-  $is_post_exists = is_in_array($table_name, $column, $uri_get);
+  $is_post_exists = is_in_array('posts', 'id', $uri_get);
 
   if ($is_post_exists) {
     $query = "SELECT posts.id, posts.title, posts.content, posts.timestamp, posts.cover, categories.id AS cat_id,     categories.category_name
