@@ -2,11 +2,20 @@
   <div class="container">
     <div class="page-blog__header">
       <h2 class="heading mb-20">Блог </h2>
-      <?php if($is_category_valid):?>
+      <?php if(!empty($is_category_valid)):?>
         <a class="badge">Категория: <?=$category_name?></a>
       <?php endif; ?>
     </div>
-    <?php if($is_blog_no_category || $is_category_valid): ?>
+    <?php if($is_category_set && !$is_category_valid): ?>
+      <div class="section">
+        <div class="container">
+          <div class="section__title">
+            <h2 class="heading mb-15">Такой категории не существует</h2>
+            <p><a href="<?=HOST?>blog">Показать все посты</a></p>
+          </div>
+        </div>
+      </div>
+    <?php else: ?>
       <div class="page-blog__posts">
         <?php foreach($posts as $post): ?>
           <div class="card-post">
@@ -24,15 +33,6 @@
       </div>
       <div class="page-blog__pagination">
         <?php include ROOT . 'templates/_page-parts/_pagination/_pagination.tpl' ?>
-      </div>
-    <?php else: ?>
-      <div class="section">
-        <div class="container">
-          <div class="section__title">
-            <h2 class="heading mb-15">Такой категории не существует</h2>
-            <p><a href="<?=HOST?>blog">Показать все посты</a></p>
-          </div>
-        </div>
       </div>
     <?php endif; ?>
   </div>

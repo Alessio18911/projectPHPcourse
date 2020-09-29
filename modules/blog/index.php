@@ -3,10 +3,13 @@
 $page_title = "Блог - все записи";
 
 $posts_per_page = 3;
-$is_blog_no_category = $uri_module == 'blog' && !isset($uri_cat) && !isset($uri_get);
-$is_category_valid = isset($uri_cat) && isset($uri_get) && is_in_array('categories', 'id', $uri_get);
+$is_category_set = isset($uri_cat) && isset($uri_get);
 
-if ($is_category_valid) {
+if ($is_category_set) {
+  $is_category_valid = is_in_array('categories', 'id', $uri_get);
+}
+
+if (!empty($is_category_valid)) {
   $posts_amount = R::count('posts', 'category_id = ?', [$uri_get]);
   $category_name = R::findOne('categories', 'id=?', [$uri_get])['category_name'];
   $page_title = "Блог - " . $category_name;
@@ -19,7 +22,7 @@ $start_offset = $pagination['start_offset'];
 $pages_count = $pagination['pages_count'];
 $page_number = $pagination['page_number'];
 
-$posts = $is_category_valid ?
+$posts = !empty($is_category_valid) ?
             R::getAll("SELECT p.id, p.title, p.cover_small, c.category_name
               FROM posts AS p INNER JOIN categories AS c ON p.category_id = c.id
               WHERE c.id = ?
