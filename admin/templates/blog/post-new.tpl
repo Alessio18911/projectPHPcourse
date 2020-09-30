@@ -9,7 +9,7 @@
     <?php include ROOT . "admin/templates/components/success.tpl" ?>
 
     <div class="admin-form__item">
-      <label class="input__label">Введите название записи <input class="input input--width-label" type="text" name="title" placeholder="Заголовок поста" value="<?=$post_title?>"/>
+      <label class="input__label">Введите название записи <input class="input input--width-label" type="text" name="title" placeholder="Заголовок поста" value="<?=htmlentities($post_title)?>"/>
       </label>
     </div>
     <div class="admin-form__item">
@@ -17,7 +17,7 @@
     </div>
     <div class="admin-form__item">
       <label class="textarea__label mb-10" for="editor">Содержимое поста</label>
-      <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="content" id="editor"><?=$post_content?></textarea>
+      <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="content" id="editor"><?=htmlentities($post_content)?></textarea>
     </div>
     <div class="admin-form__item">
       <div class="block-upload">

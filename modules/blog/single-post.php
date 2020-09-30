@@ -8,9 +8,9 @@ if (isset($uri_get)) {
   if ($is_post_exists) {
     $query = "SELECT posts.id, posts.title, posts.content, posts.timestamp, posts.cover, categories.id AS cat_id,     categories.category_name
     FROM posts INNER JOIN categories ON posts.category_id = categories.id
-    WHERE posts.id = $uri_get";
+    WHERE posts.id = ?";
 
-    $post = R::getRow($query);
+    $post = R::getRow($query, [$uri_get]);
     $page_title = "Блог - " . $post['title'];
 
     $translation_terms = [

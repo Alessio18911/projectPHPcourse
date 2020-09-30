@@ -17,9 +17,9 @@
       <tbody>
         <?php foreach($categories as $category): ?>
           <tr>
-          <td><?=$category['id']?></td>
-            <td><a href="<?=HOST?>admin/category-edit?id=<?=$category['id']?>"><?=$category['category_name']?></a></td>
-            <td><a class="icon-delete" href="<?=HOST?>admin/category-delete?id=<?=$category['id']?>"></a></td>
+          <td><?=htmlentities($category['id'])?></td>
+            <td><a href="<?=HOST?>admin/category-edit?id=<?=htmlentities($category['id'])?>"><?=htmlentities($category['category_name'])?></a></td>
+            <td><a class="icon-delete" href="<?=HOST?>admin/category-delete?id=<?=htmlentities($category['id'])?>"></a></td>
           </tr>
         <?php endforeach ?>
       </tbody>

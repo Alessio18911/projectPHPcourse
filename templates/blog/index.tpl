@@ -3,7 +3,7 @@
     <div class="page-blog__header">
       <h2 class="heading mb-20">Блог </h2>
       <?php if(!empty($is_category_valid)):?>
-        <a class="badge">Категория: <?=$category_name?></a>
+        <a class="badge">Категория: <?=htmlentities($category_name)?></a>
       <?php endif; ?>
     </div>
     <?php if($is_category_set && !$is_category_valid): ?>
@@ -20,13 +20,13 @@
         <?php foreach($posts as $post): ?>
           <div class="card-post">
             <div class="card-post__img">
-              <a href="<?=HOST . 'single-post/' . $post['id']?>">
+              <a href="<?=HOST . 'single-post/' . htmlentities($post['id'])?>">
                 <img src="<?=HOST?>usercontent/blog/<?=isset($post['cover_small']) ? $post['cover_small'] : 'blog-no-photo.png';?>"
-                  alt="<?=$post['title']?>" />
+                  alt="<?=htmlentities($post['title'])?>" />
               </a>
             </div>
             <h4 class="card-post__title">
-              <a href="<?=HOST . 'single-post/' . $post['id']?>"><?=$post['title']?></a>
+              <a href="<?=HOST . 'single-post/' . htmlentities($post['id'])?>"><?=htmlentities($post['title'])?></a>
             </h4>
           </div>
         <?php endforeach ?>

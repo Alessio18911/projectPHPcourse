@@ -1,6 +1,6 @@
 <script src="<?=HOST . 'libs/ckeditor/ckeditor.js' ?>"></script>
 <div class="admin-page__content-form">
-  <form class="admin-form" method="POST" action="<?=HOST?>admin/post-edit?id=<?=$_GET['id']?>" enctype="multipart/form-data">
+  <form class="admin-form" method="POST" action="<?=HOST?>admin/post-edit?id=<?=htmlentities($_GET['id'])?>" enctype="multipart/form-data">
     <div class="admin-form__item">
       <h2 class="heading">Редактировать пост</h2>
     </div>
@@ -9,7 +9,7 @@
     <?php include ROOT . "admin/templates/components/success.tpl" ?>
 
     <div class="admin-form__item">
-      <label class="input__label">Введите название записи <input class="input input--width-label" type="text" name="title" placeholder="Заголовок поста" value="<?=$post_title?>"/>
+      <label class="input__label">Введите название записи <input class="input input--width-label" type="text" name="title" placeholder="Заголовок поста" value="<?=htmlentities($post_title)?>"/>
       </label>
     </div>
     <div class="admin-form__item">
@@ -17,7 +17,7 @@
     </div>
     <div class="admin-form__item">
       <label class="textarea__label mb-10" for="editor">Содержимое поста</label>
-      <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="content" id="editor"><?=$post_content?></textarea>
+      <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="content" id="editor"><?=htmlentities($post_content)?></textarea>
     </div>
     <div class="admin-form__item">
       <div class="block-upload">
@@ -30,7 +30,7 @@
         </div>
         <div class="block-upload__img">
           <?php if (isset($post_to_edit_cover_thumb)): ?>
-            <img src="<?=HOST?>usercontent/blog/<?=$post_to_edit_cover_thumb?>" alt="Изображение обложки" />
+            <img src="<?=HOST?>usercontent/blog/<?=htmlentities($post_to_edit_cover_thumb)?>" alt="Изображение обложки" />
             <div class="checkbox__item">
               <input class="checkbox__btn visually-hidden" type="checkbox" id="delete-cover" name="delete-cover">
               <label class="checkbox__label delete-button" for="delete-cover">Удалить фотографию</label>

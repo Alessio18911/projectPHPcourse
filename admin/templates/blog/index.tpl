@@ -17,9 +17,9 @@
       <tbody>
         <?php foreach($posts as $post): ?>
           <tr>
-          <td><?=$post['id']?></td>
-            <td><a href="<?=HOST?>admin/post-edit?id=<?=$post['id']?>"><?=$post['title']?></a></td>
-            <td><a class="icon-delete" href="<?=HOST?>admin/post-delete?id=<?=$post['id']?>"></a></td>
+          <td><?=htmlentities($post['id'])?></td>
+            <td><a href="<?=HOST?>admin/post-edit?id=<?=htmlentities($post['id'])?>"><?=htmlentities($post['title'])?></a></td>
+            <td><a class="icon-delete" href="<?=HOST?>admin/post-delete?id=<?=htmlentities($post['id'])?>"></a></td>
           </tr>
         <?php endforeach ?>
       </tbody>

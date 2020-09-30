@@ -6,8 +6,8 @@ $categories = R::find('categories');
 $post_category_id = R::load('categories', $post_to_edit->category_id)['id'];
 
 if (isset($_POST['post-edit'])) {
-  $post_title = isset($_POST['title']) ? $_POST['title'] : '';
-  $post_content = isset($_POST['content']) ? $_POST['content'] : '';
+  $post_title = isset($_POST['title']) ? trim($_POST['title']) : '';
+  $post_content = isset($_POST['content']) ? trim($_POST['content']) : '';
 
   if (!$post_title) $_SESSION['errors']['post_title'][] = "empty";
   if (!$post_content) $_SESSION['errors']['post_content'][] = "empty";

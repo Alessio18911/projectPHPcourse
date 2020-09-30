@@ -8,7 +8,7 @@
     <?php include ROOT . "admin/templates/components/success.tpl" ?>
 
     <div class="admin-form__item">
-      <label class="input__label">Введите название категории <input class="input input--width-label" type="text" name="category_name" placeholder="Заголовок категории" value="<?=$category_name?>"/>
+      <label class="input__label">Введите название категории <input class="input input--width-label" type="text" name="category_name" placeholder="Заголовок категории" value="<?=htmlentities($category_name)?>"/>
       </label>
     </div>
 

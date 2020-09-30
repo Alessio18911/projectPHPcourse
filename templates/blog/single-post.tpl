@@ -3,19 +3,19 @@
     <section class="page-post__post">
       <div class="section-posts">
         <div class="section-posts__title">
-          <h1 class="heading"><?=$post['title']?></h1>
+          <h1 class="heading"><?=htmlentities($post['title'])?></h1>
         </div>
         <div class="section-posts__info">
           <span><?=$post_date?></span>
-          <a class="badge" href="<?=HOST?>blog/category/<?=$post['cat_id']?>"><?=$post['category_name']?></a>
+          <a class="badge" href="<?=HOST?>blog/category/<?=htmlentities($post['cat_id'])?>"><?=htmlentities($post['category_name'])?></a>
         </div>
         <?php if (isset($post['cover'])): ?>
           <div class="section-posts__img">
-            <img src="<?=HOST . 'usercontent/blog/' . $post['cover']?>" alt="<?=$post['title']?>" />
+            <img src="<?=HOST . 'usercontent/blog/' . $post['cover']?>" alt="<?=htmlentities($post['title'])?>" />
           </div>
         <?php endif ?>
         <div class="section-posts__content">
-          <?=$post['content']?>
+          <?=htmlentities($post['content'])?>
         </div>
       </div>
       <div class="page-post__post-pagination">
