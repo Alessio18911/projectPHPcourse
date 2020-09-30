@@ -1,5 +1,5 @@
 <main class="page-post">
-  <?php if(isset($uri_get) && $is_post_exists): ?>
+  <?php if(isset($uri_get) && isset($post)): ?>
     <section class="page-post__post">
       <div class="section-posts">
         <div class="section-posts__title">
@@ -7,7 +7,7 @@
         </div>
         <div class="section-posts__info">
           <span><?=$post_date?></span>
-          <a class="badge" href="<?=HOST?>blog/category/<?=htmlentities($post['cat_id'])?>"><?=htmlentities($post['category_name'])?></a>
+          <a class="badge" href="<?=HOST?>blog/category/<?=htmlentities($post['category_id'])?>"><?=htmlentities($category_name)?></a>
         </div>
         <?php if (isset($post['cover'])): ?>
           <div class="section-posts__img">
@@ -15,14 +15,11 @@
           </div>
         <?php endif ?>
         <div class="section-posts__content">
-          <?=htmlentities($post['content'])?>
+          <?=$post['content']?>
         </div>
       </div>
       <div class="page-post__post-pagination">
-        <div class="post-pagination">
-          <a class="post-pagination__button" href="#">Назад </a>
-          <a class="post-pagination__button post-pagination__button--forward" href="#">Вперед</a>
-        </div>
+        <?php include ROOT . 'templates/_page-parts/_pagination/_pagination_back_forward.tpl' ?>
       </div>
     </section>
     <section class="page-post__comments">
@@ -31,7 +28,8 @@
       </div>
       <div class="page-post__comments-comment">
         <div class="comment">
-          <div class="comment__avatar"><a href="#">
+          <div class="comment__avatar">
+            <a href="#">
               <div class="avatar-small"><img src="./img/avatars/comment-avatars.png" alt="Аватарка" /></div>
             </a>
           </div>

@@ -3,14 +3,12 @@
 $page_title = "Блог";
 
 if (isset($uri_get)) {
-  $is_post_exists = is_in_array('posts', 'id', $uri_get);
+  $post = R::findOne('posts', 'id=?', [$uri_get]);
 
-  if ($is_post_exists) {
-    $query = "SELECT posts.id, posts.title, posts.content, posts.timestamp, posts.cover, categories.id AS cat_id,     categories.category_name
-    FROM posts INNER JOIN categories ON posts.category_id = categories.id
-    WHERE posts.id = ?";
+  if (isset($post)) {
+    $category_id = $post['category_id'];
+    $category_name = R::getCell("SELECT category_name FROM categories WHERE categories.id = ?", [$category_id]);
 
-    $post = R::getRow($query, [$uri_get]);
     $page_title = "Блог - " . $post['title'];
 
     $translation_terms = [
@@ -29,6 +27,9 @@ if (isset($uri_get)) {
     ];
 
     $post_date = strtr(date('j F Y, G:i', $post['timestamp']), $translation_terms);
+
+    list($last_post_id, $next_post_id) = slide_forward('posts', $uri_get);
+    list($first_post_id, $prev_post_id) = slide_back('posts', $uri_get);
   }
 }
 

@@ -119,8 +119,37 @@ function paginate($posts_amount, $items_per_page) {
   ];
 }
 
-function is_in_array($table_name, $column, $value_to_check) {
-  $array = array_column(R::getAll("SELECT $column FROM $table_name"), $column);
-  return in_array($value_to_check, $array);
+function increment_id($current_id, $table_name) {
+  $next_id = $current_id + 1;
+  $next_item = R::findOne($table_name, 'id=?', [$next_id]);
+
+  if (!isset($next_item)) {
+    return increment_id($next_id, $table_name);
+  } else {
+    return $next_id;
+  }
+}
+
+function decrement_id($current_id, $table_name) {
+  $prev_id = $current_id - 1;
+  $prev_item = R::findOne($table_name, 'id=?', [$prev_id]);
+
+  if (!isset($prev_item)) {
+    return decrement_id($prev_id, $table_name);
+  } else {
+    return $prev_id;
+  }
+}
+
+function slide_forward($table_name, $current_id) {
+  $last_id = (int)R::getCell("SELECT MAX(id) FROM $table_name");
+  $next_id = (int)$current_id < $last_id ? increment_id($current_id, $table_name) : $last_id;
+  return [$last_id, $next_id];
+}
+
+function slide_back($table_name, $current_id) {
+  $first_id = (int)R::getCell("SELECT MIN(id) FROM $table_name");
+  $prev_id = (int)$current_id > $first_id ? decrement_id($current_id, $table_name) : $first_id;
+  return [$first_id, $prev_id];
 }
 ?>
