@@ -10,9 +10,9 @@ if (isset($uri_cat) && isset($uri_get)) {
 }
 
 if (!empty($category_id)) {
-  $posts_amount = R::count('posts', 'category_id = ?', [$category_id]);
   $category_name = $category->category_name;
   $page_title = "Блог - " . $category_name;
+  $posts_amount = R::count('posts', 'category_id = ?', [$category_id]);
 } else {
   $posts_amount = R::count('posts');
 }
