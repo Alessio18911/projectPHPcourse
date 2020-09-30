@@ -3,31 +3,29 @@
 $page_title = "Блог - все записи";
 
 $posts_per_page = 3;
-$is_category_set = isset($uri_cat) && isset($uri_get);
 
-if ($is_category_set) {
-  $is_category_valid = is_in_array('categories', 'id', $uri_get);
+if (isset($uri_cat) && isset($uri_get)) {
+  $category = R::load('categories', $uri_get);
+  $category_id = $category->id;
 }
 
-if (!empty($is_category_valid)) {
-  $posts_amount = R::count('posts', 'category_id = ?', [$uri_get]);
-  $category_name = R::findOne('categories', 'id=?', [$uri_get])['category_name'];
+if (!empty($category_id)) {
+  $posts_amount = R::count('posts', 'category_id = ?', [$category_id]);
+  $category_name = $category->category_name;
   $page_title = "Блог - " . $category_name;
 } else {
   $posts_amount = R::count('posts');
 }
 
 $pagination = paginate($posts_amount, $posts_per_page);
-$start_offset = $pagination['start_offset'];
-$pages_count = $pagination['pages_count'];
-$page_number = $pagination['page_number'];
+list($start_offset, $pages_count, $page_number) = [$pagination['start_offset'], $pagination['pages_count'], $pagination['page_number']];
 
-$posts = !empty($is_category_valid) ?
+$posts = !empty($category_id) ?
             R::getAll("SELECT p.id, p.title, p.cover_small, c.category_name
               FROM posts AS p INNER JOIN categories AS c ON p.category_id = c.id
               WHERE c.id = ?
               ORDER BY p.id DESC
-              LIMIT $start_offset, $posts_per_page", [$uri_get]) :
+              LIMIT $start_offset, $posts_per_page", [$category_id]) :
             R::find('posts', "ORDER BY id DESC LIMIT $start_offset, $posts_per_page");
 
 ob_start();

@@ -2,11 +2,11 @@
   <div class="container">
     <div class="page-blog__header">
       <h2 class="heading mb-20">Блог </h2>
-      <?php if(!empty($is_category_valid)):?>
+      <?php if(!empty($category_id)):?>
         <a class="badge">Категория: <?=htmlentities($category_name)?></a>
       <?php endif; ?>
     </div>
-    <?php if($is_category_set && !$is_category_valid): ?>
+    <?php if(isset($uri_cat) && isset($uri_get) && !$category_id): ?>
       <div class="section">
         <div class="container">
           <div class="section__title">
