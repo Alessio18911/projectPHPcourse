@@ -12,7 +12,7 @@ define("DB_PASS", "root");
 define("SITE_NAME", "Сайт Digital Nomad");
 define("SITE_EMAIL", "info@project.com");
 
-$errorMsgs = [
+$error_msgs = [
   "name" => [
     "empty" => [
       "title" => 'Введите имя'
