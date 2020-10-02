@@ -12,6 +12,21 @@ define("DB_PASS", "root");
 define("SITE_NAME", "Сайт Digital Nomad");
 define("SITE_EMAIL", "info@project.com");
 
+$translation_terms = [
+  'January' => 'Января',
+  'February' => 'Февраля',
+  'March' => 'Марта',
+  'April' => 'Апреля',
+  'May' => 'Мая',
+  'June' => 'Июня',
+  'July' => 'Июля',
+  'August' => 'Августа',
+  'September' => 'Сентября',
+  'October' => 'Октября',
+  'November' => 'Ноября',
+  'December' => 'Декабря'
+];
+
 $error_msgs = [
   "name" => [
     "empty" => [
@@ -109,6 +124,17 @@ $error_msgs = [
       "title" => "Ошибка сохранения файла",
       "desc" => "Повторите загрузку фото"
     ]
+  ],
+
+  "comment" => [
+    "empty" => [
+      "title" => 'Введите комментарий'
+    ],
+
+    "not_saved" => [
+      "title" => "Ошибка сохранения комментария",
+      "desc" => "Повторите отправку комментария ещё раз"
+    ]
   ]
 ];
 
@@ -123,6 +149,12 @@ $success_msgs = [
   "new_password" => [
     "set" => [
       "title" => "Пароль успешно обновлён"
+    ]
+  ],
+
+  "comment" => [
+    "set" => [
+      "title" => "Комментарий успешно добавлен"
     ]
   ]
 ];
