@@ -1,7 +1,3 @@
-<?php if(!empty($comments)): ?>
-<div class="section__title">
-  <h2 class="heading">Комментарии пользователя </h2>
-</div>
 <div class="section__body">
   <?php include ROOT . 'templates/components/errors.tpl' ?>
   <?php include ROOT . 'templates/components/success.tpl' ?>
@@ -29,5 +25,4 @@
     </div>
   </div>
 </div>
-<?php endif; ?>
 

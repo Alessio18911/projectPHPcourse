@@ -51,11 +51,16 @@
           </div>
         </div>
       </div>
-      <div class="section bg-grey">
-        <div class="container">
-          <?php include ROOT . "templates/components/comments.tpl"?>
+      <?php if(!empty($comments)): ?>
+        <div class="section bg-grey">
+          <div class="container">
+              <div class="section__title">
+                <h2 class="heading">Комментарии пользователя </h2>
+              </div>
+              <?php include ROOT . "templates/components/comments.tpl"?>
+          </div>
         </div>
-      </div>
+      <?php endif; ?>
     <?php else: ?>
       <div class="section">
         <div class="container">

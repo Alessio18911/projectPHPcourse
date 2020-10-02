@@ -23,7 +23,12 @@
       </div>
     </section>
     <section class="page-post__comments">
-      <?php include ROOT . "templates/components/comments.tpl"?>
+      <?php if(!empty($comments)): ?>
+        <div class="section__title">
+          <h2 class="heading"><?=$comments_amount?> комментария</h2>
+        </div>
+        <?php include ROOT . "templates/components/comments.tpl"?>
+      <?php endif; ?>
     </section>
     <?php if($is_logged): ?>
       <section class="page-post__post-comments">

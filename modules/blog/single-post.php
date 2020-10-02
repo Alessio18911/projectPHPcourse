@@ -28,6 +28,8 @@ if (isset($uri_get)) {
                                     INNER JOIN posts AS p ON c.post_id = p.id
                 WHERE p.id = ?", [$post_id]);
 
+    $comments_amount = count($comments);
+
     // Форма отправки комментария
     $user_avatar = isset($_SESSION['logged_user']['avatar_small']) ? $_SESSION['logged_user']['avatar_small'] : 'blank-avatar.svg';
 
