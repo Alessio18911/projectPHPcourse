@@ -22,6 +22,11 @@ $is_admin = isset($_SESSION['logged_user']) && $_SESSION['logged_user']['role'] 
 
 $btnLink = $is_admin ? $user_id : '';
 
+$comments = R::getAll(
+    "SELECT c.comment, c.timestamp, u.name AS user_name, u.surname AS user_surname, u.avatar_small AS user_avatar
+    FROM comments AS c INNER JOIN users AS u ON c.user_id = u.id
+    WHERE u.id = ?", [$user_id]);
+
 include ROOT . "templates/_page-parts/_head.tpl";
 include ROOT . "templates/_parts/_header.tpl";
 include ROOT . "templates/profile/profile.tpl";

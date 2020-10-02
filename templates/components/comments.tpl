@@ -15,13 +15,13 @@
             </div>
             <div class="comment__data">
               <div class="comment__user-info">
-                <div class="comment__username"><?=$comment['user_name']?> <?=$comment['user_surname']?></div>
+                <div class="comment__username"><?=htmlentities($comment['user_name'])?> <?=htmlentities($comment['user_surname'])?></div>
                 <div class="comment__date"><img src="<?=HOST?>static/img/favicons/clock.svg" alt="Дата публикации" />
                   <?=strtr(date('j F Y, G:i', $comment['timestamp']), $translation_terms)?>
                 </div>
               </div>
               <div class="comment__text">
-                <p><?=$comment['comment']?></p>
+                <p><?=htmlentities($comment['comment'])?></p>
               </div>
             </div>
           </div>
