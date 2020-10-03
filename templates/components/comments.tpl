@@ -15,6 +15,11 @@
                 <div class="comment__date"><img src="<?=HOST?>static/img/favicons/clock.svg" alt="Дата публикации" />
                   <?=strtr(date('j F Y, G:i', $comment['timestamp']), $translation_terms)?>
                 </div>
+                <?php if($uri_module === 'profile'): ?>
+                  <div class="comment__to-post"><b>К посту:</b>
+                    <a href="<?=HOST?>single-post/<?=$comment['post_id']?>"><?=htmlentities($comment['post_title'])?></a>
+                  </div>
+                <?php endif; ?>
               </div>
               <div class="comment__text">
                 <p><?=htmlentities($comment['comment'])?></p>

@@ -116,3 +116,20 @@ a.badge:hover {
   opacity: 0.5;
   pointer-events: none;
 }
+
+.comment__data {
+  flex-grow: 1;
+}
+
+.comment__to-post {
+  margin-left: auto;
+  font-family: Montserrat, sans-serif;
+}
+
+.comment__to-post a {
+  padding-left: 10px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: #7E9BBD;
+}
