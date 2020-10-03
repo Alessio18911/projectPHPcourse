@@ -1,4 +1,4 @@
-<?php include ROOT . "templates\_parts\_admin-panel.tpl" ?>
+<?php include ROOT . "templates/_parts/_admin-panel.tpl" ?>
 
 <header class="section-header">
   <div class="section-header__content">
