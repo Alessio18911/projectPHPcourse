@@ -26,7 +26,8 @@ if (isset($uri_get)) {
               "SELECT c.comment, c.timestamp, u.id AS user_id, u.name AS user_name, u.surname AS user_surname, u.avatar_small AS user_avatar
                 FROM comments AS c INNER JOIN users AS u ON c.user_id = u.id
                                     INNER JOIN posts AS p ON c.post_id = p.id
-                WHERE p.id = ?", [$post_id]);
+                WHERE p.id = ?
+                ORDER BY c.timestamp ASC", [$post_id]);
 
     $comments_amount = count($comments);
 
