@@ -12,7 +12,8 @@ $avatar_folder_location = ROOT . "usercontent/avatars/";
 if ($is_logged) {
   $user_id = $_SESSION['logged_user']['role'] === 'admin' ? $uri_get : $_SESSION['logged_user']['id'];
   $user = R::load('users', $user_id);
-  $user_avatar = !empty($user->avatar) ? $user->avatar : '';
+
+  $user_avatar = $user->avatar;
 
   if (isset($_POST['update-profile'])) {
     $user_name = trim($_POST['name']);
@@ -57,7 +58,7 @@ if ($is_logged) {
 
       if (!empty($_POST['delete-avatar']) && !empty($user_avatar)) {
         delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
-        $user->avatar = $user->avatar_small = NULL;
+        $user->avatar = $user->avatar_small = $_SESSION['logged_user']['avatar'] = $_SESSION['logged_user']['avatar_small'] = NULL;
       }
 
       if (empty($_SESSION['errors']['file'])) {
