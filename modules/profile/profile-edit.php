@@ -10,9 +10,8 @@ $is_logged = !empty($_SESSION['login']) ? true : false;
 $avatar_folder_location = ROOT . "usercontent/avatars/";
 
 if ($is_logged) {
-  $user_id = $_SESSION['logged_user']['role'] === 'admin' ? $uri_get : $_SESSION['logged_user']['id'];
+  $user_id = $uri_get;
   $user = R::load('users', $user_id);
-
   $user_avatar = $user->avatar;
 
   if (isset($_POST['update-profile'])) {
