@@ -12,7 +12,7 @@ $avatar_folder_location = ROOT . "usercontent/avatars/";
 if ($is_logged) {
   $user_id = $uri_get;
   $user = R::load('users', $user_id);
-  $user_avatar = $user->avatar;
+  $user_avatar = isset($user->avatar) ? $user->avatar : 'blank-avatar.svg';
 
   if (isset($_POST['update-profile'])) {
     $user_name = trim($_POST['name']);

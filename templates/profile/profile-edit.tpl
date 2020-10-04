@@ -68,7 +68,7 @@
                     </div>
                   </div>
                 </div>
-                <?php if (!empty($user_avatar)): ?>
+                <?php if ($user_avatar != 'blank-avatar.svg'): ?>
                   <div class="checkbox__item mt-20">
                     <input class="checkbox__btn visually-hidden" type="checkbox" id="delete-avatar" name="delete-avatar">
                     <label class="checkbox__label delete-button" for="delete-avatar">Удалить фотографию</label>

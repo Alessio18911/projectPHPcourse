@@ -13,7 +13,7 @@ if (isset($uri_get)) {
 $user = R::load('users', $user_param);
 $user_id = $user->id;
 $user_name = !empty($user->name) ? $user->name : false;
-$user_avatar = $user->avatar;
+$user_avatar = isset($user->avatar) ? $user->avatar : 'blank-avatar.svg';
 $user_country = !empty($user->country) ? $user->country : false;
 $user_city = !empty($user->city) ? $user->city : false;
 
