@@ -1,6 +1,6 @@
 <main class="page-profile">
-  <?php if($is_logged || isset($uri_get)): ?>
-    <?php if($user_id): ?>
+  <?php if($is_logged || isset($user_id_param)): ?>
+    <?php if(!empty($user_id)): ?>
       <div class="section">
         <div class="container">
           <div class="section__title">
