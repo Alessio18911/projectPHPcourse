@@ -29,6 +29,11 @@ if ($is_logged) {
       $user->city = htmlentities($user_city);
       $user->country = htmlentities($user_country);
 
+      if (isset($_POST['delete-avatar']) && isset($user_avatar)) {
+        delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
+        $user->avatar = $user->avatar_small = $_SESSION['logged_user']['avatar'] = $_SESSION['logged_user']['avatar_small'] = NULL;
+      }
+
       if (!$_FILES['avatar']['error']) {
         $file_params = validate_uploaded_file(
           $_FILES['avatar'],
@@ -55,10 +60,6 @@ if ($is_logged) {
         }
       }
 
-      if (isset($_POST['delete-avatar']) && isset($user_avatar)) {
-        delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
-        $user->avatar = $user->avatar_small = $_SESSION['logged_user']['avatar'] = $_SESSION['logged_user']['avatar_small'] = NULL;
-      }
 
       if (empty($_SESSION['errors']['file'])) {
         R::store($user);
