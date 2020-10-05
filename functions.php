@@ -16,7 +16,6 @@ function validate_uploaded_file($file, $min_width, $min_height, $max_weight, $ck
   $file_error = $file['error'];
   $kaboom = explode(".", $file_name);
   $file_ext = end($kaboom);
-  $file_params = [];
 
   list($width, $height) = getimagesize($file_temp_path);
   if ($width < $min_width || $height < $min_height) {
