@@ -36,9 +36,9 @@ if ($is_logged) {
         $user->country = !empty($user_country) ? htmlentities($user_country) : NULL;
         $user->city = !empty($user_city) ? htmlentities($user_city) : NULL;
 
-        if (isset($_POST['delete-avatar']) && isset($user_avatar)) {
+        if (isset($_POST['delete-avatar']) && $user_avatar != 'blank-avatar.svg') {
           delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
-          $user->avatar = $user->avatar_small = $_SESSION['logged_user']['avatar'] = $_SESSION['logged_user']['avatar_small'] = NULL;
+          $user->avatar = $user->avatar_small = NULL;
         }
 
         if (!$_FILES['avatar']['error']) {
@@ -50,7 +50,7 @@ if ($is_logged) {
           );
 
           if (isset($file_params)) {
-            if (isset($user_avatar)) delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
+            if ($user_avatar != 'blank-avatar.svg') delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
 
             process_uploaded_file(
               $avatar_folder_location,
