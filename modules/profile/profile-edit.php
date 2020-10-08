@@ -11,8 +11,10 @@ $avatar_folder_location = ROOT . "usercontent/avatars/";
 
 if ($is_logged) {
   $user_id = isset($uri_get) ? $uri_get : $_SESSION['logged_user']['id'];
+  $is_the_same_user = $_SESSION['logged_user']['id'] === $user_id;
+  $is_admin = $_SESSION['logged_user']['role'] == 'admin';
 
-  if ($_SESSION['logged_user']['id'] === $user_id || $_SESSION['logged_user']['role'] == 'admin') {
+  if ($is_the_same_user || $is_admin) {
     $user = R::load('users', $user_id);
     $user_name = isset($user->name) ? $user->name : '';
     $user_surname = isset($user->surname) ? $user->surname : '';
@@ -39,6 +41,8 @@ if ($is_logged) {
         if (isset($_POST['delete-avatar']) && $user_avatar != 'blank-avatar.svg') {
           delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
           $user->avatar = $user->avatar_small = NULL;
+
+          if ($is_the_same_user) $_SESSION['logged_user']['avatar'] = $_SESSION['logged_user']['avatar_small'] = NULL;
         }
 
         if (!$_FILES['avatar']['error']) {
@@ -64,9 +68,13 @@ if ($is_logged) {
 
             $user->avatar = $file_params['db_file_name'];
             $user->avatar_small = $avatar_name_prefix . $file_params['db_file_name'];
+
+            if ($is_the_same_user) {
+              $_SESSION['logged_user']['avatar'] = $file_params['db_file_name'];
+              $_SESSION['logged_user']['avatar_small'] = $avatar_name_prefix . $file_params['db_file_name'];
+            }
           }
         }
-
 
         if (empty($_SESSION['errors']['file'])) {
           R::store($user);
