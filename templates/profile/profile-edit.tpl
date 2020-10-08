@@ -28,7 +28,7 @@
                       type="text"
                       placeholder="Имя"
                       name="name"
-                      value="<?=isset($_POST['name']) ? $_POST['name'] : $user->name; ?>"
+                      value="<?=$user_name?>"
                     />
                   </label>
                 </div>
@@ -38,7 +38,7 @@
                       type="text"
                       placeholder="Фамилия"
                       name="surname"
-                      value="<?=isset($_POST['surname']) ? $_POST['surname'] : $user->surname; ?>"
+                      value="<?=$user_surname?>"
                     />
                   </label>
                 </div>
@@ -48,7 +48,7 @@
                       type="text"
                       placeholder="Email"
                       name="email"
-                      value="<?=isset($_POST['email']) ? $_POST['email'] : $user->email; ?>"
+                      value="<?=$user_email?>"
                     />
                   </label>
                 </div>
@@ -68,7 +68,7 @@
                     </div>
                   </div>
                 </div>
-                <?php if (isset($user_avatar)): ?>
+                <?php if ($user_avatar != 'blank-avatar.svg'): ?>
                   <div class="checkbox__item mt-20">
                     <input class="checkbox__btn visually-hidden" type="checkbox" id="delete-avatar" name="delete-avatar">
                     <label class="checkbox__label delete-button" for="delete-avatar">Удалить фотографию</label>
@@ -84,7 +84,7 @@
                       type="text"
                       placeholder="Страна"
                       name="country"
-                      value="<?=isset($_POST['country']) ? $_POST['country'] : $user->country; ?>"
+                      value="<?=$user_country?>"
                     />
                   </label>
                 </div>
@@ -94,7 +94,7 @@
                       type="text"
                       placeholder="Город"
                       name="city"
-                      value="<?=isset($_POST['city']) ? $_POST['city'] : $user->city; ?>"
+                      value="<?=$user->city?>"
                     />
                   </label>
                 </div>

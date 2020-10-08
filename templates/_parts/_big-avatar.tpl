@@ -1,3 +1,3 @@
 <div class="avatar-big">
-  <img src="<?=HOST?>usercontent/avatars/<?=isset($user_avatar) ? $user_avatar : 'blank-avatar.svg' ?>" alt="Аватарка" />
+  <img src="<?=HOST?>usercontent/avatars/<?=$user_avatar?>" alt="Аватарка" />
 </div>
