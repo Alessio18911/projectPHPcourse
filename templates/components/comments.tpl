@@ -1,5 +1,4 @@
 <div class="section__body">
-  <?php include ROOT . 'templates/components/errors.tpl' ?>
   <?php include ROOT . 'templates/components/success.tpl' ?>
   <div class="row justify-content-center">
     <div class="col-md-10">
