@@ -46,7 +46,7 @@
     <!-- форма добавления комментария - конец -->
 
     <!-- связанные посты - начало -->
-    <?php include ROOT . "templates/blog/related-posts.tpl"?>
+    <?php include ROOT . "templates/blog/_parts/related-posts.tpl"?>
     <!-- связанные посты - конец -->
   <!-- вывод единичного поста - конец -->
 

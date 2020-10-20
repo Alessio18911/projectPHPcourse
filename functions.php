@@ -151,4 +151,10 @@ function slide_back($table_name, $current_id) {
   $prev_id = (int)$current_id > $first_id ? decrement_id($current_id, $table_name) : $first_id;
   return [$first_id, $prev_id];
 }
+
+function getRandomPostIds($min_id, $max_id, $random_ids, $category_id, $post_id) {
+  $random_id = R::getCell('SELECT id FROM posts WHERE id = ? AND category_id = ?', [strval(rand($min_id, $max_id)), $category_id]);
+
+  return empty($random_id) || in_array($random_id, $random_ids) || $random_id == $post_id ? getRandomPostIds($min_id, $max_id, $random_ids, $category_id, $post_id) : $random_id;
+}
 ?>

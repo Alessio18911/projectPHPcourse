@@ -33,8 +33,10 @@ if (isset($uri_get)) {
 
     // Форма отправки комментария
     $user_avatar = isset($_SESSION['logged_user']['avatar_small']) ? $_SESSION['logged_user']['avatar_small'] : 'blank-avatar.svg';
-
     $user_comment = isset($_POST['user_comment']) ? trim($_POST['user_comment']) : '';
+
+    // Связанные по категории посты
+    require_once(ROOT . 'modules/blog/_parts/related-posts.php');
 
     if(isset($_POST['submit-comment'])) {
       if (!$user_comment) {
