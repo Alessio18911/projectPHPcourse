@@ -1,5 +1,7 @@
 <main class="page-post">
+  <!-- вывод единичного поста - начало -->
   <?php if(isset($uri_get) && isset($post)): ?>
+    <!-- собственно единичный пост - начало -->
     <section class="page-post__post">
       <div class="section-posts">
         <div class="section-posts__title">
@@ -22,6 +24,9 @@
         <?php include ROOT . 'templates/_page-parts/_pagination/_pagination_back_forward.tpl' ?>
       </div>
     </section>
+    <!-- собственно единичный пост - конец -->
+
+    <!-- комментарии к посту - начало -->
     <section class="page-post__comments">
       <?php if(!empty($comments)): ?>
         <div class="section__title">
@@ -30,11 +35,22 @@
         <?php include ROOT . "templates/components/comments.tpl"?>
       <?php endif; ?>
     </section>
+    <!-- комментарии к посту - конец -->
+
+    <!-- форма добавления комментария - начало -->
     <?php if($is_logged): ?>
       <section class="page-post__post-comments">
         <?php include ROOT . "templates/components/comments-form.tpl"?>
       </section>
     <?php endif; ?>
+    <!-- форма добавления комментария - конец -->
+
+    <!-- связанные посты - начало -->
+    <?php include ROOT . "templates/blog/related-posts.tpl"?>
+    <!-- связанные посты - конец -->
+  <!-- вывод единичного поста - конец -->
+
+  <!-- вывод при отсутствии поста - начало -->
   <?php else: ?>
     <div class="section">
         <div class="container">
@@ -45,31 +61,5 @@
         </div>
       </div>
   <?php endif; ?>
-  <section class="page-post__see-also">
-    <div class="container">
-      <div class="page-post__title">
-        <h2 class="heading">Смотрите также </h2>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <div class="card-post">
-            <div class="card-post__img"><a href="#"><img src="<?=HOST?>static/img/posts/post-10.jpg" alt="Как устроена подземка в NY. Плюсы и минусы" /></a></div>
-            <h4 class="card-post__title"><a href="#"> Как устроена подземка в NY. Плюсы и минусы</a></h4>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="card-post">
-            <div class="card-post__img"><a href="#"><img src="<?=HOST?>static/img/posts/post-11.jpg" alt="Летние воспоминания. Трекинг поход по Кавказским горам" /></a></div>
-            <h4 class="card-post__title"><a href="#"> Летние воспоминания. Трекинг поход по Кавказским горам</a></h4>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="card-post">
-            <div class="card-post__img"><a href="#"><img src="<?=HOST?>static/img/posts/post-12.jpg" alt="Купил дрон. Впечатления и фотосессия " /></a></div>
-            <h4 class="card-post__title"><a href="#"> Купил дрон. Впечатления и фотосессия </a></h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- вывод при отсутствии поста - конец -->
 </main>
