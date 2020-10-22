@@ -5,8 +5,8 @@ require_once(ROOT . "functions.php");
 require_once(ROOT . "libs/resize-and-crop.php");
 
 session_start();
-$_SESSION['errors'] = [];
-$_SESSION['success'] = [];
+// $_SESSION['errors'] = [];
+// $_SESSION['success'] = [];
 
 $uri = get_url_params($_SERVER['REQUEST_URI']);
 list($uri_module, $uri_get) = [$uri[0], $uri[1]];

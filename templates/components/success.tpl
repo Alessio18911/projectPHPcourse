@@ -1,4 +1,5 @@
 <?php if(!empty($_SESSION['success'])): ?>
+  <?php var_dump($_SESSION['success']); ?>
   <?php foreach($_SESSION['success'] as $key => $item):
     foreach($item as $success): ?>
       <div class="notifications mb-20">
@@ -13,4 +14,7 @@
       </div>
     <?php endforeach ?>
   <?php endforeach ?>
+
+  <?php $_SESSION['success'] = [] ?>
+  <?php var_dump($_SESSION['success']) ?>
 <?php endif ?>
