@@ -58,11 +58,15 @@ switch($uri_module) {
     break;
 
   case 'contacts':
-    require ROOT . "admin/modules/contacts/contacts.php";
+    require ROOT . "admin/modules/contacts/index.php";
     break;
 
   case 'messages':
-    require ROOT . "admin/modules/contacts/messages.php";
+    require ROOT . "admin/modules/messages/index.php";
+    break;
+
+  case 'single-message':
+    require ROOT . "admin/modules/messages/single-message.php";
     break;
 
   //::::::::::::::::::: USERS :::::::::::::::::

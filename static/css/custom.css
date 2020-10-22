@@ -133,3 +133,25 @@ a.badge:hover {
   font-weight: 600;
   color: #7E9BBD;
 }
+
+.control-panel__title-wrapper {
+  display: block;
+  color: #fff;
+  text-align: center;
+  transition: opacity 0.15s ease;
+}
+
+a.control-panel__title-wrapper:hover {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+.admin-page__single-message label {
+  margin-bottom: 10px;
+}
+
+.admin-page__single-message .buttons {
+  justify-content: space-between;
+  margin-top: 50px;
+}

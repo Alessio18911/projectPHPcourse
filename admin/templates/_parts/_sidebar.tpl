@@ -1,10 +1,10 @@
 <div class="admin-page__left-panel">
   <div class="control-panel">
     <div class="control-panel__container">
-      <div class="control-panel__title-wrapper">
+      <a class="control-panel__title-wrapper" href="<?=HOST?>admin">
         <h2 class="control-panel__title">Digital Nomad</h2>
         <p class="control-panel__subtitle">панель управления</p>
-      </div>
+      </a>
       <ul class="control-panel__list">
         <li class="control-panel__list-item">
           <a class="control-panel__list-link" href="<?=HOST?>admin/blog">
@@ -17,7 +17,7 @@
         <li class="control-panel__list-item">
           <a class="control-panel__list-link" href="<?=HOST?>admin/categories">
             <div class="control-panel__list-img-wrapper">
-              <img class="control-panel__list-img" src="<?=HOST?>static/img/control-panel/book.svg" alt="icon">
+              <img class="control-panel__list-img" src="<?=HOST?>static/img/control-panel/categories.svg" alt="icon">
             </div>
             Категории
           </a>
@@ -40,7 +40,7 @@
         <li class="control-panel__list-item">
           <a class="control-panel__list-link" href="<?=HOST?>admin/contacts">
             <div class="control-panel__list-img-wrapper">
-              <img class="control-panel__list-img" src="<?=HOST?>static/img/control-panel/book.svg" alt="icon" />
+              <img class="control-panel__list-img" src="<?=HOST?>static/img/control-panel/contacts.svg" alt="icon" />
             </div>
             Контакты
           </a>
