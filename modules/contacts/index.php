@@ -1,5 +1,6 @@
 <?php
 
+$page_title = "Контакты";
 
 include ROOT . "templates/_page-parts/_head.tpl";
 include ROOT . "templates/_parts/_header.tpl";

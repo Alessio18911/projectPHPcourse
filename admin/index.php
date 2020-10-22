@@ -57,6 +57,14 @@ switch($uri_module) {
     require ROOT . "admin/modules/blog/post-delete.php";
     break;
 
+  case 'contacts':
+    require ROOT . "admin/modules/contacts/contacts.php";
+    break;
+
+  case 'messages':
+    require ROOT . "admin/modules/contacts/messages.php";
+    break;
+
   //::::::::::::::::::: USERS :::::::::::::::::
 
   default:
