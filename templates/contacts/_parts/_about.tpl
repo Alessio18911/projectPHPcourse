@@ -1,6 +1,6 @@
 <div class="section-about-contacts__content">
   <div class="post-about-me">
-    <h4 class="post-about-me__title">обо мне</h4>
-    <p>Занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты. Этот сайт я сделал в рамках обучения в школе онлайн обучения WebCademy. Чуть позже я обновлю в нём свой контент. А пока посмотрите, как тут всё классно! </p>
+    <h4 class="post-about-me__title"><?=$about['title']?></h4>
+    <p><?=$about['content']?></p>
   </div>
 </div>

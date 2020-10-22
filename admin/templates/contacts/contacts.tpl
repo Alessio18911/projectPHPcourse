@@ -1,6 +1,6 @@
 <script src="<?=HOST . 'libs/ckeditor/ckeditor.js' ?>"></script>
-<div class="admin-page__content-form">
-  <form class="admin-form" method="POST" action="<?=HOST?>admin/post-edit?id=<?=htmlentities($_GET['id'])?>" enctype="multipart/form-data">
+<div class="admin-page__content-form admin-page__contacts">
+  <form class="admin-form" method="POST" action="<?=HOST?>admin/contacts">
     <div class="admin-form__item">
       <h2 class="heading">Редактировать контакты</h2>
     </div>
@@ -9,46 +9,47 @@
     <?php include ROOT . "admin/templates/components/success.tpl" ?>
 
     <div class="admin-form__item">
-      <label class="input__label">Введите название записи <input class="input input--width-label" type="text" name="title" placeholder="Заголовок поста" value="<?=htmlentities($post_title)?>"/>
+      <label class="input__label">Заголовок
+        <input class="input input--width-label" type="text" name="about_title" placeholder="Заголовок раздела" value="<?=$about['title']?>"/>
       </label>
+      <label class="textarea__label mb-10" for="editor-about">Содержимое раздела</label>
+      <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="about_content" id="editor-about"><?=$about['content']?></textarea>
     </div>
-    <div class="admin-form__item">
-      <?php include ROOT . "admin/templates/_parts/_category-select.tpl" ?>
-    </div>
-    <div class="admin-form__item">
-      <label class="textarea__label mb-10" for="editor">Содержимое поста</label>
-      <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="content" id="editor"><?=htmlentities($post_content)?></textarea>
-    </div>
-    <div class="admin-form__item">
-      <div class="block-upload">
-        <div class="block-upload__description">
-          <div class="block-upload__title">Обложка поста:</div>
-          <p>Изображение jpg, jpeg, gif или png, минимальный размер 600х300px. Вес до 12Мб.</p>
-          <div class="block-upload__file-wrapper">
-            <input class="file-button" type="file" name="cover">
-          </div>
-        </div>
-        <div class="block-upload__img">
-          <?php if (isset($post_to_edit_cover_thumb)): ?>
-            <img src="<?=HOST?>usercontent/blog/<?=htmlentities($post_to_edit_cover_thumb)?>" alt="Изображение обложки" />
-            <div class="checkbox__item">
-              <input class="checkbox__btn visually-hidden" type="checkbox" id="delete-cover" name="delete-cover">
-              <label class="checkbox__label delete-button" for="delete-cover">Удалить фотографию</label>
-            </div>
-          <?php endif ?>
-        </div>
-      </div>
-    </div>
-    <div class="admin-form__item buttons">
-      <button class="primary-button" type="submit" name="post-edit">Сохранить изменения</button>
-      <a class="secondary-button" href="<?=HOST?>admin/blog">Отмена</a>
-    </div>
-    <div class="admin-form__item"></div>
-    <div class="admin-form__item"></div>
-  </form>
-  </div>
 
-<script>CKEDITOR.replace('editor', {
+    <div class="admin-form__item">
+      <label class="input__label">Заголовок
+        <input class="input input--width-label" type="text" name="services_title" placeholder="Заголовок раздела" value="<?=$services['title']?>"/>
+      </label>
+      <label class="textarea__label mb-10" for="editor-services">Содержимое раздела</label>
+      <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="services_content" id="editor-services">
+        <?=$services['content']?>
+      </textarea>
+    </div>
+
+    <div class="admin-form__item">
+      <label class="input__label">Заголовок
+        <input class="input input--width-label" type="text" name="contacts_title" placeholder="Заголовок раздела" value="<?=$my_contacts['title']?>"/>
+      </label>
+      <label class="textarea__label mb-10" for="editor-contacts">Содержимое раздела</label>
+      <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="contacts_content" id="editor-contacts"><?=$my_contacts['content']?></textarea>
+    </div>
+
+    <div class="admin-form__item buttons">
+      <button class="primary-button" type="submit" name="contacts-edit">Сохранить изменения</button>
+      <a class="secondary-button" href="<?=HOST?>admin">Отмена</a>
+    </div>
+  </form>
+</div>
+
+<script>CKEDITOR.replace('editor-about', {
+  filebrowserUploadMethod: 'form',
+  filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'
+});</script>
+<script>CKEDITOR.replace('editor-services', {
+  filebrowserUploadMethod: 'form',
+  filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'
+});</script>
+<script>CKEDITOR.replace('editor-contacts', {
   filebrowserUploadMethod: 'form',
   filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'
 });</script>

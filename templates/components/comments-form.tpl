@@ -11,7 +11,7 @@
     </div>
     <form class="post-comment__form" action="<?=HOST?>single-post/<?=htmlentities($post_id)?>" method="POST">
       <div class="post-comment__form-textarea">
-        <textarea class="textarea" placeholder="Введите ваш комментарий..." name="user_comment"><?=htmlentities($user_comment)?></textarea>
+        <textarea class="textarea" placeholder="Введите ваш комментарий..." name="user_comment"></textarea>
       </div>
       <div class="post-comment__form-button">
         <button class="primary-button" type="submit" name="submit-comment">Комментировать</button>

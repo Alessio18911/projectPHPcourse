@@ -155,3 +155,32 @@ a.control-panel__title-wrapper:hover {
   justify-content: space-between;
   margin-top: 50px;
 }
+
+.admin-page__contacts .input__label {
+  margin: 0 0 20px;
+}
+
+.admin-page__contacts .admin-form__item:first-of-type {
+  margin: 0 0 20px;
+}
+
+.admin-page__contacts .admin-form__item:not(:first-of-type) {
+  margin: 0 0 25px;
+}
+
+.admin-page__contacts .admin-form__item:nth-of-type(odd):not(:first-of-type):not(:last-of-type) {
+  margin: 0 -30px 20px;
+  padding: 15px 30px 35px;
+  background: #ededed;
+}
+
+.admin-page__contacts .admin-form__item.buttons {
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+
+.notifications--success {
+  max-height: 200px;
+  transition: max-height 2s ease-in-out 5s;
+  overflow: hidden;
+}

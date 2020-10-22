@@ -15,8 +15,8 @@ if(isset($_POST['submit-comment'])) {
     $result = R::store($comment);
 
     if (is_int($result)) {
-      header("Location: " .HOST. "single-post/" . $post_id);
       $_SESSION['success']['comment'][] = "set";
+      unset($_POST['submit-comment']);
     } else {
       $_SESSION['errors']['comment'][] = "not_saved";
     }
