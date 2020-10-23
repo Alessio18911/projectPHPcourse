@@ -179,8 +179,54 @@ a.control-panel__title-wrapper:hover {
   margin-bottom: 0;
 }
 
+/* Сообщение об успехе */
 .notifications--success {
   max-height: 200px;
   transition: max-height 2s ease-in-out 5s;
   overflow: hidden;
 }
+
+/* Страница "Контакты", "Контакты" */
+.block-contacts__info p {
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.block-contacts__info p > a {
+  color: #1647ED;
+  transition: color 0.1s ease-in;
+}
+
+.block-contacts__info p > a:hover {
+  color: #0b2a92;
+  text-decoration: none;
+}
+
+/* Страница "Контакты", "Направления, которыми я занимаюсь" */
+.skills__list {
+  padding-left: 0;
+}
+
+.skills__list ul {
+  padding: 0;
+  list-style: none;
+}
+
+.skills__list ul li {
+  position: relative;
+  padding: 0 0 0 15px;
+  margin-bottom: 5px;
+}
+
+.skills__list ul li::before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 4px);
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+
