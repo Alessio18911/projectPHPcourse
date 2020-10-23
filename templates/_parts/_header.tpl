@@ -10,8 +10,8 @@
       <ul class="nav__list">
         <li class="nav__list-item"><a class="nav__list-item-link" href="about.html">Обо мне</a></li>
         <li class="nav__list-item"><a class="nav__list-item-link" href="portfolio.html">Портфолио</a></li>
-        <li class="nav__list-item"><a class="nav__list-item-link" href="<?=HOST?>blog">Блог</a></li>
-        <li class="nav__list-item"><a class="nav__list-item-link" href="<?=HOST?>contacts">Контакты</a></li>
+        <li class="nav__list-item"><a class="nav__list-item-link <?=$page_title == 'Блог' ? 'nav__list-item-link--active' : ''?>" href="<?=HOST?>blog">Блог</a></li>
+        <li class="nav__list-item"><a class="nav__list-item-link <?=$page_title == 'Контакты' ? 'nav__list-item-link--active' : ''?>" href="<?=HOST?>contacts">Контакты</a></li>
       </ul>
     </nav>
   </div>

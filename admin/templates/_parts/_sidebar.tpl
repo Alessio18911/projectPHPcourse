@@ -1,7 +1,7 @@
 <div class="admin-page__left-panel">
   <div class="control-panel">
     <div class="control-panel__container">
-      <a class="control-panel__title-wrapper" href="<?=HOST?>admin">
+      <a class="control-panel__title-wrapper" href="<?=HOST?>">
         <h2 class="control-panel__title">Digital Nomad</h2>
         <p class="control-panel__subtitle">панель управления</p>
       </a>

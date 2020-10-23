@@ -1,6 +1,6 @@
 <?php
 
-$page_title = "Блог - все записи";
+$page_title = "Блог";
 
 $posts_per_page = 3;
 

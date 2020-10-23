@@ -1,6 +1,6 @@
 <?php
 
-$page_title = "Блог";
+$page_title = "Блог - пост";
 
 if (isset($uri_get)) {
   $post = R::findOne('posts', 'id=?', [$uri_get]);
