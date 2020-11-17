@@ -11,6 +11,7 @@ $_SESSION['success'] = [];
 $uri = get_url_params($_SERVER['REQUEST_URI']);
 list($uri_module, $uri_get) = [$uri[0], $uri[1]];
 $uri_cat = isset($uri[2]) ? $uri[2] : NULL;
+$new_messages_count = get_new_messages_count();
 
 switch($uri_module) {
   case '':

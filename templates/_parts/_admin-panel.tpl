@@ -12,11 +12,14 @@
         <div class="span">Профиль</div>
       </a>
       <?php if($_SESSION['logged_user']['role'] === 'admin'): ?>
-        <a class="admin-panel__link" href="#">
-          <div class="admin-panel__message" data-number="8">
-            <img src="<?=HOST?>static/img/admin-panel/mail.svg" alt=" Сообщение">
+        <a class="admin-panel__link" href="http://projectphpcourse/admin/messages">
+          <div class="control-panel__list-img-wrapper">
+            <img class="control-panel__list-img" src="http://projectphpcourse/static/img/control-panel/mail.svg" alt="icon">
+            <?php if ($new_messages_count): ?>
+              <div class="control-panel__list-img-badge"><?=$new_messages_count?></div>
+            <?php endif; ?>
           </div>
-          <div class="span">Сообщение</div>
+          <div class="span">Сообщения</div>
         </a>
         <a class="admin-panel__link" href="#">
           <div class="admin-panel__comments" data-number="15">

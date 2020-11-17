@@ -1,6 +1,5 @@
 <?php
 
-$new_messages_count = get_new_messages_count();
 $messages = R::find('messages', 'ORDER BY id DESC');
 
 ob_start();

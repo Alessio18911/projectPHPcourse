@@ -15,6 +15,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 $uri = get_url_params($_SERVER['REQUEST_URI']);
 $uri_module = $uri[0];
 $uri_get = $uri[1];
+$new_messages_count = get_new_messages_count();
 
 switch($uri_module) {
   case '':
