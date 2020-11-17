@@ -229,4 +229,8 @@ a.control-panel__title-wrapper:hover {
   background-color: #000;
 }
 
+.table tbody tr.message--new {
+  background: rgba(234, 239, 242, 0.6);
+}
+
 

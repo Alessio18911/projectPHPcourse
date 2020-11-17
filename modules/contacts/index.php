@@ -27,6 +27,7 @@ if (isset($_POST['send_message'])) {
     $message->email = htmlentities($message_email);
     $message->message = htmlentities($message_text);
     $message->time = time();
+    $message->is_new = 1;
     R::store($message);
 
     $message_name = $message_email = $message_text = '';

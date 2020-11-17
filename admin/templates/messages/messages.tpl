@@ -11,34 +11,24 @@
           <th>Email</th>
           <th>Текст</th>
           <th>Файл</th>
+          <th>Время</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td><a href="<?=HOST?>admin/single-message?id=1">Юрий</a></td>
-          <td>juriy@mail.ru</td>
-          <td><a href="<?=HOST?>admin/single-message?id=1">Короткий текст сообщения...</a></td>
-          <td>photo1.jpg</td>
-          <td><a class="icon-delete" href="#"></a></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td><a href="<?=HOST?>admin/single-message?id=2">Клим</a></td>
-          <td>klim@ya.ru</td>
-          <td><a href="<?=HOST?>admin/single-message?id=2">Короткий текст сообщения...</a></td>
-          <td>photo2.jpg</td>
-          <td><a class="icon-delete" href="#"></a></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td><a href="<?=HOST?>admin/single-message?id=3">Наста</a></td>
-          <td>nasta@yahoo.com</td>
-          <td><a href="<?=HOST?>admin/single-message?id=3">Короткий текст сообщения...</a></td>
-          <td>photo3.jpg</td>
-          <td><a class="icon-delete" href="#"></a></td>
-        </tr>
+        <?php if(!empty($messages)):
+          foreach($messages as $message): ?>
+            <tr class="message <?=$message['is_new'] ? 'message--new' : '' ;?>">
+              <td><?=$message['id']?></td>
+              <td><a href="<?=HOST?>admin/single-message?id=<?=$message['id']?>"><?=$message['name']?></a></td>
+              <td><?=$message['email']?></td>
+              <td><a href="<?=HOST?>admin/single-message?id=<?=$message['id']?>"><?=$message['message']?></a></td>
+              <td></td>
+              <td><?=date('j.m.Y, G:i', $message['time'])?></td>
+              <td><a class="icon-delete" href="#"></a></td>
+            </tr>
+          <?php endforeach;
+        endif; ?>
       </tbody>
     </table>
   </div>

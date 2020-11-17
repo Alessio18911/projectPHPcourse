@@ -157,4 +157,8 @@ function getRandomPostIds($min_id, $max_id, $random_ids, $category_id, $post_id)
 
   return empty($random_id) || in_array($random_id, $random_ids) || $random_id == $post_id ? getRandomPostIds($min_id, $max_id, $random_ids, $category_id, $post_id) : $random_id;
 }
+
+function get_new_messages_count() {
+  return R::count('messages', 'WHERE is_new = ?', [1]);
+}
 ?>
