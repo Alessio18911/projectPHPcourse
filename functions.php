@@ -8,7 +8,7 @@ function validate_edit_form($name, $surname, $email) {
   if (empty($email)) $_SESSION['errors']['email'][] = "empty";
 }
 
-function validate_uploaded_file($file, $min_width, $min_height, $max_weight, $ck_editor_msgs = NULL) {
+function validate_uploaded_file($is_attachment, $file, $acceptable_formats, $max_weight, $min_width = NULL, $min_height = NULL, $ck_editor_msgs = NULL) {
   $file_name = $file['name'];
   $file_temp_path = $file['tmp_name'];
   $file_type = $file['type'];
@@ -17,17 +17,19 @@ function validate_uploaded_file($file, $min_width, $min_height, $max_weight, $ck
   $kaboom = explode(".", $file_name);
   $file_ext = end($kaboom);
 
-  list($width, $height) = getimagesize($file_temp_path);
-  if ($width < $min_width || $height < $min_height) {
-    isset($ck_editor_msgs) ? $message = $ck_editor_msgs["small"] : $_SESSION['errors']['file'][] = "small";
+  if (!preg_match($acceptable_formats, $file_name)) {
+    isset($ck_editor_msgs) ? $message = $ck_editor_msgs["format_invalid"] : $_SESSION['errors']['file'][] = "format_invalid";
   }
 
   if ($file_size > $max_weight) {
     isset($ck_editor_msgs) ? $message = $ck_editor_msgs["heavy"] : $_SESSION['errors']['file'][] = "heavy";
   }
 
-  if (!preg_match("/\.(gif|jpg|jpeg|png)$/i", $file_name)) {
-    isset($ck_editor_msgs) ? $message = $ck_editor_msgs["format_invalid"] : $_SESSION['errors']['file'][] = "format_invalid";
+  if (!$is_attachment) {
+    list($width, $height) = getimagesize($file_temp_path);
+    if ($width < $min_width || $height < $min_height) {
+      isset($ck_editor_msgs) ? $message = $ck_editor_msgs["small"] : $_SESSION['errors']['file'][] = "small";
+    }
   }
 
   if ($file_error == 4) {
@@ -38,34 +40,41 @@ function validate_uploaded_file($file, $min_width, $min_height, $max_weight, $ck
     return $message;
   } else if(empty($_SESSION['errors']['file'])) {
     return [
+      "original_file_name" => $file_name,
       "db_file_name" => rand(100000000000, 999999999999) . "." . $file_ext,
       "temp_loc" => $file_temp_path
     ];
   }
 }
 
-function process_uploaded_file($folder_location, $file_params, $file_name_prefix, $file_min_width, $file_min_height, $small_file_width, $small_file_height) {
+function process_uploaded_file($is_attachment, $folder_location, $file_params, $file_name_prefix = NULL, $file_min_width = NULL, $file_min_height = NULL, $small_file_width = NULL, $small_file_height = NULL) {
   $upload_full_size = $folder_location . $file_params['db_file_name'];
-  $upload_preview = $folder_location . $file_name_prefix . $file_params['db_file_name'];
 
-  $file_full_size_params = [
-    $file_params['temp_loc'],
-    $upload_full_size,
-    $file_min_width,
-    $file_min_height
-  ];
+  if (!$is_attachment) {
+    $upload_preview = $folder_location . $file_name_prefix . $file_params['db_file_name'];
 
-  $file_thumb_params = [
-    $file_params['temp_loc'],
-    $upload_preview,
-    $small_file_width,
-    $small_file_height
-  ];
+    $file_full_size_params = [
+      $file_params['temp_loc'],
+      $upload_full_size,
+      $file_min_width,
+      $file_min_height
+    ];
 
-  $result = resize_and_crop(...$file_full_size_params);
-  $result_thumb = resize_and_crop(...$file_thumb_params);
+    $file_thumb_params = [
+      $file_params['temp_loc'],
+      $upload_preview,
+      $small_file_width,
+      $small_file_height
+    ];
 
-  if (!$result || !$result_thumb) $_SESSION['errors']['file'][] = "not_saved";
+    $result = resize_and_crop(...$file_full_size_params);
+    $result_thumb = resize_and_crop(...$file_thumb_params);
+
+    if (!$result && !$result_thumb) $_SESSION['errors']['file'][] = "not_saved";
+  } else {
+    $result = move_uploaded_file($file_params['temp_loc'], $upload_full_size);
+    if (!$result) $_SESSION['errors']['file'][] = "not_saved";
+  }
 }
 
 function delete_file($file_path, $file_name, $file_name_prefix) {

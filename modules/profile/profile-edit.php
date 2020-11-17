@@ -46,17 +46,21 @@ if ($is_logged) {
         }
 
         if (!$_FILES['avatar']['error']) {
+          $is_attachment = false;
+          $acceptable_formats = "/\.(gif|jpg|jpeg|png)$/i";
           $file_params = validate_uploaded_file(
+            $is_attachment,
             $_FILES['avatar'],
+            $acceptable_formats,
+            $max_avatar_weight,
             $min_avatar_width,
-            $min_avatar_height,
-            $max_avatar_weight
-          );
+            $min_avatar_height);
 
           if (isset($file_params)) {
             if ($user_avatar != 'blank-avatar.svg') delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
 
             process_uploaded_file(
+              $is_attachment,
               $avatar_folder_location,
               $file_params,
               $avatar_name_prefix,

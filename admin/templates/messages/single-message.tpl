@@ -27,7 +27,7 @@
     <?php if($attached_file): ?>
       <div class="admin-form__item">
         <label class="input__label">Прикреплённый файл</label>
-        <p><?=$attached_file?></p>
+        <p><a href="<?=HOST?>usercontent/contact-form/<?=$file_src?>" download><?=$attached_file?></a></p>
       </div>
     <?php endif; ?>
 

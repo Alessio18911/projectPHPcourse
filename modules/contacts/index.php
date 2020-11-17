@@ -28,10 +28,37 @@ if (isset($_POST['send_message'])) {
     $message->message = htmlentities($message_text);
     $message->time = time();
     $message->is_new = 1;
-    R::store($message);
 
-    $message_name = $message_email = $message_text = '';
-    $_SESSION['success']['message'][] = "sent";
+    if (!$_FILES['attachment']['error']) {
+      $is_attachment = true;
+      $max_weight = 2097152;
+      $folder_location = ROOT . "usercontent/contact-form/";
+      $acceptable_formats = "/\.(gif|jpg|jpeg|png|doc|docx|rtf|pdf|txt|odt|zip|rar)$/i";
+      $file_params = validate_uploaded_file(
+        $is_attachment,
+        $_FILES['attachment'],
+        $acceptable_formats,
+        $max_weight,
+        NULL,
+        NULL);
+
+      if (!empty($file_params)) {
+        process_uploaded_file(
+          $is_attachment,
+          $folder_location,
+          $file_params
+        );
+
+        $message->file_name = $file_params['db_file_name'];
+        $message->file_original_name = $file_params['original_file_name'];
+      }
+    }
+
+    if (empty($_SESSION['errors']['file'])) {
+      R::store($message);
+      $message_name = $message_email = $message_text = '';
+      $_SESSION['success']['message'][] = "sent";
+    }
   }
 }
 

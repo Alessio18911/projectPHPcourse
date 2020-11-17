@@ -19,14 +19,19 @@ if (isset($_POST['post-edit'])) {
     $post_to_edit->category_id = $_POST['post-category'];
 
     if (!$_FILES['cover']['error']) {
+      $is_attachment = false;
+      $acceptable_formats = "/\.(gif|jpg|jpeg|png)$/i";
       $file_params = validate_uploaded_file(
+        $is_attachment,
         $_FILES['cover'],
+        $acceptable_formats,
+        $cover_params["max_weight"],
         $cover_params["min_width"],
-        $cover_params["min_height"],
-        $cover_params["max_weight"]);
+        $cover_params["min_height"]);
 
       if (!empty($file_params)) {
         process_uploaded_file(
+          $is_attachment,
           $cover_params["folder_location"],
           $file_params,
           $cover_params["name_prefix"],

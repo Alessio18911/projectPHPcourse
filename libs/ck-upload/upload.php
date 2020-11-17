@@ -10,12 +10,14 @@ $funcNum = $_GET['CKEditorFuncNum'];
 // Check the $_FILES array and save the file. Assign the correct path to a variable ($url).
 
 if (!$_FILES['upload']['error']) {
+  $acceptable_formats = "/\.(gif|jpg|jpeg|png)$/i";
+  $image_max_weight = 6291456;
   $image_width = 920;
   $image_min_width = 10;
   $image_min_height = 10;
-  $image_max_weight = 6291456;
+  $is_attachment = false;
 
-  $image_params = validate_uploaded_file($_FILES['upload'], $image_min_width, $image_min_height, $image_max_weight, $ck_editor_msgs);
+  $image_params = validate_uploaded_file($is_attachment, $_FILES['upload'], $acceptable_formats, $image_max_weight, $image_min_width, $image_min_height, $ck_editor_msgs);
 
   if(is_array($image_params)) {
     $db_file_name = $image_params['db_file_name'];

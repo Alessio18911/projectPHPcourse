@@ -1,4 +1,4 @@
-<form class="feedback-form" method="POST" action="<?HOST?>contacts">
+<form class="feedback-form" enctype="multipart/form-data" method="POST" action="<?HOST?>contacts">
   <div class="feedback-form__heading">
     <h2 class="heading">Напишите мне </h2>
   </div>
@@ -19,9 +19,9 @@
     <div class="block-upload">
       <div class="block-upload__description">
         <div class="block-upload__title">Прикрепить файл:</div>
-        <p>jpg, png, pdf, вес до 2 Мб</p>
+        <p>gif, jpg, jpeg, png, doc, docx, pdf, txt, rtf, odt, zip, rar, вес до 2 Мб</p>
         <div class="block-upload__file-wrapper">
-          <input class="file-button" type="file" name="message_file">
+          <input class="file-button" type="file" name="attachment">
         </div>
       </div>
     </div>
