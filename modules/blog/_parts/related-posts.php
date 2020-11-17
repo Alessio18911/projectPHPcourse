@@ -19,6 +19,6 @@ if ($related_posts_amount && $related_posts_amount <= 3) {
 
   // получаем посты для вывода в разметку
   foreach($random_ids as $related_post_id) {
-    $random_related_posts[] = R::getRow('SELECT p.id, p.title, p.cover_small FROM posts AS p WHERE p.id = ?', [$related_post_id]);
+    $random_related_posts[] = R::getRow('SELECT p.id, p.title, p.cover_small FROM posts AS p WHERE p.id = ? LIMIT 1', [$related_post_id]);
   }
 }
