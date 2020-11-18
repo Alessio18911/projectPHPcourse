@@ -233,4 +233,9 @@ a.control-panel__title-wrapper:hover {
   background: rgba(234, 239, 242, 0.6);
 }
 
+.table td img {
+  width: 30px;
+  height: 30px;
+}
+
 

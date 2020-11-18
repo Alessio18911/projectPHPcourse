@@ -23,7 +23,11 @@
               <td><a href="<?=HOST?>admin/single-message?id=<?=$message['id']?>"><?=$message['name']?></a></td>
               <td><?=$message['email']?></td>
               <td><a href="<?=HOST?>admin/single-message?id=<?=$message['id']?>"><?=$message['message']?></a></td>
-              <td><a href="<?=HOST?>usercontent/contact-form/<?=$message['file_name']?>" download><?=$message['file_original_name']?></a></td>
+              <td>
+                <?php if($message['file_name']): ?>
+                  <img src="<?=HOST?>static/img/admin-panel/clip.svg" alt="">
+                <?php endif; ?>
+              </td>
               <td><?=date('j.m.Y, G:i', $message['time'])?></td>
               <td><a class="icon-delete" href="#"></a></td>
             </tr>
