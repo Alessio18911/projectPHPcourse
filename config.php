@@ -226,6 +226,12 @@ $admin_error_msgs = [
   "contacts" => [
     "title" => "Что-то пошло не так",
     "desc" => "Повторите попытку обновления контактов"
+  ],
+
+  "message_not_deleted" => [
+    "failed" => [
+      "title" => "Что-то пошло не так, повторите попытку удаления"
+    ]
   ]
 ];
 
@@ -269,6 +275,12 @@ $admin_success_msgs = [
   "contacts" => [
     "success" => [
       "title" => "Контакты успешно обновлены"
+    ]
+  ],
+
+  "message_deleted" => [
+    "success" => [
+      "title" => "Сообщение успешно удалено"
     ]
   ]
 ];

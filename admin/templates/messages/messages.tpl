@@ -3,6 +3,8 @@
     <div class="admin-form__item d-flex justify-content-between mb-20">
       <h2 class="heading">Сообщения</h2>
     </div>
+    <?php include ROOT . "admin/templates/components/errors.tpl" ?>
+    <?php include ROOT . "admin/templates/components/success.tpl" ?>
     <table class="table">
       <thead>
         <tr>
@@ -29,7 +31,7 @@
                 <?php endif; ?>
               </td>
               <td><?=date('j.m.Y, G:i', $message['time'])?></td>
-              <td><a class="icon-delete" href="#"></a></td>
+              <td><a class="icon-delete" href="<?=HOST?>admin/messages?message-delete&id=<?=$message['id']?>"></a></td>
             </tr>
           <?php endforeach;
         endif; ?>
