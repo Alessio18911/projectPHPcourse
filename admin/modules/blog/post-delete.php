@@ -5,7 +5,6 @@ $post_to_delete = R::load('posts', $post_id);
 $post_to_delete_title = $post_to_delete->title;
 $post_to_delete_cover = $post_to_delete->cover;
 
-
 if (isset($_POST['post-delete'])) {
   if (isset($post_to_delete_cover)) {
     $cover_to_delete_path = ROOT . "usercontent/blog/";

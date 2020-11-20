@@ -4,6 +4,13 @@ $messages = R::find('messages', 'ORDER BY id DESC');
 
 if (isset($_GET['message-delete']) && isset($_GET['id'])) {
   $message_to_delete = R::load('messages', (int)$_GET['id']);
+  $message_to_delete_file_name = $message_to_delete->file_name;
+
+  if (isset($message_to_delete_file_name)) {
+    $message_to_delete_file_path = ROOT . "usercontent/contact-form/";
+    delete_file($message_to_delete_file_path, $message_to_delete_file_name);
+  }
+
   $deletion_result = R::trash($message_to_delete);
 
   if ($deletion_result) {

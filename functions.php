@@ -77,10 +77,15 @@ function process_uploaded_file($is_attachment, $folder_location, $file_params, $
   }
 }
 
-function delete_file($file_path, $file_name, $file_name_prefix) {
+function delete_file($file_path, $file_name, $file_name_prefix = NULL) {
   $full_size = $file_path . $file_name;
-  $preview = $file_path . $file_name_prefix . $file_name;
-  $files = array($full_size, $preview);
+
+  $files[] = $full_size;
+
+  if ($file_name_prefix) {
+    $preview = $file_path . $file_name_prefix . $file_name;
+    array_push($files, $preview);
+  }
 
   foreach($files as $file) {
     if (file_exists($file)) {

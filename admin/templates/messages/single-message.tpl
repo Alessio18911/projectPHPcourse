@@ -1,5 +1,5 @@
 <div class="admin-page__content-form admin-page__single-message">
-  <form class="admin-form" method="POST" action="#">
+  <form class="admin-form" method="POST" action="">
     <div class="admin-form__item">
       <h2 class="heading mb-20">Сообщение №<?=$message_id?></h2>
     </div>
@@ -33,7 +33,7 @@
 
     <div class="admin-form__item buttons">
       <a class="secondary-button" href="<?=HOST?>admin/messages">Вернуться назад</a>
-      <button class="primary-button primary-button--red" type="submit" name="delete-message">Удалить</button>
+      <a class="primary-button primary-button--red" href="<?=HOST?>admin/messages?message-delete&id=<?=$message_id?>">Удалить</a>
     </div>
   </form>
 </div>
