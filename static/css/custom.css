@@ -238,4 +238,17 @@ a.control-panel__title-wrapper:hover {
   height: 30px;
 }
 
+.page-contacts__map {
+  position: relative;
+  height: 708px;
+}
+
+.page-contacts__map img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 
