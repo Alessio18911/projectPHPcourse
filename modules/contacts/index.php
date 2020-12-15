@@ -57,8 +57,9 @@ if (isset($_POST['send_message'])) {
     if (empty($_SESSION['errors']['file'])) {
       R::store($message);
       $message_name = $message_email = $message_text = '';
-      header("Location: " .HOST. "contacts");
       $_SESSION['success']['message'][] = "sent";
+      header("Location: " .HOST. "contacts");
+      die();
     }
   }
 }

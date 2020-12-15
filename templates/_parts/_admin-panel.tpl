@@ -14,7 +14,7 @@
       <?php if($_SESSION['logged_user']['role'] === 'admin'): ?>
         <a class="admin-panel__link" href="http://projectphpcourse/admin/messages">
           <div class="control-panel__list-img-wrapper">
-            <img class="control-panel__list-img" src="http://projectphpcourse/static/img/control-panel/mail.svg" alt="icon">
+            <img class="control-panel__list-img" src="<?=HOST?>static/img/control-panel/mail.svg" alt="icon">
             <?php if ($new_messages_count): ?>
               <div class="control-panel__list-img-badge"><?=$new_messages_count?></div>
             <?php endif; ?>

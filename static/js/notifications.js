@@ -1,16 +1,16 @@
-(function() {
-  const notifications = document.querySelector('.notifications');
+// (function() {
+//   const notifications = document.querySelector('.notifications');
 
-  if (notifications) {
-    let targetY = window.scrollY + notifications.getBoundingClientRect().top - 200;
+//   if (notifications) {
+//     let targetY = window.scrollY + notifications.getBoundingClientRect().top - 200;
 
-    window.scroll({
-      top: targetY,
-      behavior: 'smooth'
-    });
+//     window.scroll({
+//       top: targetY,
+//       behavior: 'smooth'
+//     });
 
-    if (notifications.classList.contains('notifications--success')) {
-      notifications.style.maxHeight = "0";
-    }
-  }
-})();
+//     if (notifications.classList.contains('notifications--success')) {
+//       notifications.style.maxHeight = "0";
+//     }
+//   }
+// })();
