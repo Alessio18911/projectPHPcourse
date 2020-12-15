@@ -2,6 +2,7 @@
 require_once("./config.php");
 require_once(ROOT . "db.php");
 require_once(ROOT . "functions.php");
+require_once(ROOT . "warnings.php");
 require_once(ROOT . "libs/resize-and-crop.php");
 
 session_start();

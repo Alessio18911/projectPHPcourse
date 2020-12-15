@@ -3,6 +3,7 @@
 require_once "./../config.php";
 require_once "./../db.php";
 require_once "./../functions.php";
+require_once "./../warnings_admin.php";
 require_once ROOT . "libs/resize-and-crop.php";
 
 session_start();
