@@ -15,4 +15,4 @@
       </div>
     <?php endforeach;
   endforeach;
-<?php endif ?>
+endif ?>
