@@ -13,6 +13,6 @@
           </div>
         <?php endif ?>
       </div>
-    <?php endforeach ?>
-  <?php endforeach ?>
+    <?php endforeach;
+  endforeach;
 <?php endif ?>
