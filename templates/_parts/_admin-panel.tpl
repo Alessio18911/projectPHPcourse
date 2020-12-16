@@ -12,7 +12,7 @@
         <div class="span">Профиль</div>
       </a>
       <?php if($_SESSION['logged_user']['role'] === 'admin'): ?>
-        <a class="admin-panel__link" href="http://projectphpcourse/admin/messages">
+        <a class="admin-panel__link" href="<?=HOST?>admin/messages">
           <div class="control-panel__list-img-wrapper">
             <img class="control-panel__list-img" src="<?=HOST?>static/img/control-panel/mail.svg" alt="icon">
             <?php if ($new_messages_count): ?>
@@ -20,12 +20,6 @@
             <?php endif; ?>
           </div>
           <div class="span">Сообщения</div>
-        </a>
-        <a class="admin-panel__link" href="#">
-          <div class="admin-panel__comments" data-number="15">
-            <img src="<?=HOST?>static/img/admin-panel/message-square.svg" alt="Комментарии">
-          </div>
-          <div class="span">Комментарии</div>
         </a>
         <a class="admin-panel__link" href="#">
           <img src="<?=HOST?>static/img/admin-panel/edit-3.svg" alt="Редактировать эту страницу">
