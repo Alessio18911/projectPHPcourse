@@ -30,7 +30,7 @@
     <section class="page-post__comments">
       <?php if(!empty($comments)): ?>
         <div class="section__title">
-          <h2 class="heading"><?=$comments_amount?> комментария</h2>
+          <h2 class="heading"><?=$comments_amount?> <?=$comments_word?></h2>
         </div>
         <?php include ROOT . "templates/components/comments.tpl"?>
       <?php endif; ?>

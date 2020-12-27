@@ -175,4 +175,33 @@ function getRandomPostIds($min_id, $max_id, $random_ids, $category_id, $post_id)
 function get_new_messages_count() {
   return R::count('messages', 'WHERE is_new = ?', [1]);
 }
+
+function get_right_word($number) {
+  $array = str_split($number);
+  $last_digit = end($array);
+  $array_length = count($array);
+  $word = "комментариев";
+
+  if ($array_length > 1) {
+    $first_digit = $array[$array_length - 2];
+  }
+
+  if ($array_length === 1 || isset($first_digit) && $first_digit != 1) {
+    switch($last_digit) {
+      case 1:
+        $word = "комментарий";
+        break;
+
+      case 2:
+      case 3:
+      case 4:
+        $word = "комментария";
+        break;
+    }
+  }
+
+  return $word;
+}
+
+
 ?>

@@ -30,6 +30,7 @@ if (isset($uri_get)) {
                 ORDER BY c.timestamp ASC", [$post_id]);
 
     $comments_amount = count($comments);
+    $comments_word = get_right_word($comments_amount);
 
     // Форма отправки комментария
     require_once(ROOT . 'modules/blog/_parts/submit-comment.php');

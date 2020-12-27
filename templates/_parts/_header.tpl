@@ -8,8 +8,7 @@
     </a>
     <nav class="nav">
       <ul class="nav__list">
-        <li class="nav__list-item"><a class="nav__list-item-link <?=$page_title == 'Обо мне' ? 'nav__list-item-link--active' : ''?>" href="about.html">Обо мне</a></li>
-        <li class="nav__list-item"><a class="nav__list-item-link <?=$page_title == 'Портфолио' ? 'nav__list-item-link--active' : ''?>" href="portfolio.html">Портфолио</a></li>
+        <li class="nav__list-item"><a class="nav__list-item-link <?=$page_title == 'Главная страница' ? 'nav__list-item-link--active' : ''?>" href="<?=HOST?>">Главная</a></li>
         <li class="nav__list-item"><a class="nav__list-item-link <?=$page_title == 'Блог' ? 'nav__list-item-link--active' : ''?>" href="<?=HOST?>blog">Блог</a></li>
         <li class="nav__list-item"><a class="nav__list-item-link <?=$page_title == 'Контакты' ? 'nav__list-item-link--active' : ''?>" href="<?=HOST?>contacts">Контакты</a></li>
       </ul>
