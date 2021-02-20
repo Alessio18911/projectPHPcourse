@@ -7,10 +7,12 @@ require_once "./../warnings_admin.php";
 require_once ROOT . "libs/resize-and-crop.php";
 
 session_start();
-$_SESSION['errors'] = [];
-
 if (!isset($_SESSION['success'])) {
   $_SESSION['success'] = [];
+}
+
+if (!isset($_SESSION['errors'])) {
+  $_SESSION['errors'] = [];
 }
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
@@ -64,9 +66,13 @@ switch($uri_module) {
     require ROOT . "admin/modules/blog/post-delete.php";
     break;
 
+  //::::::::::::::::::: CONTACTS :::::::::::::::::
+
   case 'contacts':
     require ROOT . "admin/modules/contacts/index.php";
     break;
+
+  //::::::::::::::::::: MESSAGES :::::::::::::::::
 
   case 'messages':
     require ROOT . "admin/modules/messages/index.php";
@@ -77,6 +83,14 @@ switch($uri_module) {
     break;
 
   //::::::::::::::::::: USERS :::::::::::::::::
+
+  case 'users':
+    require ROOT . "admin/modules/users/index.php";
+    break;
+
+  case 'user-delete':
+    require ROOT . "admin/modules/users/user-delete.php";
+    break;
 
   default:
     require ROOT . "admin/modules/admin/index.php";

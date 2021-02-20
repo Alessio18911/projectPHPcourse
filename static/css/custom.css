@@ -238,6 +238,15 @@ a.control-panel__title-wrapper:hover {
   height: 30px;
 }
 
+.user td img {
+  width: 100%;
+  height: 100%;
+}
+
+.user a {
+  display: block;
+}
+
 .page-contacts__map {
   position: relative;
   height: 708px;

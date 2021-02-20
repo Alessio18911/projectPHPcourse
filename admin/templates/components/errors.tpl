@@ -15,4 +15,5 @@
       </div>
     <?php endforeach ?>
   <?php endforeach ?>
+  <?php $_SESSION['errors'] = []?>
 <?php endif ?>

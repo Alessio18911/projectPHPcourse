@@ -61,6 +61,18 @@ $admin_error_msgs = [
     "failed" => [
       "title" => "Что-то пошло не так, повторите попытку удаления"
     ]
+  ],
+
+  "user_deleted" => [
+    "failed" => [
+      "title" => "Что-то пошло не так, повторите попытку удаления"
+    ]
+  ],
+
+  "admin_unremovable" => [
+    "failed" => [
+      "title" => "Администратор сайта не может быть удалён"
+    ]
   ]
 ];
 
@@ -110,6 +122,12 @@ $admin_success_msgs = [
   "message_deleted" => [
     "success" => [
       "title" => "Сообщение успешно удалено"
+    ]
+  ],
+
+  "user_deleted" => [
+    "success" => [
+      "title" => "Пользователь успешно удалён"
     ]
   ]
 ];
