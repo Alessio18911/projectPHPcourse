@@ -1,6 +1,7 @@
 <?php
 
 $page_title = "Блог - пост";
+$is_single_post = $uri_module === "single-post";
 
 if (isset($uri_get)) {
   $post = R::findOne('posts', 'id=?', [$uri_get]);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 21 2021 г., 00:09
+-- Время создания: Фев 21 2021 г., 14:32
 -- Версия сервера: 10.3.22-MariaDB-log
 -- Версия PHP: 7.1.33
 
@@ -131,7 +131,8 @@ CREATE TABLE `common` (
 INSERT INTO `common` (`id`, `field_name`, `title`, `content`) VALUES
 (1, 'about', 'Обо мне', '<p>Занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты. Этот сайт я сделал в рамках обучения в школе онлайн обучения WebCademy. Чуть позже я обновлю в нём свой контент. А пока посмотрите, как тут всё классно!</p>'),
 (2, 'services', 'Направления, которыми я занимаюсь', '<ul>\r\n	<li>Верстка сайтов</li>\r\n	<li>Frontend</li>\r\n	<li>UI/UX дизайн</li>\r\n</ul>'),
-(3, 'contacts', 'Контакты', '<p><strong>Email</strong>:&nbsp;<a href=\"mailto:hi@digitalnomad.pro\">hi@digitalnomad.pro</a></p>\r\n\r\n<p><strong>Мобильный</strong>:&nbsp;<a href=\"tel:+79055557788\">+7 (905) 555-77-88</a></p>\r\n\r\n<p><strong>Адрес</strong>: Москва, Преcненская набережная, д. 6, стр. 2</p>');
+(3, 'contacts', 'Контакты', '<p><strong>Email</strong>:&nbsp;<a href=\"mailto:hi@digitalnomad.pro\">hi@digitalnomad.pro</a></p>\r\n\r\n<p><strong>Мобильный</strong>:&nbsp;<a href=\"tel:+79055557788\">+7 (905) 555-77-88</a></p>\r\n\r\n<p><strong>Адрес</strong>: Москва, Преcненская набережная, д. 6, стр. 2</p>'),
+(4, 'map', 'Интерактивная карта', '<script type=\"text/javascript\" charset=\"utf-8\" async src=\"https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0a445eecd07b59fdc916372a1f5c4f4b5cbf83e53eb25be53ae332f394390925&width=100%25&height=708&id=map&lang=ru_RU&scroll=true\"></script>');
 
 -- --------------------------------------------------------
 
@@ -228,13 +229,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `role`, `password`, `recovery_code`, `name`, `surname`, `city`, `country`, `avatar`, `avatar_small`) VALUES
-(1, 'loalwa@rio.br', 'user', '$2y$10$8LyDcjQoKez9CnV1g5ZP3uUENy0lRFBVbnqtETbLWHDS9.BGA4Yn2', NULL, 'Лоалва', 'Браз', 'Рио-де-Жанейро', 'Бразилия', '192155422061.jpg', '48-192155422061.jpg'),
+(1, 'loalwa@rio.br', 'user', '$2y$10$8LyDcjQoKez9CnV1g5ZP3uUENy0lRFBVbnqtETbLWHDS9.BGA4Yn2', NULL, 'Лоалва', 'Браз', 'Рио-де-Жанейро', 'Бразилия', '383155297617.jpg', '48-383155297617.jpg'),
 (2, 'freizer@scot.sc', 'user', '$2y$10$qP1c/XW6eYqOK57Xn7rVOuJGYetd8Md2Irvhfx.Kml.8JVrSzBU4C', NULL, 'Джеймс', 'Фрейзер', 'Инвернесс', 'Шотландия', NULL, NULL),
-(3, 'andrews@england.gb', 'user', '$2y$10$C2Oli.mgs2ZnZ8NQ27R8BO04ovGSh04FPlPepvjHxYE7a7Lc4gUxG', NULL, 'Джули', 'Эндрюс', 'Уолтон-на-Темзе', 'Англия', '167806341065.jpg', '48-167806341065.jpg'),
-(4, 'aster@america.us', 'admin', '$2y$10$pp0XDQA.jAFPayf1caYuR.60PbYNkxLISXwn7lJ4VioquUjvgg0XW', NULL, 'Фред', 'Aстер', 'Омаха', 'США', '988034157975.jpg', '48-988034157975.jpg'),
-(5, 'fitz@america.us', 'user', '$2y$10$Sm7cbuPXvhKX3XbuLOtvOeKf4ila3iRmulhmdXAz1xzf3rB.UrIs6', NULL, 'Элла', 'Фицджеральд', 'Ньюпорт-Ньюс', 'США', '441069601794.png', '48-441069601794.png'),
+(3, 'andrews@england.gb', 'user', '$2y$10$C2Oli.mgs2ZnZ8NQ27R8BO04ovGSh04FPlPepvjHxYE7a7Lc4gUxG', NULL, 'Джули', 'Эндрюс', 'Уолтон-на-Темзе', 'Англия', '864880272825.jpg', '48-864880272825.jpg'),
+(4, 'aster@america.us', 'admin', '$2y$10$pp0XDQA.jAFPayf1caYuR.60PbYNkxLISXwn7lJ4VioquUjvgg0XW', NULL, 'Фред', 'Aстер', 'Омаха', 'США', '438811574243.jpg', '48-438811574243.jpg'),
+(5, 'fitz@america.us', 'user', '$2y$10$Sm7cbuPXvhKX3XbuLOtvOeKf4ila3iRmulhmdXAz1xzf3rB.UrIs6', NULL, 'Элла', 'Фицджеральд', 'Ньюпорт-Ньюс', 'США', '179513565310.png', '48-179513565310.png'),
 (6, 'sordi@italy.it', 'user', '$2y$10$ASaHlai45/pv3NYgOwxxYObkEzS6D1qGXW3FmGw2nWoTCrRKJb2PW', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'marlon@france.fr', 'user', '$2y$10$PGTsw/lCOlOHyV9SJ8KFk.6fQujZNmhUf9boFETWT2ak4XrjmSKh6', NULL, 'Марлон', 'Брандо', NULL, NULL, '339231514599.jpg', '48-339231514599.jpg');
+(7, 'marlon@france.fr', 'user', '$2y$10$PGTsw/lCOlOHyV9SJ8KFk.6fQujZNmhUf9boFETWT2ak4XrjmSKh6', NULL, 'Марлон', 'Брандо', NULL, NULL, NULL, NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -299,7 +300,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT для таблицы `common`
 --
 ALTER TABLE `common`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `messages`

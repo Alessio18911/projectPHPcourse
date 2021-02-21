@@ -21,10 +21,12 @@
           </div>
           <div class="span">Сообщения</div>
         </a>
-        <a class="admin-panel__link" href="#">
-          <img src="<?=HOST?>static/img/admin-panel/edit-3.svg" alt="Редактировать эту страницу">
-          <div class="span">Редактировать</div>
-        </a>
+        <?php if (isset($is_single_post) && isset($uri_get)): ?>
+          <a class="admin-panel__link" href="<?=HOST?>admin/post-edit?id=<?=$uri_get?>">
+            <img src="<?=HOST?>static/img/admin-panel/edit-3.svg" alt="Редактировать эту страницу">
+            <div class="span">Редактировать</div>
+          </a>
+        <?php endif; ?>
       <?php endif ?>
       <a href="<?=HOST?>logout" class="admin-panel__block-button">Выход</a>
     </div>
