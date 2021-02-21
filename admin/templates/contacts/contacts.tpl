@@ -34,6 +34,14 @@
       <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="contacts_content" id="editor-contacts"><?=$my_contacts['content']?></textarea>
     </div>
 
+    <div class="admin-form__item">
+      <label class="input__label">Заголовок
+        <input class="input input--width-label" type="text" name="interactive_map_title" placeholder="Заголовок раздела" value="Интерактивная карта" readonly/>
+      </label>
+      <label class="textarea__label mb-10" for="interactive-map">Вставьте ссылку из конструктора на карту</label>
+      <textarea class="textarea textarea--width-label" placeholder="Введите текст" name="interactive_map" id="interactive-map"><?=$my_location['content']?></textarea>
+    </div>
+
     <div class="admin-form__item buttons">
       <button class="primary-button" type="submit" name="contacts-edit">Сохранить изменения</button>
       <a class="secondary-button" href="<?=HOST?>admin">Отмена</a>
@@ -53,5 +61,4 @@
   filebrowserUploadMethod: 'form',
   filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'
 });</script>
-<script src="<?=HOST?>static/js/delete-btn.js"></script>
 

@@ -23,4 +23,4 @@
     <img src="<?=HOST?>static/img/contacts/map.jpg" alt="map" />
   </div>
 </main>
-<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0a445eecd07b59fdc916372a1f5c4f4b5cbf83e53eb25be53ae332f394390925&amp;width=100%25&amp;height=708&amp;id=map&amp;lang=ru_RU&amp;scroll=true"></script>
+<?=$my_location['content']?>

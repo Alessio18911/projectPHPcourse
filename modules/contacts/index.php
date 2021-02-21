@@ -5,6 +5,7 @@ $page_title = "Контакты";
 $about = R::getRow('SELECT * FROM common WHERE field_name = ? LIMIT 1', ['about']);
 $services = R::getRow('SELECT * FROM common WHERE field_name = ? LIMIT 1', ['services']);
 $my_contacts = R::getRow('SELECT * FROM common WHERE field_name = ? LIMIT 1', ['contacts']);
+$my_location = R::getRow('SELECT * FROM common WHERE field_name = ? LIMIT 1', ['map']);
 
 $message_name = isset($_POST['name']) ? trim($_POST['name']) : '';
 $message_email = isset($_POST['email']) ? trim($_POST['email']) : '';
