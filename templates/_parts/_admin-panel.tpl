@@ -21,7 +21,7 @@
           </div>
           <div class="span">Сообщения</div>
         </a>
-        <?php if (isset($is_single_post) && isset($uri_get)): ?>
+        <?php if (isset($is_single_post) && isset($post)): ?>
           <a class="admin-panel__link" href="<?=HOST?>admin/post-edit?id=<?=$uri_get?>">
             <img src="<?=HOST?>static/img/admin-panel/edit-3.svg" alt="Редактировать эту страницу">
             <div class="span">Редактировать</div>
