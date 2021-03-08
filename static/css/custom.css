@@ -347,4 +347,13 @@ a.logo-link:hover {
   z-index: 99;
 }
 
+.admin-page__settings .admin-form__item h3 {
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.admin-page__settings .admin-form__item:nth-of-type(odd):not(:first-of-type):not(:last-of-type) {
+  padding: 15px 30px 5px;
+}
+
 

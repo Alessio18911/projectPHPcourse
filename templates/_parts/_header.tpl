@@ -2,7 +2,7 @@
 
 <header class="section-header">
   <div class="section-header__content">
-    <a href="http://projectphpcourse/">
+    <a href="<?=HOST?>">
       <h2 class="section-header__content-title">Digital Nomad</h2>
       <p class="section-header__content-subtitle">cайт IT специалиста</p>
     </a>

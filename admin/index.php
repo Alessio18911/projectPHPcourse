@@ -92,6 +92,12 @@ switch($uri_module) {
     require ROOT . "admin/modules/users/user-delete.php";
     break;
 
+  //::::::::::::::::::: SETTINGS :::::::::::::::::
+
+  case 'settings':
+    require ROOT . "admin/modules/settings/index.php";
+    break;
+
   default:
     require ROOT . "admin/modules/admin/index.php";
 }
