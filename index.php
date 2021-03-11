@@ -12,6 +12,8 @@ if (!isset($_SESSION['success'])) {
   $_SESSION['success'] = [];
 }
 
+require ROOT . "modules/settings/settins.php";
+
 $uri = get_url_params($_SERVER['REQUEST_URI']);
 list($uri_module, $uri_get) = [$uri[0], $uri[1]];
 $uri_cat = isset($uri[2]) ? $uri[2] : NULL;

@@ -24,12 +24,12 @@ if (isset($_POST['settings_edit'])) {
   $status_detailed = $settings['status_detailed'] = isset($_POST['status_detailed']) ? trim($_POST['status_detailed']) : '';
   $copyrights_author = $settings['copyrights_author'] = isset($_POST['copyrights_author']) ? trim($_POST['copyrights_author']) : '';
   $copyrights_year = $settings['copyrights_year'] = isset($_POST['copyrights_year']) ? trim($_POST['copyrights_year']) : '';
-  $social_yt = $settings['social_yt'] = isset($_POST['social_yt']) ? trim($_POST['social_yt']) : '';
-  $social_insta = $settings['social_insta'] = isset($_POST['social_insta']) ? trim($_POST['social_insta']) : '';
-  $social_fb = $settings['social_fb'] = isset($_POST['social_fb']) ? trim($_POST['social_fb']) : '';
-  $social_vk = $settings['social_vk'] = isset($_POST['social_vk']) ? trim($_POST['social_vk']) : '';
-  $social_in = $settings['social_in'] = isset($_POST['social_in']) ? trim($_POST['social_in']) : '';
-  $social_github = $settings['social_github'] = isset($_POST['social_github']) ? trim($_POST['social_github']) : '';
+  $social_yt = $settings['social_yt'] = !empty($_POST['social_yt']) ? trim($_POST['social_yt']) : NULL;
+  $social_insta = $settings['social_insta'] = !empty($_POST['social_insta']) ? trim($_POST['social_insta']) : NULL;
+  $social_fb = $settings['social_fb'] = !empty($_POST['social_fb']) ? trim($_POST['social_fb']) : NULL;
+  $social_vk = $settings['social_vk'] = !empty($_POST['social_vk']) ? trim($_POST['social_vk']) : NULL;
+  $social_in = $settings['social_in'] = !empty($_POST['social_in']) ? trim($_POST['social_in']) : NULL;
+  $social_github = $settings['social_github'] = !empty($_POST['social_github']) ? trim($_POST['social_github']) : NULL;
 
   if (!$site_title || !$site_slogan) {
     $_SESSION['errors']['site_name_slogan_empty'][] = "empty";
