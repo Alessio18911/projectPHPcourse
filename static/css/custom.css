@@ -356,4 +356,12 @@ a.logo-link:hover {
   padding: 15px 30px 5px;
 }
 
+.admin-page__settings .checkbox__item {
+  margin-bottom: 20px;
+}
+
+.admin-page__settings .checkbox__label {
+  margin: 0;
+}
+
 
