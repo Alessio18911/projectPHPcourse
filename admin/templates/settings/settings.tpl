@@ -7,10 +7,10 @@
     <?php include ROOT . "admin/templates/components/errors.tpl" ?>
     <?php include ROOT . "admin/templates/components/success.tpl" ?>
 
-    <?php include ROOT . "admin/templates/settings/_parts/name_slogan.tpl" ?>
-    <?php include ROOT . "admin/templates/settings/_parts/status.tpl" ?>
-    <?php include ROOT . "admin/templates/settings/_parts/copyrights.tpl" ?>
-    <?php include ROOT . "admin/templates/settings/_parts/social.tpl" ?>
+    <?php include ROOT . "admin/templates/settings/_parts/_name_slogan.tpl" ?>
+    <?php include ROOT . "admin/templates/settings/_parts/_status.tpl" ?>
+    <?php include ROOT . "admin/templates/settings/_parts/_copyrights.tpl" ?>
+    <?php include ROOT . "admin/templates/settings/_parts/_social.tpl" ?>
 
     <div class="admin-form__item buttons">
       <button class="primary-button" type="submit" name="settings_edit">Сохранить изменения</button>
