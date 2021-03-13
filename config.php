@@ -26,14 +26,4 @@ $translation_terms = [
   'November' => 'Ноября',
   'December' => 'Декабря'
 ];
-
-$cover_params = [
-  "min_width" => 600,
-  "min_height" => 300,
-  "thumb_width" => 290,
-  "thumb_height" => 230,
-  "max_weight" => 12582912,
-  "name_prefix" => "290-",
-  "folder_location" => ROOT . "usercontent/blog/"
-]
 ?>
