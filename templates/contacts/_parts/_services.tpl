@@ -1,6 +1,6 @@
 <div class="post-about-skills">
-  <h4 class="post-about-skills__title"><?=$services['title']?></h4>
+  <h4 class="post-about-skills__title"><?=$services_title?></h4>
   <div class="skills__list">
-    <?=$services['content']?>
+    <?=$services_content?>
   </div>
 </div>

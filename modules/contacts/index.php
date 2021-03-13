@@ -2,10 +2,15 @@
 
 $page_title = "Контакты";
 
-$about = R::getRow('SELECT * FROM common WHERE field_name = ? LIMIT 1', ['about']);
-$services = R::getRow('SELECT * FROM common WHERE field_name = ? LIMIT 1', ['services']);
-$my_contacts = R::getRow('SELECT * FROM common WHERE field_name = ? LIMIT 1', ['contacts']);
-$my_location = R::getRow('SELECT * FROM common WHERE field_name = ? LIMIT 1', ['map']);
+$contacts = R::getAssoc('SELECT section_title, section_content FROM common');
+
+$about_title = $contacts['about_title'];
+$about_content = $contacts['about_content'];
+$services_title = $contacts['services_title'];
+$services_content = $contacts['services_content'];
+$my_contacts_title = $contacts['contacts_title'];
+$my_contacts_content = $contacts['contacts_content'];
+$interactive_map = $contacts['map_script'];
 
 $message_name = isset($_POST['name']) ? trim($_POST['name']) : '';
 $message_email = isset($_POST['email']) ? trim($_POST['email']) : '';

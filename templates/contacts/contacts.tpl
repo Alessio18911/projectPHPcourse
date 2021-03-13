@@ -23,4 +23,4 @@
     <img src="<?=HOST?>static/img/contacts/map.jpg" alt="map" />
   </div>
 </main>
-<?=$my_location['content']?>
+<?=$interactive_map?>
