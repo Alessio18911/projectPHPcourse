@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 21 2021 г., 14:32
+-- Время создания: Мар 14 2021 г., 00:32
 -- Версия сервера: 10.3.22-MariaDB-log
 -- Версия PHP: 7.1.33
 
@@ -105,11 +105,7 @@ INSERT INTO `comments` (`id`, `comment`, `timestamp`, `user_id`, `post_id`) VALU
 (40, 'Да вы что?!', 1602190271, 1, 19),
 (41, 'Ох, Элла, ты потрясающе поёшь!', 1602192167, 6, 21),
 (42, 'Согласен: Элла шикарная женщина!', 1602192441, 4, 21),
-(43, 'Последнее время по-иному воспринимаю эту страну...', 1602530415, 4, 16),
-(44, 'sdfdsdf', 1603401038, 4, 21),
-(45, 'sdf', 1603401758, 4, 22),
-(46, 'sdf', 1603485547, 4, 22),
-(47, 'sdf', 1603485554, 4, 22);
+(43, 'Последнее время по-иному воспринимаю эту страну...', 1602530415, 4, 16);
 
 -- --------------------------------------------------------
 
@@ -119,20 +115,23 @@ INSERT INTO `comments` (`id`, `comment`, `timestamp`, `user_id`, `post_id`) VALU
 
 CREATE TABLE `common` (
   `id` int(11) NOT NULL,
-  `field_name` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `content` text CHARACTER SET utf8mb4 DEFAULT NULL
+  `section_title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `section_content` text CHARACTER SET utf8mb4 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `common`
 --
 
-INSERT INTO `common` (`id`, `field_name`, `title`, `content`) VALUES
-(1, 'about', 'Обо мне', '<p>Занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты. Этот сайт я сделал в рамках обучения в школе онлайн обучения WebCademy. Чуть позже я обновлю в нём свой контент. А пока посмотрите, как тут всё классно!</p>'),
-(2, 'services', 'Направления, которыми я занимаюсь', '<ul>\r\n	<li>Верстка сайтов</li>\r\n	<li>Frontend</li>\r\n	<li>UI/UX дизайн</li>\r\n</ul>'),
-(3, 'contacts', 'Контакты', '<p><strong>Email</strong>:&nbsp;<a href=\"mailto:hi@digitalnomad.pro\">hi@digitalnomad.pro</a></p>\r\n\r\n<p><strong>Мобильный</strong>:&nbsp;<a href=\"tel:+79055557788\">+7 (905) 555-77-88</a></p>\r\n\r\n<p><strong>Адрес</strong>: Москва, Преcненская набережная, д. 6, стр. 2</p>'),
-(4, 'map', 'Интерактивная карта', '<script type=\"text/javascript\" charset=\"utf-8\" async src=\"https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0a445eecd07b59fdc916372a1f5c4f4b5cbf83e53eb25be53ae332f394390925&width=100%25&height=708&id=map&lang=ru_RU&scroll=true\"></script>');
+INSERT INTO `common` (`id`, `section_title`, `section_content`) VALUES
+(1, 'about_title', 'Обо мне'),
+(2, 'about_content', '<p>Занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты. Этот сайт я сделал в рамках обучения в школе онлайн обучения WebCademy. Чуть позже я обновлю в нём свой контент. А пока посмотрите, как тут всё классно!</p>'),
+(3, 'services_title', 'Направления, которыми я занимаюсь'),
+(4, 'services_content', '<ul>\r\n	<li>Верстка сайтов</li>\r\n	<li>Frontend</li>\r\n	<li>UI/UX дизайн</li>\r\n</ul>'),
+(5, 'contacts_title', 'Контакты'),
+(6, 'contacts_content', '<p><strong>Email</strong>:&nbsp;<a href=\"mailto:hi@digitalnomad.pro\">hi@digitalnomad.pro</a></p>\r\n\r\n<p><strong>Мобильный</strong>:&nbsp;<a href=\"tel:+79055557788\">+7 (905) 555-77-88</a></p>\r\n\r\n<p><strong>Адрес</strong>: Москва, Преcненская набережная, д. 6, стр. 2</p>'),
+(7, 'map_title', 'Интерактивная карта'),
+(8, 'map_script', '<script type=\"text/javascript\" charset=\"utf-8\" async src=\"https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0a445eecd07b59fdc916372a1f5c4f4b5cbf83e53eb25be53ae332f394390925&width=100%25&height=708&id=map&lang=ru_RU&scroll=true\"></script>');
 
 -- --------------------------------------------------------
 
@@ -156,12 +155,12 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `name`, `email`, `message`, `time`, `is_new`, `file_name`, `file_original_name`) VALUES
-(1, 'Юрий', 'jorik@england.en', 'Привет! Бедный Йорик...', 1605730316, 1, NULL, NULL),
+(1, 'Юрий', 'jorik@england.en', 'Привет! Бедный Йорик...', 1605730316, 0, NULL, NULL),
 (2, 'Чёрная королева', 'regina@zazerk.rg', 'Слыхала я ТАКУЮ чепуху, по сравнению с которой ЭТО разумно, как толковый словарь!', 1605730375, 0, NULL, NULL),
-(3, 'Йагупоп', 'krivie@zerk.gub', 'Хи-хи, да Вы, голубчик, ДУРАК С ПОЛОВИНОЙ!', 1605730413, 1, NULL, NULL),
-(4, 'Шеф', 'chief@multik.com', 'Встречаемся в н-цать часов в аэропорту', 1605730440, 1, NULL, NULL),
-(5, 'Колобок', 'kolobok@multik.com', 'Шеф! А я Вас вижу!', 1605892162, 0, '125929277628.pdf', 'Joe Abercrombie - Half a King.pdf'),
-(6, 'Лепрекон', 'gnom@irish.ie', 'Моё золото!! Не отдам никому!!!', 1605986041, 1, NULL, NULL);
+(3, 'Йагупоп', 'krivie@zerk.gub', 'Хи-хи, да Вы, голубчик, ДУРАК С ПОЛОВИНОЙ!', 1605730413, 0, NULL, NULL),
+(4, 'Шеф', 'chief@multik.com', 'Встречаемся в н-цать часов в аэропорту', 1605730440, 0, NULL, NULL),
+(5, 'Колобок', 'kolobok@multik.com', 'Шеф! А я Вас вижу!', 1605892162, 0, NULL, NULL),
+(6, 'Лепрекон', 'gnom@irish.ie', 'Моё золото!! Не отдам никому!!!', 1605986041, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -186,7 +185,7 @@ CREATE TABLE `posts` (
 INSERT INTO `posts` (`id`, `title`, `content`, `timestamp`, `category_id`, `cover`, `cover_small`) VALUES
 (2, 'Канада', '<p>Пост о Канаде</p>', 1601501917, 1, '984966854770.jpg', '290-984966854770.jpg'),
 (3, 'Гаити', '<p>Пост о Гаити</p>', 1601501936, 1, '621640974874.jpg', '290-621640974874.jpg'),
-(5, 'Австралия', '<p>Пост об Австралии</p>', 1601501977, 5, '309620624209.png', '290-309620624209.png'),
+(5, 'Австралия', '<p>Пост об Австралии и фильме &quot;Челюсти&quot;</p>', 1613932172, 5, '309620624209.png', '290-309620624209.png'),
 (7, 'Антарктида', '<p>Пост об Антарктиде</p>', 1601502018, 6, '238438018867.jpg', '290-238438018867.jpg'),
 (8, 'Болгария', '<p>Пост о Болгарии</p>', 1601502044, 2, '817703705578.jpg', '290-817703705578.jpg'),
 (9, 'Гренландия', '<p>Пост о Гренландии</p>', 1601502069, 1, '738792308652.jpg', '290-738792308652.jpg'),
@@ -203,6 +202,38 @@ INSERT INTO `posts` (`id`, `title`, `content`, `timestamp`, `category_id`, `cove
 (20, 'Украина', '<p>Пост об Украине</p>', 1601502357, 2, '363071970580.jpg', '290-363071970580.jpg'),
 (21, 'Франция', '<p>Пост о Франции</p>', 1601502373, 2, '744613164445.jpg', '290-744613164445.jpg'),
 (22, 'Чили', '<p>Пост о Чили</p>', 1601502387, 1, '157518607901.jpg', '290-157518607901.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `section_title` varchar(255) NOT NULL,
+  `section_text` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `settings`
+--
+
+INSERT INTO `settings` (`id`, `section_title`, `section_text`) VALUES
+(1, 'site_title', 'Digital Nomad'),
+(2, 'site_slogan', 'Сайт IT-специалиста'),
+(3, 'status_checkbox', NULL),
+(4, 'status', 'Свободен для новых проектов'),
+(5, 'status_detailed', 'Рассматриваю предложения по вёрстке и frontend-разработке'),
+(6, 'status_page_link', 'status-page.php'),
+(7, 'copyrights_author', '© Юрий Ключевский'),
+(8, 'copyrights_year', 'Создано в Webcademy.ru в 2020'),
+(9, 'social_yt', NULL),
+(10, 'social_insta', 'www.my-insta.com'),
+(11, 'social_fb', 'www.fb.com/me'),
+(12, 'social_vk', NULL),
+(13, 'social_in', '#'),
+(14, 'social_github', NULL);
 
 -- --------------------------------------------------------
 
@@ -275,6 +306,12 @@ ALTER TABLE `posts`
   ADD KEY `category_id` (`category_id`);
 
 --
+-- Индексы таблицы `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -300,19 +337,25 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT для таблицы `common`
 --
 ALTER TABLE `common`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT для таблицы `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
