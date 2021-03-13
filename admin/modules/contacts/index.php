@@ -1,18 +1,23 @@
 <?php
 
-$about = R::findOne('common', 'field_name = ?', ['about']);
-$services = R::findOne('common', 'field_name = ?', ['services']);
-$my_contacts = R::findOne('common', 'field_name = ?', ['contacts']);
-$my_location = R::findOne('common', 'field_name = ?', ['map']);
+$contacts = R::getAssoc('SELECT section_title, section_content FROM common');
+
+$about_title = $contacts['about_title'];
+$about_content = $contacts['about_content'];
+$services_title = $contacts['services_title'];
+$services_content = $contacts['services_content'];
+$my_contacts_title = $contacts['contacts_title'];
+$my_contacts_content = $contacts['contacts_content'];
+$interactive_map = $contacts['map_script'];
 
 if (isset($_POST['contacts-edit'])) {
-  $about_title = isset($_POST['about_title']) ? trim($_POST['about_title']) : '';
-  $about_content = isset($_POST['about_content']) ? trim($_POST['about_content']) : '';
-  $services_title = isset($_POST['services_title']) ? trim($_POST['services_title']) : '';
-  $services_content = isset($_POST['services_content']) ? trim($_POST['services_content']) : '';
-  $my_contacts_title = isset($_POST['contacts_title']) ? trim($_POST['contacts_title']) : '';
-  $my_contacts_content = isset($_POST['contacts_content']) ? trim($_POST['contacts_content']) : '';
-  $interactive_map = isset($_POST['interactive_map']) ? trim($_POST['interactive_map']) : '';
+  $about_title = $contacts['about_title'] = isset($_POST['about_title']) ? trim($_POST['about_title']) : '';
+  $about_content = $contacts['about_content'] = isset($_POST['about_content']) ? trim($_POST['about_content']) : '';
+  $services_title = $contacts['services_title'] = isset($_POST['services_title']) ? trim($_POST['services_title']) : '';
+  $services_content = $contacts['services_content'] = isset($_POST['services_content']) ? trim($_POST['services_content']) : '';
+  $my_contacts_title = $contacts['contacts_title'] = isset($_POST['contacts_title']) ? trim($_POST['contacts_title']) : '';
+  $my_contacts_content = $contacts['contacts_content'] = isset($_POST['contacts_content']) ? trim($_POST['contacts_content']) : '';
+  $interactive_map = $contacts['map_script'] = isset($_POST['interactive_map']) ? trim($_POST['interactive_map']) : '';
 
   if (!$about_title || !$services_title || !$my_contacts_title) {
     $_SESSION['errors']['post_title'][] = "empty";
@@ -23,24 +28,11 @@ if (isset($_POST['contacts-edit'])) {
   }
 
   if (empty($_SESSION['errors'])) {
-    $about->title = $about_title;
-    $about->content = $about_content;
-    $services->title = $services_title;
-    $services->content = $services_content;
-    $my_contacts->title = $my_contacts_title;
-    $my_contacts->content = $my_contacts_content;
-    $my_location->content = $interactive_map;
-
-    $about_id = R::store($about);
-    $services_id = R::store($services);
-    $my_contacts_id = R::store($my_contacts);
-    $my_location_id = R::store($my_location);
-
-    if (is_int($about_id) && is_int($services_id) && is_int($my_contacts_id) && is_int($my_location_id)) {
-      $_SESSION['success']['contacts'][] = "success";
-    } else {
-      $_SESSION['errors']['contacts'][] = "not_saved";
+    foreach($contacts as $contacts_title => $contacts_value) {
+      R::exec('UPDATE common SET section_content = ? WHERE section_title = ?', [$contacts_value, $contacts_title]);
     }
+
+    $_SESSION['success']['contacts'][] = "success";
   }
 }
 
