@@ -2,12 +2,8 @@
 
 $page_title = "Контакты";
 
-$contacts = R::getAssoc('SELECT section_title, section_content FROM common');
+$contacts = R::getAssoc('SELECT section_title, section_content FROM contacts');
 
-$about_title = $contacts['about_title'];
-$about_content = $contacts['about_content'];
-$services_title = $contacts['services_title'];
-$services_content = $contacts['services_content'];
 $my_contacts_title = $contacts['contacts_title'];
 $my_contacts_content = $contacts['contacts_content'];
 $interactive_map = $contacts['map_script'];

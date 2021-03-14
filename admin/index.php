@@ -30,6 +30,13 @@ switch($uri_module) {
     require ROOT . "admin/modules/admin/index.php";
     break;
 
+  //::::::::::::::::::: ABOUT-ME :::::::::::::::::
+
+  case 'about-me':
+    require ROOT . "admin/modules/about-me/index.php";
+    break;
+
+
   //::::::::::::::::::: CATEGORIES :::::::::::::::::
 
   case 'categories':

@@ -6,17 +6,15 @@
         <div class="section-about-main__wrapper">
           <div class="section-about-main__content">
             <div class="post-about-me">
-              <h4 class="post-about-me__title">обо мне</h4>
-              <p>Занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты. Этот сайт я сделал в рамках обучения в школе онлайн обучения WebCademy. Чуть позже я обновлю в нём свой контент. А пока посмотрите, как тут всё классно!</p>
+              <h4 class="post-about-me__title"><?=$about_me_title?></h4>
+              <p><?=$about_me_content?></p>
             </div>
           </div>
           <div class="post-about-skills">
-            <h4 class="post-about-skills__title">чем могу быть полезен</h4>
-            <ul class="skills__list">
-              <li class="skills__list-item">Верстка сайтов</li>
-              <li class="skills__list-item">Frontend</li>
-              <li class="skills__list-item">UI/UX дизайн</li>
-            </ul>
+            <h4 class="post-about-skills__title"><?=$my_skills_title?></h4>
+            <div class="skills__list">
+              <?=$my_skills_content?>
+            </div>
           </div>
         </div>
       </div>

@@ -155,6 +155,12 @@ $admin_success_msgs = [
     ]
   ],
 
+  "about_me" => [
+    "success" => [
+      "title" => "Раздел \"Обо мне\" успешно обновлён"
+    ]
+  ],
+
 ];
 
 $ck_editor_msgs = [

@@ -8,8 +8,6 @@
     <?php include ROOT . "admin/templates/components/errors.tpl" ?>
     <?php include ROOT . "admin/templates/components/success.tpl" ?>
 
-    <?php include ROOT . "admin/templates/contacts/_parts/_about.tpl"?>
-    <?php include ROOT . "admin/templates/contacts/_parts/_services.tpl"?>
     <?php include ROOT . "admin/templates/contacts/_parts/_contacts.tpl"?>
     <?php include ROOT . "admin/templates/contacts/_parts/_interactive-map.tpl"?>
 
@@ -20,14 +18,6 @@
   </form>
 </div>
 
-<script>CKEDITOR.replace('editor-about', {
-  filebrowserUploadMethod: 'form',
-  filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'
-});</script>
-<script>CKEDITOR.replace('editor-services', {
-  filebrowserUploadMethod: 'form',
-  filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'
-});</script>
 <script>CKEDITOR.replace('editor-contacts', {
   filebrowserUploadMethod: 'form',
   filebrowserUploadUrl: '<?=HOST . "libs/ck-upload/upload.php" ?>'

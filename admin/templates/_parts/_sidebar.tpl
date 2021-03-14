@@ -7,6 +7,7 @@
       </a>
       <ul class="control-panel__list">
         <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_main.tpl' ?>
+        <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_about-me.tpl' ?>
         <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_blog.tpl' ?>
         <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_categories.tpl' ?>
         <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_contacts.tpl' ?>
