@@ -89,6 +89,12 @@ switch($uri_module) {
     require ROOT . "admin/modules/messages/single-message.php";
     break;
 
+  //::::::::::::::::::: PHOTOGALLERY :::::::::::::::::
+
+  case 'photogallery':
+    require ROOT . "admin/modules/photogallery/index.php";
+    break;
+
   //::::::::::::::::::: USERS :::::::::::::::::
 
   case 'users':

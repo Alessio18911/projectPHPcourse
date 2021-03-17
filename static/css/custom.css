@@ -364,4 +364,34 @@ a.logo-link:hover {
   margin: 0;
 }
 
+.photogallery__item-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -20px;
+}
+
+.photogallery__folder {
+  margin: 0 0 40px;
+}
+
+.photogallery__folder-name {
+  margin-bottom: 10px;
+  font-size: 28px;
+  text-transform: capitalize;
+}
+
+.photogallery__image {
+  max-width: 150px;
+  margin: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.photogallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 

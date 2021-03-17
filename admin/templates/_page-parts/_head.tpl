@@ -8,6 +8,7 @@
 	<title>Форма - Админ панель</title>
 	<meta name="keywords" />
 	<meta name="description" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 	<link rel="stylesheet" href="<?=HOST?>static/css/main.css" />
 	<link rel="stylesheet" href="<?=HOST?>static/css/custom.css" />
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Playfair+Display:400,700&amp;display=swap&amp;subset=cyrillic-ext" rel="stylesheet" />

@@ -12,6 +12,7 @@
         <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_categories.tpl' ?>
         <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_contacts.tpl' ?>
         <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_messages.tpl' ?>
+        <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_photogallery.tpl' ?>
         <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_users.tpl' ?>
         <?php include ROOT . 'admin/templates/_parts/_sidebar-links/_settings.tpl' ?>
       </ul>
