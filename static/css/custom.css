@@ -371,8 +371,16 @@ a.logo-link:hover {
   margin: 0 -20px;
 }
 
+.photogallery__image-wrapper {
+  padding: 10px;
+}
+
 .photogallery__folder {
   margin: 0 0 40px;
+}
+
+.photogallery__folder--not-avatars img {
+  min-height: 93px;
 }
 
 .photogallery__folder-name {
@@ -383,9 +391,15 @@ a.logo-link:hover {
 
 .photogallery__image {
   max-width: 145px;
-  margin: 10px;
+  margin-bottom: 10px;
   border-radius: 5px;
   overflow: hidden;
+}
+
+.photogallery__image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .photogallery__image--avatars {
@@ -397,6 +411,19 @@ a.logo-link:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.photogallery__checkbox-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.photogallery__checkbox-btn {
+  margin-right: 10px;
 }
 
 
