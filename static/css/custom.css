@@ -367,6 +367,7 @@ a.logo-link:hover {
 .photogallery__item-wrapper {
   display: flex;
   flex-wrap: wrap;
+  padding: 0 20px;
   margin: 0 -20px;
 }
 
@@ -381,16 +382,20 @@ a.logo-link:hover {
 }
 
 .photogallery__image {
-  max-width: 150px;
+  max-width: 145px;
   margin: 10px;
   border-radius: 5px;
   overflow: hidden;
 }
 
+.photogallery__image--avatars {
+  border-radius: 50%;
+}
+
 .photogallery img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
 }
 

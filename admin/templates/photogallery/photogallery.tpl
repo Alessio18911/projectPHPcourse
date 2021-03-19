@@ -11,9 +11,9 @@
           <div class="photogallery__folder">
             <h3 class="photogallery__folder-name"><?=$dir?></h3>
             <div class="swiper-container">
-              <div class="photogallery__item-wrapper swiper-wrapper">
+              <div class="photogallery__item-wrapper">
                 <?php foreach($images as $image): ?>
-                  <div class="photogallery__image swiper-slide">
+                  <div class="photogallery__image <?=$dir == 'avatars' ? 'photogallery__image--avatars' : '' ?>">
                     <img src="<?=HOST . 'usercontent/' . $dir . '/' . $image ?>" alt="">
                   </div>
                 <?php endforeach; ?>
@@ -24,5 +24,3 @@
     </div>
   </div>
 </div>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="<?=HOST?>static/js/swiper.js"></script>
