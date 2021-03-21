@@ -24,9 +24,10 @@ if (isset($uri_get)) {
 
     // Имеющиеся комментарии к данному посту
     $comments = R::getAll(
-              "SELECT c.comment, c.timestamp, u.id AS user_id, u.name AS user_name, u.surname AS user_surname, u.avatar_small AS user_avatar
+              "SELECT c.comment, c.timestamp, u.id AS user_id, u.name AS user_name, u.surname AS user_surname, md.thumb AS avatar
                 FROM comments AS c INNER JOIN users AS u ON c.user_id = u.id
-                                    INNER JOIN posts AS p ON c.post_id = p.id
+                                   INNER JOIN posts AS p ON c.post_id = p.id
+                                   INNER JOIN media AS md ON c.user_id = md.user_id
                 WHERE p.id = ?
                 ORDER BY c.timestamp ASC", [$post_id]);
 

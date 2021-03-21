@@ -5,7 +5,7 @@
         <?php foreach($comments as $comment): ?>
           <div class="comment">
             <div class="comment__avatar"><a href="<?=HOST?>profile/<?=$comment['user_id']?>">
-                <div class="avatar-small"><img src="<?=HOST?>usercontent/avatars/<?=isset($comment['user_avatar']) ? $comment['user_avatar'] : 'blank-avatar.svg' ?>" alt="Аватарка" /></div>
+                <div class="avatar-small"><img src="<?=HOST?>usercontent/avatars/<?=isset($comment['avatar']) ? $comment['avatar'] : 'blank-avatar.svg' ?>" alt="Аватарка" /></div>
               </a>
             </div>
             <div class="comment__data">

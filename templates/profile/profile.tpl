@@ -30,7 +30,7 @@
                     <?php if($user_name): ?>
                       <dl class="definition">
                         <dt class="definition__term">имя и фамилия</dt>
-                        <dd class="definition__description"> <?=$user->name?> <?=$user->surname?></dd>
+                        <dd class="definition__description"> <?=$user_name?> <?=$user_surname?></dd>
                       </dl>
                     <?php endif ?>
                     <?php if($user_country || $user_city): ?>
