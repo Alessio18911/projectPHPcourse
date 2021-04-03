@@ -10,86 +10,93 @@ $is_logged = !empty($_SESSION['login']) ? true : false;
 $avatar_folder_location = ROOT . "usercontent/avatars/";
 
 if ($is_logged) {
-  $user_id = isset($uri_get) ? $uri_get : $_SESSION['logged_user']['id'];
-  $is_the_same_user = $_SESSION['logged_user']['id'] === $user_id;
-  $is_admin = $_SESSION['logged_user']['role'] == 'admin';
+  $user_id = isset($uri_get) ? (int)$uri_get : (int)$_SESSION['logged_user']['id'];
+  $user = R::load('users', $user_id);
 
-  if ($is_the_same_user || $is_admin) {
-    $user = R::load('users', $user_id);
-    $user_name = isset($user->name) ? $user->name : '';
-    $user_surname = isset($user->surname) ? $user->surname : '';
-    $user_email = $user->email;
-    $user_avatar = isset($user->avatar) ? $user->avatar : 'blank-avatar.svg';
-    $user_country = isset($user->country) ? $user->country : '';
-    $user_city = isset($user->city) ? $user->city : '';
+  if (!is_int($user->id)) {
+    $user_id = $user->id;
+    $user_photo = R::findOne('media', ' user_id = ?', [$user_id]);
 
-    if (isset($_POST['update-profile'])) {
-      $user_name = trim($_POST['name']);
-      $user_surname = trim($_POST['surname']);
-      $user_email = trim($_POST['email']);
-      $user_country = trim($_POST['country']);
-      $user_city = trim($_POST['city']);
-      validate_edit_form($user_name, $user_surname, $user_email);
+    $is_the_same_user = $_SESSION['logged_user']['id'] === $user_id;
+    $is_admin = $_SESSION['logged_user']['role'] == 'admin';
 
-      if (empty($_SESSION['errors'])) {
-        $user->name = htmlentities($user_name);
-        $user->surname = htmlentities($user_surname);
-        $user->email = htmlentities($user_email);
-        $user->country = !empty($user_country) ? htmlentities($user_country) : NULL;
-        $user->city = !empty($user_city) ? htmlentities($user_city) : NULL;
+    if ($is_the_same_user || $is_admin) {
+      $user_name = $user->name;
+      $user_surname = $user->surname;
+      $user_email = $user->email;
+      $user_avatar = isset($user_photo->image) ? $user_photo->image : 'blank-avatar.svg';
+      $user_country = isset($user->country) ? $user->country : '';
+      $user_city = isset($user->city) ? $user->city : '';
 
-        if (isset($_POST['delete-avatar']) && $user_avatar != 'blank-avatar.svg') {
-          delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
-          $user->avatar = $user->avatar_small = NULL;
+      if (isset($_POST['update-profile'])) {
+        $user_name = trim($_POST['name']);
+        $user_surname = trim($_POST['surname']);
+        $user_email = trim($_POST['email']);
+        $user_country = trim($_POST['country']);
+        $user_city = trim($_POST['city']);
+        validate_edit_form($user_name, $user_surname, $user_email);
 
-          if ($is_the_same_user) $_SESSION['logged_user']['avatar'] = $_SESSION['logged_user']['avatar_small'] = NULL;
-        }
+        if (empty($_SESSION['errors'])) {
+          $user_name = htmlentities($user_name);
+          $user_surname = htmlentities($user_surname);
+          $user_email = htmlentities($user_email);
+          $user_country = !empty($user_country) ? htmlentities($user_country) : NULL;
+          $user_city = !empty($user_city) ? htmlentities($user_city) : NULL;
 
-        if (!$_FILES['avatar']['error']) {
-          $is_attachment = false;
-          $acceptable_formats = "/\.(gif|jpg|jpeg|png)$/i";
-          $file_params = validate_uploaded_file(
-            $is_attachment,
-            $_FILES['avatar'],
-            $acceptable_formats,
-            $max_avatar_weight,
-            $min_avatar_width,
-            $min_avatar_height);
+          if (isset($_POST['delete-avatar']) && $user_avatar != 'blank-avatar.svg') {
+            delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
+            $user_photo->image = $user_photo->thumb = NULL;
 
-          if (isset($file_params)) {
-            if ($user_avatar != 'blank-avatar.svg') delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
+            if ($is_the_same_user) $_SESSION['logged_user']['avatar'] = $_SESSION['logged_user']['avatar_small'] = NULL;
+          }
 
-            process_uploaded_file(
+          if (!$_FILES['avatar']['error']) {
+            $is_attachment = false;
+            $acceptable_formats = "/\.(gif|jpg|jpeg|png)$/i";
+            $file_params = validate_uploaded_file(
               $is_attachment,
-              $avatar_folder_location,
-              $file_params,
-              $avatar_name_prefix,
+              $_FILES['avatar'],
+              $acceptable_formats,
+              $max_avatar_weight,
               $min_avatar_width,
-              $min_avatar_height,
-              $thumb_avatar_width,
-              $thumb_avatar_height
-            );
+              $min_avatar_height);
 
-            $user->avatar = $file_params['db_file_name'];
-            $user->avatar_small = $avatar_name_prefix . $file_params['db_file_name'];
+            if (isset($file_params)) {
+              if ($user_avatar != 'blank-avatar.svg') delete_file($avatar_folder_location, $user_avatar, $avatar_name_prefix);
 
-            if ($is_the_same_user) {
-              $_SESSION['logged_user']['avatar'] = $file_params['db_file_name'];
-              $_SESSION['logged_user']['avatar_small'] = $avatar_name_prefix . $file_params['db_file_name'];
+              process_uploaded_file(
+                $is_attachment,
+                $avatar_folder_location,
+                $file_params,
+                $avatar_name_prefix,
+                $min_avatar_width,
+                $min_avatar_height,
+                $thumb_avatar_width,
+                $thumb_avatar_height
+              );
+
+              $user_photo->image = $file_params['db_file_name'];
+              $user_photo->thumb = $avatar_name_prefix . $file_params['db_file_name'];
+
+              if ($is_the_same_user) {
+                $_SESSION['logged_user']['avatar'] = $file_params['db_file_name'];
+                $_SESSION['logged_user']['avatar_small'] = $avatar_name_prefix . $file_params['db_file_name'];
+              }
             }
           }
-        }
 
-        if (empty($_SESSION['errors']['file'])) {
-          R::store($user);
-          header("Location: " .HOST. "profile/" . $user_id);
-          exit();
+          if (empty($_SESSION['errors']['file'])) {
+            R::store($user);
+            R::store($user_photo);
+            header("Location: " .HOST. "profile/" . $user_id);
+            exit();
+          }
         }
       }
+    } else {
+      header("Location: " .HOST. "profile");
+      exit();
     }
-  } else {
-    header("Location: " .HOST. "profile");
-    exit();
   }
 } else {
   header("Location: " .HOST. "login");

@@ -1,5 +1,5 @@
 <main class="page-profile">
-  <?php if (!(int)$user->id): ?>
+  <?php if (is_int($user->id)): ?>
     <div class="section">
       <div class="container">
         <div class="section__title">
@@ -94,7 +94,7 @@
                       type="text"
                       placeholder="Город"
                       name="city"
-                      value="<?=$user->city?>"
+                      value="<?=$user_city?>"
                     />
                   </label>
                 </div>
